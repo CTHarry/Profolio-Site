@@ -1,0 +1,217 @@
+:root {
+    --highlight-color: #33bcd4;
+    --section-bg-color: #ffe;
+    --font-color: #020617;
+    --bg1: #D2ECF8;
+    --bg2: #FFFFFF;
+    --bg3: #F7EDE5;
+    --bg4: #F4F5FE;
+    --bg5: #161A29;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    color: var(--font-color);
+    background-color: var(--bg1);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+li,
+p {
+    font-size: clamp(1rem, 1.5vw, 2rem);
+}
+
+h1 {
+    font-size: clamp(3rem, 3vw, 5rem);
+}
+
+h2 {
+    font-size: clamp(2rem, 2.5vw, 4rem);
+    line-height: 1.0;
+}
+
+h3 {
+    font-size: clamp(1.5rem, 2vw, 2.5rem);
+}
+
+h5 {
+    font-size: clamp(1rem, 1.5vw, 2rem);
+}
+
+.highlight {
+    color: var(--highlight-color);
+}
+
+.horizontal-list {
+    display: flex;
+    
+}
+
+.horizontal-list > li {
+    margin-right: 1vw;
+}
+
+#project-boxes {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project-box {
+    text-align: center;
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 2vw;
+    margin: 1vw;
+    flex-grow: 1;
+    min-width: 300px;
+    box-shadow: 0 5px 8px -2px #a8a8a8;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px -1px #6e6e6e
+}
+
+/*Navigation Bar*/
+.navbar {
+    background-color: #0f172a;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 2px 6px #8a8a8a;
+    z-index: 1000;
+}
+
+.navbar ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.navbar a{
+    color: #e2e8f0;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    transition: background 0.3s, color 0.3s;
+    padding: 0.7rem 1.2rem;
+    border-radius: 6px;
+}
+
+.navbar a:hover{
+    background-color: #1e293b;
+    color: var(--highlight-color);
+}
+
+.navbar li{
+    margin: 0.1rem 1rem;
+}
+
+/*Intro*/
+#aboutMe {
+    padding: 2%;
+    font-size: 2vw;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    text-align:center;
+    min-height: 22vw;
+}
+
+#aboutMe img {
+    float: left;
+    width: 20vw;
+    height: 20vw;
+    min-width: 175px;
+    max-width: 100%;
+    min-height: 175px;
+    max-height: 100%;
+    border-radius: 50%;
+    border-style: double;
+    border-width: 10px;
+    margin-right: 3vw;
+}
+
+#profilePic.spin-blur {
+    transition: transform 0.6s ease;
+    transform: rotateY(720deg);
+}
+
+/*Other Sections*/
+.lower-section {
+    padding: 4vw;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    scroll-margin-top: 30px;
+}
+
+.lower-section ul {
+    list-style-type: none;
+}
+
+#featured {
+    list-style: inside;
+}
+
+#skills p,
+#education p,
+#leadership p{
+    margin-bottom: 1rem;
+}
+
+#featured {
+    background-color: var(--bg2);
+}
+
+#featured {
+    text-align: center;
+}
+
+#skills {
+    background-color: var(--bg3);
+}
+
+#projects {
+    background-color: var(--bg2);
+}
+
+#education {
+    background-color: var(--bg4);
+}
+
+.name-date {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 1vw;
+}
+
+#grade {
+    display: flex;
+    margin-right: 1vm;
+}
+
+#leadership {
+    background-color: var(--bg2);
+}
+
+#experience {
+    background-color: var(--bg5);
+    color: var(--bg2);
+}
+
