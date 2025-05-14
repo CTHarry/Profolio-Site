@@ -9,7 +9,6 @@
         <nav class="navbar">
             <ul>
                 <li id="navname"><a href="">Hong Ye Wu</a></li>
-                <li><a href="#aboutMe">About Me</a></li>
                 <li><a href="#featured">Featured Work</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
@@ -150,27 +149,6 @@
             <h3>None yet...</h3>
         </section>
 
-        <script>
-            function changeImage() {
-              const img = document.getElementById("profilePic");
-            
-              img.classList.add("spin-blur");
-            
-              setTimeout(() => {
-                if (img.dataset.state === "hongye") {
-                  img.src = "Image/CTHarry.jpg";
-                  img.dataset.state = "ctharry";
-                } else {
-                  img.src = "Image/Hong Ye Wu.png";
-                  img.dataset.state = "hongye";
-                }
-              }, 300);
-            
-
-              setTimeout(() => {
-                img.classList.remove("spin-blur");
-              }, 600);
-            }
-            </script>
+        <script src="index.js"></script>
     </body>
 </html>

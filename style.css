@@ -7,6 +7,7 @@
     --bg3: #F7EDE5;
     --bg4: #F4F5FE;
     --bg5: #161A29;
+    --nav-height: 70px;
 }
 
 *,
@@ -126,6 +127,7 @@ h5 {
 
 /*Intro*/
 #aboutMe {
+    scroll-margin-top: 30px;
     padding: 2%;
     font-size: 2vw;
     margin-top: 70px;
@@ -148,7 +150,7 @@ h5 {
     margin-right: 3vw;
 }
 
-#profilePic.spin-blur {
+.spinY {
     transition: transform 0.6s ease;
     transform: rotateY(720deg);
 }
@@ -158,7 +160,7 @@ h5 {
     padding: 4vw;
     padding-top: 2rem;
     padding-bottom: 3rem;
-    scroll-margin-top: 30px;
+    scroll-margin-top: var(--nav-height);
 }
 
 .lower-section ul {
