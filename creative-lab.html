@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="More about Hong Ye Wu beyond technical work." />
+    <title>More About Me | Hong Ye Wu</title>
+    <link rel="icon" type="image/png" href="assets/images/profile-hong-ye-wu.png" />
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("portfolio-theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme =
+          savedTheme === "dark" || savedTheme === "light"
+            ? savedTheme
+            : prefersDark
+              ? "dark"
+              : "light";
+      })();
+    </script>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/main.js" defer></script>
+  </head>
+  <body data-page="creative-lab">
+    <header class="site-header">
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a class="nav-brand" href="index.html" data-nav-page="home">Harry Wu</a>
+        <button class="nav-menu-toggle" type="button" data-nav-toggle aria-label="Open navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links">
+          <a href="experience.html" data-nav-page="experience">Experience</a>
+          <a href="projects.html" data-nav-page="projects">Projects</a>
+          <a href="blog.html" data-nav-page="blog">Blog</a>
+          <a href="creative-lab.html" data-nav-page="creative-lab">Habits</a>
+          <a href="contact.html" data-nav-page="contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme"><span data-theme-icon>Dark</span></button>
+          <a class="ask-button" href="index.html#ask">Ask Me</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="habits-page">
+      <section class="habits-shell reveal-on-scroll" aria-labelledby="habits-title">
+        <!--
+          CUSTOMIZE:
+          - Category names: edit each .habit-card label.
+          - Links: replace href="#" with real gallery/project links.
+          - Images: edit --habit-image below or in css/styles.css.
+          - Breakpoint: see --habits-breakpoint comment in css/styles.css.
+        -->
+        <article class="habits-title-card">
+          <h1 id="habits-title">More about me</h1>
+        </article>
+
+        <a class="habit-card habit-photo" href="#" aria-label="Open photo section">
+          <span>photo</span>
+        </a>
+        <a class="habit-card habit-music" href="#" aria-label="Open music section">
+          <span>music</span>
+        </a>
+        <a class="habit-card habit-video" href="#" aria-label="Open video section">
+          <span>video</span>
+        </a>
+        <a class="habit-card habit-anime" href="#" aria-label="Open anime section">
+          <span>anime</span>
+        </a>
+        <a class="habit-card habit-sports" href="#" aria-label="Open sports section">
+          <span>sports</span>
+        </a>
+      </section>
+    </main>
+  </body>
+</html>

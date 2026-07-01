@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Professional and leadership experience for Hong Ye Wu." />
+    <title>Experience | Hong Ye Wu</title>
+    <link rel="icon" type="image/png" href="assets/images/profile-hong-ye-wu.png" />
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("portfolio-theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme =
+          savedTheme === "dark" || savedTheme === "light"
+            ? savedTheme
+            : prefersDark
+              ? "dark"
+              : "light";
+      })();
+    </script>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/main.js" defer></script>
+  </head>
+  <body data-page="experience">
+    <header class="site-header">
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a class="nav-brand" href="index.html" data-nav-page="home">Harry Wu</a>
+        <button class="nav-menu-toggle" type="button" data-nav-toggle aria-label="Open navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links">
+          <a href="experience.html" data-nav-page="experience">Experience</a>
+          <a href="projects.html" data-nav-page="projects">Projects</a>
+          <a href="blog.html" data-nav-page="blog">Blog</a>
+          <a href="creative-lab.html" data-nav-page="creative-lab">Habits</a>
+          <a href="contact.html" data-nav-page="contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+            <span data-theme-icon>Dark</span>
+          </button>
+          <a class="ask-button" href="index.html#ask">Ask Me</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="page-main">
+      <section class="page-hero split-heading reveal-on-scroll">
+        <p class="eyebrow">Experience</p>
+        <h1>Experience</h1>
+        <p>
+          Website development, SEO, automation, and leadership work across nonprofit and school communities.
+        </p>
+      </section>
+
+      <section class="section-shell experience-timeline" aria-label="Experience cards">
+        <!-- CUSTOMIZE: Company/organization logos, links, background photos, and details. -->
+        <!-- CUSTOMIZE: Replace data-url="" with the Keep Your Head Up Foundation website when available. -->
+        <article
+          class="interactive-card experience-card bg-experience-kyhu reveal-on-scroll"
+          tabindex="0"
+          role="article"
+          data-card
+          data-url=""
+        >
+          <div class="card-media" aria-hidden="true"></div>
+          <div class="card-content">
+            <div class="card-date" aria-label="Ended August 2025">
+              <span class="card-date-month">August</span>
+              <span class="card-date-year">2025</span>
+            </div>
+            <h2>Website Developer / SEO &amp; Automation Engineer</h2>
+            <p class="card-meta">Keep Your Head Up Foundation | Waterloo, ON</p>
+            <p class="card-summary">
+              Improved nonprofit web visibility and reduced manual operations through SEO, APIs, analytics, and automation.
+            </p>
+            <div class="tech-stack">
+              <span>JavaScript</span>
+              <span>SEO</span>
+              <span>Zapier</span>
+              <span>Google Analytics</span>
+              <span>Search Console</span>
+            </div>
+            <div class="card-details">
+              <ul>
+                <li>Improved Google ranking for "Waterloo concussion" from page 3+ to page 1 top 5 through metadata, headings, internal linking, and indexing work.</li>
+                <li>Standardized URLs and headings across 30+ pages to improve crawlability and content consistency.</li>
+                <li>Integrated forms, CMS, analytics, and automation APIs with validation and logging to reduce failures.</li>
+                <li>Built 3+ Zapier workflows linking forms and Sheets, reducing manual data handling by about 40%.</li>
+                <li>Tracked impressions, CTR, and indexing weekly in Google Analytics and Search Console to guide SEO iterations.</li>
+                <li>Added unit tests and regression checks for key scripts to keep outputs stable during frequent updates.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article
+          class="interactive-card experience-card bg-experience-math reveal-on-scroll"
+          tabindex="0"
+          role="link"
+          data-card
+          data-url="https://www.tdsb.on.ca/"
+        >
+          <div class="card-media" aria-hidden="true"></div>
+          <div class="card-content">
+            <div class="card-date" aria-label="Ended June 2024">
+              <span class="card-date-month">June</span>
+              <span class="card-date-year">2024</span>
+            </div>
+            <h2>Math Club President</h2>
+            <p class="card-meta">Victoria Park Collegiate Institute</p>
+            <p class="card-summary">
+              Led math learning, competition preparation, and community-building for a growing student club.
+            </p>
+            <div class="tech-stack">
+              <span>Teaching</span>
+              <span>Contest Prep</span>
+              <span>Leadership</span>
+              <span>Canva</span>
+            </div>
+            <div class="card-details">
+              <ul>
+                <li>Updated teaching methods and helped increase club participation by 200%.</li>
+                <li>Organized participation in external math competitions and led the school team.</li>
+                <li>Designed and delivered lessons to strengthen students' problem-solving skills.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article
+          class="interactive-card experience-card bg-experience-mandarin reveal-on-scroll"
+          tabindex="0"
+          role="link"
+          data-card
+          data-url="https://www.tdsb.on.ca/"
+        >
+          <div class="card-media" aria-hidden="true"></div>
+          <div class="card-content">
+            <div class="card-date" aria-label="Ended June 2024">
+              <span class="card-date-month">June</span>
+              <span class="card-date-year">2024</span>
+            </div>
+            <h2>Mandarin Club Founder</h2>
+            <p class="card-meta">Victoria Park Collegiate Institute</p>
+            <p class="card-summary">
+              Founded and organized a cultural club to connect students and expand cultural awareness.
+            </p>
+            <div class="tech-stack">
+              <span>Organization</span>
+              <span>Communication</span>
+              <span>Community</span>
+              <span>Events</span>
+            </div>
+            <div class="card-details">
+              <ul>
+                <li>Created the club to unify students of Chinese heritage and welcome broader participation.</li>
+                <li>Organized weekly sessions with consistent participation of more than 20 students.</li>
+                <li>Planned cultural activities including traditional games and cooking-focused sessions.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

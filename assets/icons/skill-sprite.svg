@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<style><![CDATA[
+.base,.accent{fill:none;stroke-width:var(--icon-stroke,3);stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;}
+.thin{stroke-width:var(--icon-thin-stroke,2.2);}
+.base{stroke:currentColor;}
+.accent{stroke:var(--icon-accent,#087a78);}
+.base-fill{fill:currentColor;stroke:none;}
+.accent-fill{fill:var(--icon-accent,#087a78);stroke:none;}
+.text{font:700 var(--icon-font-size,16px) Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Arial, sans-serif;fill:currentColor;text-anchor:middle;dominant-baseline:central;}
+.text-small{font-size:12px;}
+.text-large{font-size:18px;}
+.accent-text{fill:var(--icon-accent,#087a78);}
+]]></style>
+<symbol id="icon-openai-api" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M24.5 15.8c4.2-4.7 11.8-3.2 14.2 2.5 5.9-.2 10.2 5.5 8.1 11.1 4.5 3.5 3.8 10.8-1.4 13.4-.8 5.8-7.5 9-12.6 5.8-4.6 3.8-11.5 1.3-13-4.4-5.9-.5-9.3-6.8-6.3-11.9-3-5.3.2-12 6.2-12.6 1-1.8 2.5-3.1 4.8-3.9Z"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M23.3 22.5 35.1 16m5.5 7.8.2 13.5m-6.4 10.6-12-6.9m-4.4-8.4 11.9-7.2m14.8 4.4-12.2 7.1"/>
+<path class="accent thin" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M27.8 25.2h8.1l4.1 7-4.1 7h-8.1l-4.1-7 4.1-7Z"/>
+</symbol>
+<symbol id="icon-gemini-api" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M32 8c2.5 11.5 8.5 17.5 20 20-11.5 2.5-17.5 8.5-20 20-2.5-11.5-8.5-17.5-20-20 11.5-2.5 17.5-8.5 20-20Z"/>
+<path class="accent thin" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M48 42c1 4.7 3.3 7 8 8-4.7 1-7 3.3-8 8-1-4.7-3.3-7-8-8 4.7-1 7-3.3 8-8Z"/>
+</symbol>
+<symbol id="icon-embeddings" viewBox="0 0 64 64">
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M22 20h20M22 32h20M22 44h20M20 22l24 20M44 22 20 42"/>
+<circle class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="20" cy="20" r="4"/><circle class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="32" cy="20" r="4"/><circle class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="44" cy="20" r="4"/>
+<circle class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="20" cy="32" r="4"/><circle class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="32" cy="32" r="4"/><circle class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="44" cy="32" r="4"/>
+<circle class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="20" cy="44" r="4"/><circle class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="32" cy="44" r="4"/><circle class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="44" cy="44" r="4"/>
+</symbol>
+<symbol id="icon-prompt-engineering" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M14 17h36a6 6 0 0 1 6 6v16a6 6 0 0 1-6 6H32l-11 9v-9h-7a6 6 0 0 1-6-6V23a6 6 0 0 1 6-6Z"/>
+<text class="text accent-text text-large" font-family="Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Arial, sans-serif" font-weight="700" font-size="var(--icon-font-size,18px)" fill="var(--icon-accent,#087a78)" text-anchor="middle" dominant-baseline="central" x="32" y="32">AI</text>
+<path class="accent thin" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M44 23h5M44 29h5M15 24h4"/>
+</symbol>
+<symbol id="icon-structured-prompting" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M13 15h38a5 5 0 0 1 5 5v25a5 5 0 0 1-5 5H34l-10 7v-7H13a5 5 0 0 1-5-5V20a5 5 0 0 1 5-5Z"/>
+<rect class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" x="28" y="22" width="8" height="6" rx="1.5"/>
+<rect class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" x="18" y="38" width="8" height="6" rx="1.5"/>
+<rect class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" x="38" y="38" width="8" height="6" rx="1.5"/>
+<path class="accent thin" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M32 28v6M22 38v-4h20v4"/>
+</symbol>
+<symbol id="icon-rag" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M18 8h22l12 12v34a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4Z"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M40 8v12h12M22 25h16M22 33h12M22 41h9"/>
+<circle class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="40" cy="42" r="7"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M45 47l7 7"/>
+</symbol>
+<symbol id="icon-python" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M32 8c-8 0-12 3.2-12 9.5V26h15a5 5 0 0 1 5 5v0"/>
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M32 56c8 0 12-3.2 12-9.5V38H29a5 5 0 0 1-5-5v0"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M20 26h-4.5C10.8 26 8 29.3 8 34s2.8 8 7.5 8H24"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M44 38h4.5c4.7 0 7.5-3.3 7.5-8s-2.8-8-7.5-8H40"/>
+<circle class="accent-fill" fill="var(--icon-accent,#087a78)" stroke="none" cx="28" cy="17" r="2"/><circle class="accent-fill" fill="var(--icon-accent,#087a78)" stroke="none" cx="36" cy="47" r="2"/>
+</symbol>
+<symbol id="icon-javascript" viewBox="0 0 64 64">
+<rect class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" x="13" y="13" width="38" height="38" rx="5"/>
+<text class="text text-large" font-family="Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Arial, sans-serif" font-weight="700" font-size="var(--icon-font-size,18px)" fill="currentColor" text-anchor="middle" dominant-baseline="central" x="32" y="34">JS</text>
+<path class="accent thin" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M41 45c4 0 6-2 6-5"/>
+</symbol>
+<symbol id="icon-typescript" viewBox="0 0 64 64">
+<rect class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" x="13" y="13" width="38" height="38" rx="5"/>
+<text class="text accent-text text-large" font-family="Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Arial, sans-serif" font-weight="700" font-size="var(--icon-font-size,18px)" fill="var(--icon-accent,#087a78)" text-anchor="middle" dominant-baseline="central" x="32" y="34">TS</text>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M18 21h28"/>
+</symbol>
+<symbol id="icon-cpp" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M32 8 53 20v24L32 56 11 44V20L32 8Z"/>
+<text class="text text-small" font-family="Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Arial, sans-serif" font-weight="700" font-size="var(--icon-font-size,12px)" fill="currentColor" text-anchor="middle" dominant-baseline="central" x="32" y="32">C++</text>
+<path class="accent thin" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M20 21v22M44 21v22"/>
+</symbol>
+<symbol id="icon-java" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M23 42h18c6 0 10-2.4 10-6H13c0 3.6 4 6 10 6Z"/>
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M20 47h24"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M28 10c7 6-5 9 1 15M36 9c7 6-5 9 1 15M32 25c7 5-7 7-1 12"/>
+<path class="accent thin" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M15 32h34"/>
+</symbol>
+<symbol id="icon-bash" viewBox="0 0 64 64">
+<rect class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" x="10" y="14" width="44" height="36" rx="5"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M20 27l7 5-7 5"/>
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M33 38h11"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M10 23h44"/>
+</symbol>
+<symbol id="icon-git" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M21 14v22a8 8 0 0 0 8 8h14"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M21 25h18a8 8 0 0 1 8 8v17"/>
+<circle class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="21" cy="14" r="5"/><circle class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="47" cy="50" r="5"/><circle class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="43" cy="44" r="5"/>
+</symbol>
+<symbol id="icon-unit-testing" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M22 13h20v7h7a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H15a4 4 0 0 1-4-4V24a4 4 0 0 1 4-4h7v-7Z"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M22 20h20"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M23 33l4 4 8-9M23 46l4 4 8-9"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M41 34h5M41 47h5"/>
+</symbol>
+<symbol id="icon-react" viewBox="0 0 64 64">
+<ellipse class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="32" cy="32" rx="23" ry="9"/>
+<ellipse class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="32" cy="32" rx="23" ry="9" transform="rotate(60 32 32)"/>
+<ellipse class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="32" cy="32" rx="23" ry="9" transform="rotate(120 32 32)"/>
+<circle class="accent-fill" fill="var(--icon-accent,#087a78)" stroke="none" cx="32" cy="32" r="3.5"/>
+</symbol>
+<symbol id="icon-nextjs" viewBox="0 0 64 64">
+<circle class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="32" cy="32" r="23"/>
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M22 42V22l20 20V22"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M42 42l7 7"/>
+<circle class="accent-fill" fill="var(--icon-accent,#087a78)" stroke="none" cx="44" cy="44" r="2"/>
+</symbol>
+<symbol id="icon-nodejs" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M32 8 52 20v24L32 56 12 44V20L32 8Z"/>
+<text class="text accent-text text-large" font-family="Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Arial, sans-serif" font-weight="700" font-size="var(--icon-font-size,18px)" fill="var(--icon-accent,#087a78)" text-anchor="middle" dominant-baseline="central" x="32" y="33">JS</text>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M18 23v18M46 23v18"/>
+</symbol>
+<symbol id="icon-express" viewBox="0 0 64 64">
+<text class="text text-large" font-family="Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Arial, sans-serif" font-weight="700" font-size="var(--icon-font-size,18px)" fill="currentColor" text-anchor="middle" dominant-baseline="central" x="31" y="33">ex</text>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M14 44l14-14M37 30l13 14"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M12 49h40"/>
+</symbol>
+<symbol id="icon-rest-api" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M22 45H18a10 10 0 0 1-1.5-19.9A14 14 0 0 1 43 22a11 11 0 0 1 3 21.6"/>
+<text class="text accent-text text-small" font-family="Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Arial, sans-serif" font-weight="700" font-size="var(--icon-font-size,12px)" fill="var(--icon-accent,#087a78)" text-anchor="middle" dominant-baseline="central" x="33" y="42">API</text>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M19 50h26M16 34h7M41 34h7"/>
+</symbol>
+<symbol id="icon-html" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M32 8 52 18v28L32 56 12 46V18L32 8Z"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M27 25l-7 7 7 7M37 25l7 7-7 7"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M34 22l-5 20"/>
+</symbol>
+<symbol id="icon-css" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M16 10h32l-3 37-13 7-13-7-3-37Z"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M24 22h18l-1 8H25M25 39l7 4 7-4 .6-7"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M23 30h18"/>
+</symbol>
+<symbol id="icon-sql" viewBox="0 0 64 64">
+<ellipse class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="32" cy="16" rx="18" ry="7"/>
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M14 16v32c0 4 8 7 18 7s18-3 18-7V16"/>
+<path class="accent thin" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M14 27c0 4 8 7 18 7s18-3 18-7M14 38c0 4 8 7 18 7s18-3 18-7"/>
+</symbol>
+<symbol id="icon-sqlite" viewBox="0 0 64 64">
+<rect class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" x="13" y="14" width="29" height="38" rx="4"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M42 12c9 8-1 18-6 24l-8 12 3-14c2-10 5-17 11-22Z"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M19 25h14M19 33h11M19 41h8"/>
+</symbol>
+<symbol id="icon-postgresql" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M20 46c-8-6-8-24 4-31 9-5 24-2 28 10 3 9-1 19-10 21"/>
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M26 43c-2 8 4 12 10 7 3-3 2-10 2-18"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M38 31c7 0 10-4 9-9M28 27c-1-5 8-6 10-1"/>
+<circle class="accent-fill" fill="var(--icon-accent,#087a78)" stroke="none" cx="29" cy="24" r="1.8"/><circle class="accent-fill" fill="var(--icon-accent,#087a78)" stroke="none" cx="42" cy="23" r="1.8"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M31 35h14"/>
+</symbol>
+<symbol id="icon-technical-seo" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M30 9h4l2 7 5 2 6-4 3 3-4 6 2 5 7 2v4l-7 2-2 5 4 6-3 3-6-4-5 2-2 7h-4l-2-7-5-2-6 4-3-3 4-6-2-5-7-2v-4l7-2 2-5-4-6 3-3 6 4 5-2 2-7Z"/>
+<circle class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="32" cy="32" r="8"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M40 40l11 11"/>
+</symbol>
+<symbol id="icon-google-analytics" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M13 51h38"/>
+<rect class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" x="17" y="35" width="7" height="16" rx="2"/>
+<rect class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" x="29" y="27" width="7" height="24" rx="2"/>
+<rect class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" x="41" y="18" width="7" height="33" rx="2"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M15 25l12 5 9-10 13-8"/>
+<circle class="accent-fill" fill="var(--icon-accent,#087a78)" stroke="none" cx="15" cy="25" r="2.5"/><circle class="accent-fill" fill="var(--icon-accent,#087a78)" stroke="none" cx="27" cy="30" r="2.5"/><circle class="accent-fill" fill="var(--icon-accent,#087a78)" stroke="none" cx="36" cy="20" r="2.5"/><circle class="accent-fill" fill="var(--icon-accent,#087a78)" stroke="none" cx="49" cy="12" r="2.5"/>
+</symbol>
+<symbol id="icon-google-search-console" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M19 18h26l8 8v24a5 5 0 0 1-5 5H16a5 5 0 0 1-5-5V23a5 5 0 0 1 5-5h3Z"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M19 18v-5h26v5M45 18v8h8"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M26 43l11-11a5 5 0 1 1 5 5L31 48h-5v-5Z"/>
+</symbol>
+<symbol id="icon-keyword-research" viewBox="0 0 64 64">
+<circle class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="27" cy="27" r="14"/>
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M37 37l14 14"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M31 27h21M48 27v8M43 27v5"/>
+<circle class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="26" cy="27" r="4"/>
+</symbol>
+<symbol id="icon-page-optimization" viewBox="0 0 64 64">
+<rect class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" x="10" y="14" width="44" height="36" rx="5"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M10 24h44M18 19h.1M25 19h.1M32 19h.1"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M22 42a10 10 0 0 1 20 0"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M32 42l9-10"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M21 31h8M40 31h5"/>
+</symbol>
+<symbol id="icon-visual-studio" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M10 25l12-8 20 15-20 15-12-8V25Z"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M42 14l12 6v24l-12 6V14Z"/>
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M22 17v30M10 25l12 7-12 7"/>
+</symbol>
+<symbol id="icon-zapier" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M32 8v48M8 32h48M15 15l34 34M49 15 15 49"/>
+<circle class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" cx="32" cy="32" r="7"/>
+<path class="accent thin" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M32 15v7M32 42v7M15 32h7M42 32h7"/>
+</symbol>
+<symbol id="icon-google-workspace" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M48 24a18 18 0 1 0-4 20"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M32 32h22c0 13-9 21-21 21"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M45 45l7 7"/>
+</symbol>
+<symbol id="icon-microsoft-365" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M32 7 51 17v30L32 57 13 47V17L32 7Z"/>
+<path class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M32 7v50M13 17l19 10 19-10M13 47l19-10 19 10"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M24 23v18M40 23v18"/>
+</symbol>
+<symbol id="icon-google-sheets" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M18 8h22l12 12v36H18a6 6 0 0 1-6-6V14a6 6 0 0 1 6-6Z"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M40 8v12h12"/>
+<rect class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" x="22" y="28" width="20" height="16" rx="1"/>
+<path class="accent thin" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M22 34h20M22 39h20M29 28v16M36 28v16"/>
+</symbol>
+<symbol id="icon-microsoft-excel" viewBox="0 0 64 64">
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M18 8h22l12 12v36H18a6 6 0 0 1-6-6V14a6 6 0 0 1 6-6Z"/>
+<path class="base thin" fill="none" stroke="currentColor" stroke-width="var(--icon-thin-stroke,2.2)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M40 8v12h12"/>
+<rect class="accent" fill="none" stroke="var(--icon-accent,#087a78)" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" x="22" y="28" width="20" height="16" rx="1"/>
+<path class="base" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,3)" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" d="M27 32l10 10M37 32 27 42"/>
+</symbol>
+</svg>

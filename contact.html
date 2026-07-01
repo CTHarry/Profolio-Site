@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Contact Hong Ye Wu." />
+    <title>Contact | Hong Ye Wu</title>
+    <link rel="icon" type="image/png" href="assets/images/profile-hong-ye-wu.png" />
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("portfolio-theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme =
+          savedTheme === "dark" || savedTheme === "light"
+            ? savedTheme
+            : prefersDark
+              ? "dark"
+              : "light";
+      })();
+    </script>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/main.js" defer></script>
+  </head>
+  <body data-page="contact">
+    <header class="site-header">
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a class="nav-brand" href="index.html" data-nav-page="home">Harry Wu</a>
+        <button class="nav-menu-toggle" type="button" data-nav-toggle aria-label="Open navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links">
+          <a href="experience.html" data-nav-page="experience">Experience</a>
+          <a href="projects.html" data-nav-page="projects">Projects</a>
+          <a href="blog.html" data-nav-page="blog">Blog</a>
+          <a href="creative-lab.html" data-nav-page="creative-lab">Habits</a>
+          <a href="contact.html" data-nav-page="contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme"><span data-theme-icon>Dark</span></button>
+          <a class="ask-button" href="index.html#ask">Ask Me</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="page-main">
+      <section class="section-shell contact-layout">
+        <div class="contact-info reveal-on-scroll">
+          <p class="eyebrow">Contact</p>
+          <h1>Let's Connect</h1>
+          <p>I am open to software development, full-stack, AI automation, SEO, and technical roles.</p>
+          <!-- CUSTOMIZE: Contact links and resume file. -->
+          <div class="contact-links">
+            <a href="mailto:hywu@uwaterloo.ca">hywu@uwaterloo.ca</a>
+            <a href="https://www.linkedin.com/in/hongyewu/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://github.com/CTHarry" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="assets/documents/harry-wu-resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+          </div>
+        </div>
+
+        <form class="contact-form reveal-on-scroll" data-contact-form data-email="hywu@uwaterloo.ca">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required />
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
+          <button class="form-button" type="submit">Send Message</button>
+          <p class="form-status" data-form-status aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
