@@ -1,0 +1,80 @@
+.masonry-list {
+  position: relative;
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.masonry-item-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  cursor: default;
+  will-change: transform, width, height, opacity, filter;
+}
+
+.masonry-item-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(243, 246, 242, 0.13);
+  border-radius: 9px;
+  background:
+    linear-gradient(135deg, rgba(255, 42, 31, 0.16), rgba(255, 255, 255, 0.035) 54%),
+    rgba(255, 255, 255, 0.055);
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.24);
+}
+
+.masonry-item-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(7, 9, 8, 0.08), rgba(7, 9, 8, 0.9)),
+    linear-gradient(135deg, rgba(255, 42, 31, 0.16), transparent 46%);
+}
+
+.masonry-item-copy {
+  position: absolute;
+  left: clamp(14px, 1.2vw, 20px);
+  right: clamp(14px, 1.2vw, 20px);
+  bottom: clamp(14px, 1.2vw, 20px);
+  z-index: 1;
+  display: grid;
+  gap: 6px;
+}
+
+.masonry-item-copy span {
+  color: var(--accent);
+  font-size: 0.6rem;
+  font-weight: 950;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.masonry-item-copy strong {
+  color: var(--text);
+  font-size: clamp(1.02rem, 1.05vw, 1.32rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.masonry-item-copy p {
+  max-width: 18rem;
+  margin: 0;
+  color: rgba(243, 246, 242, 0.7);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+@media (max-width: 850px) {
+  .masonry-list {
+    min-height: 520px;
+  }
+}
