@@ -8,10 +8,6 @@ import componentProjectImage from "../assets/images/project-portfolio.png";
 import minigameImage from "../assets/images/project-minigame.png";
 import platformerImage from "../assets/images/project-unity-platformer.png";
 import photoImage from "../assets/images/profile-alt-ctharry.jpg";
-import experienceInfosysIcon from "../assets/images/experience-infosys-icon.png";
-import experienceKyhuIcon from "../assets/images/experience-kyhu-icon.png";
-import experienceUwIcon from "../assets/images/experience-uw-icon.png";
-import experienceVpciIcon from "../assets/images/experience-vpci-icon.png";
 import resumePdf from "../assets/documents/harry-wu-resume.pdf";
 import DecryptedText from "./DecryptedText.jsx";
 import Masonry from "./Masonry.jsx";
@@ -20,12 +16,6 @@ const assets = {
   resume: resumePdf,
 };
 
-const experienceIcons = {
-  infosys: experienceInfosysIcon,
-  kyhu: experienceKyhuIcon,
-  uwaterloo: experienceUwIcon,
-  "vic-park": experienceVpciIcon,
-};
 const focusItems = [
   {
     source: "Personal Project",
@@ -51,7 +41,7 @@ const navItems = [
 const mobileNavItems = [{ label: "Home", href: "#top" }, ...navItems];
 
 const heroTitleWords = ["HONG", "YE", "WU"];
-const EXPERIENCE_FOCUS_RATIO = 0.58;
+const EXPERIENCE_FOCUS_RATIO = 0.68;
 
 const currentProjects = [
   {
@@ -271,6 +261,13 @@ function formatExperienceDateRange(period) {
 
   return { startText, endText: endText || "PRESENT" };
 }
+
+function formatEditorialPeriod(period) {
+  const { startText, endText } = formatExperienceDateRange(period);
+
+  return `${startText} — ${endText}`;
+}
+
 function PeriodStamp({ period }) {
   const dates = period.split(/\s+-\s+/).map(parseDatePart);
 
@@ -287,16 +284,6 @@ function PeriodStamp({ period }) {
       ))}
     </span>
   );
-}
-
-function getCompanyInitials(company) {
-  return company
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((word) => word[0])
-    .join("")
-    .toUpperCase();
 }
 
 function ProjectCard({ project, index, variant = "featured" }) {
@@ -355,7 +342,7 @@ function getTimelineCompanyLabel(experience, isActive) {
 function getExperienceOverview(experience) {
   const overview = {
     infosys:
-      "Building ROS2/Nav2 AMR workflows with VLM costmap reasoning and an agent layer for navigation, safety, alerts, and interaction.",
+      "Building semantic navigation systems for autonomous mobile robots using vision-language models, ROS2, Nav2, and local costmaps.",
     kyhu:
       "Improved the Squarespace site, technical SEO, and JavaScript automation for a youth-focused nonprofit.",
     uwaterloo:
@@ -371,16 +358,16 @@ function getExperienceWorkItems(experience) {
   const workItems = {
     infosys: [
       {
-        title: "Local VLM semantic costmap system",
-        outcome: "converts visual scene understanding into navigation-aware cost signals.",
+        title: "Semantic costmap generation",
+        outcome: "Converted visual scene interpretations into navigation-aware cost values.",
       },
       {
         title: "Robot coordination agent",
-        outcome: "connects navigation, safety alerts, and interaction logic.",
+        outcome: "Connected navigation state, safety events, and interaction logic.",
       },
       {
-        title: "ROS2/Nav2 AMR testing workflows",
-        outcome: "validates robot behavior in repeatable scenarios.",
+        title: "ROS2 simulation workflows",
+        outcome: "Created repeatable test scenarios for evaluating robot behaviour.",
       },
     ],
     kyhu: [
@@ -437,57 +424,54 @@ function getExperienceWorkItems(experience) {
 }
 
 function getExperienceTechStack(experience) {
-  return [...new Set([...experience.languages, ...experience.tools])];
+  const stacks = {
+    infosys: ["Python", "C++", "ROS2", "Nav2", "Qwen2.5-VL", "Local costmaps"],
+    kyhu: ["JavaScript", "Squarespace", "SEO", "Zapier", "Analytics"],
+    uwaterloo: ["C", "C++", "Python", "Git", "Linux", "Testing"],
+    "vic-park": ["Leadership", "Teaching", "Event planning", "Mentorship"],
+  };
+
+  return stacks[experience.id] ?? [...new Set([...experience.languages, ...experience.tools])];
 }
 
 function ExperienceDetails({ experience }) {
-  const companyInitials = getCompanyInitials(experience.company);
   const overview = getExperienceOverview(experience);
   const workItems = getExperienceWorkItems(experience);
   const techStack = getExperienceTechStack(experience);
 
   return (
-    <aside
-      className="experience-detail-panel magic-border"
-      key={experience.id}
-      aria-live="polite"
-    >
+    <aside className="experience-detail-panel" key={experience.id} aria-live="polite">
       <header className="experience-detail-top">
-        <span className="experience-detail-logo" aria-hidden="true">
-          {companyInitials}
-        </span>
-        <div>
-          <span>{experience.company}</span>
-          <strong>{experience.role}</strong>
-          <p>{experience.location}</p>
+        <div className="experience-detail-title-row">
+          <span className="experience-detail-company">{experience.company}</span>
+          <span className="experience-detail-date">{formatEditorialPeriod(experience.date)}</span>
         </div>
-        <PeriodStamp period={experience.date} />
+        <h3>{experience.role}</h3>
+        <p>{experience.location}</p>
       </header>
 
       <section className="experience-detail-card experience-detail-wide">
-        <span>Overview</span>
         <p>{overview}</p>
       </section>
 
       <section className="experience-detail-card experience-work-section">
-        <span>Work &amp; Impact</span>
+        <span>Selected work</span>
         <div className="experience-work-list">
           {workItems.map((item, index) => (
             <article className="experience-work-item" key={`${item.title}-${index}`}>
-              <strong>{item.title}</strong>
-              <p>{item.outcome}</p>
+              <span className="experience-work-index">{String(index + 1).padStart(2, "0")}</span>
+              <div>
+                <strong>{item.title}</strong>
+                <p>{item.outcome}</p>
+              </div>
             </article>
           ))}
         </div>
       </section>
 
       <section className="experience-detail-card experience-tech-section">
-        <span>Tech Stack</span>
-        <div className="experience-detail-tags experience-tech-tags">
-          {techStack.map((item) => (
-            <em key={item}>{item}</em>
-          ))}
-        </div>
+        <span>Tools</span>
+        <p className="experience-tool-line">{techStack.join(", ")}</p>
       </section>
     </aside>
   );
@@ -528,7 +512,6 @@ function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeExperienceIndex, setActiveExperienceIndex] = useState(experiences.length - 1);
-  const [experienceWave, setExperienceWave] = useState({ d: "", width: 0, height: 0 });
   const [accentMode, setAccentMode] = useState(() => {
     if (typeof window === "undefined") return "ember";
 
@@ -548,14 +531,12 @@ function App() {
   const timelineExperiences = [...experiences].reverse();
   const activeExperience = timelineExperiences[activeExperienceIndex] ?? timelineExperiences[timelineExperiences.length - 1];
   const timelineItems = timelineExperiences.map((item, index) => ({ item, index }));
-  const rightPreviewIndex = null;
   const visibleTimelineItems = timelineItems;
   const toggleAccentMode = () => {
     setAccentMode((mode) => (mode === "teal" ? "ember" : "teal"));
   };
 
-  const isExperienceFixedRail = () =>
-    typeof window !== "undefined" && window.matchMedia("(min-width: 860px)").matches;
+  const isExperienceFixedRail = () => false;
 
   const scrollExperienceToFocus = (index, behavior = "smooth") => {
     const timeline = experienceTimelineRef.current;
@@ -579,73 +560,6 @@ function App() {
     window.requestAnimationFrame(() => scrollExperienceToFocus(index));
   };
 
-  useLayoutEffect(() => {
-    const timeline = experienceTimelineRef.current;
-    const connectorRow = timeline?.querySelector(".experience-connector-row");
-
-    if (!connectorRow || typeof ResizeObserver === "undefined") {
-      return undefined;
-    }
-
-    let frameId = 0;
-
-    const updateWaveConnector = () => {
-      const rowRect = connectorRow.getBoundingClientRect();
-      const slots = Array.from(connectorRow.querySelectorAll(".experience-connector-slot"));
-      const dots = slots.map((slot) => slot.querySelector(".experience-dot")).filter(Boolean);
-
-      if (!rowRect.width || !rowRect.height || dots.length < 2) {
-        setExperienceWave({ d: "", width: 0, height: 0 });
-        return;
-      }
-
-      const points = dots.map((dot) => {
-        const rect = dot.getBoundingClientRect();
-        return {
-          x: Number((rect.left + rect.width / 2 - rowRect.left).toFixed(2)),
-          y: Number((rect.top + rect.height / 2 - rowRect.top).toFixed(2)),
-        };
-      });
-
-      const d = points.slice(1).reduce((path, point, index) => {
-        const previous = points[index];
-        const distance = point.x - previous.x;
-        const waveOffset = Math.min(18, Math.max(8, Math.abs(distance) * 0.16));
-        const direction = index % 2 === 0 ? -1 : 1;
-        const controlOneX = previous.x + distance * 0.36;
-        const controlTwoX = point.x - distance * 0.36;
-
-        return `${path} C ${controlOneX.toFixed(1)} ${previous.y + direction * waveOffset}, ${controlTwoX.toFixed(1)} ${point.y - direction * waveOffset}, ${point.x} ${point.y}`;
-      }, `M ${points[0].x} ${points[0].y}`);
-
-      const nextWave = {
-        d,
-        width: Math.round(rowRect.width),
-        height: Math.round(rowRect.height),
-      };
-
-      setExperienceWave((wave) =>
-        wave.d === nextWave.d && wave.width === nextWave.width && wave.height === nextWave.height ? wave : nextWave,
-      );
-    };
-
-    const requestWaveUpdate = () => {
-      window.cancelAnimationFrame(frameId);
-      frameId = window.requestAnimationFrame(updateWaveConnector);
-    };
-
-    const observer = new ResizeObserver(requestWaveUpdate);
-    observer.observe(connectorRow);
-    connectorRow.querySelectorAll(".experience-connector-slot, .experience-dot").forEach((node) => observer.observe(node));
-    window.addEventListener("resize", requestWaveUpdate);
-    requestWaveUpdate();
-
-    return () => {
-      window.cancelAnimationFrame(frameId);
-      observer.disconnect();
-      window.removeEventListener("resize", requestWaveUpdate);
-    };
-  }, [activeExperienceIndex, visibleTimelineItems.length]);
   useLayoutEffect(() => {
     const root = siteRef.current;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1532,151 +1446,47 @@ function App() {
 
 
         <section className="profile-section experience-section page-panel" id="experience" aria-labelledby="experience-title">
-          <div className="experience-road-glow" aria-hidden="true" />
           <div className="experience-showcase content-shell">
             <div className="experience-timeline-panel">
               <div className="experience-display-heading">
-                <p className="experience-eyebrow"><span aria-hidden="true" />My Journey</p>
+                <p className="experience-eyebrow">My Journey</p>
                 <h2 id="experience-title">Experience</h2>
-                <p className="experience-lede">A record of building intelligent systems, solving real problems, and creating impact through technology.</p>
-              </div>
-
-              <div className="experience-focus-areas" aria-label="Focus areas">
-                <span>Focus Areas</span>
-                <div>
-                  <em>AI</em>
-                  <em>Robotics</em>
-                  <em>Web Systems</em>
-                  <em>Product</em>
-                </div>
+                <p className="experience-lede">I build web and robotics systems, with recent work focused on semantic navigation and vision-language models.</p>
               </div>
 
               <div className="experience-carousel-shell">
-                <button
-                  className="experience-arrow experience-arrow-prev"
-                  type="button"
-                  aria-label="Previous experience"
-                  onClick={() => selectExperience(Math.max(0, activeExperienceIndex - 1))}
-                  disabled={activeExperienceIndex === 0}
-                >
-                  <span aria-hidden="true">&lt;</span>
-                </button>
-
                 <div className="experience-timeline" ref={experienceTimelineRef} aria-label="Horizontal experience timeline">
-                  <div className="experience-track experience-track-layered">
-                    <div className="experience-card-row">
-                      {visibleTimelineItems.map(({ item, index }) => {
-                        const isActive = index === activeExperienceIndex;
-                        const isCurrent = item.id === "infosys";
-                        const isRightPreview = index === rightPreviewIndex;
-                        const companyInitials = getCompanyInitials(item.company);
-                        const companyIcon = experienceIcons[item.id];
+                  <div className="experience-track experience-track-editorial">
+                    {visibleTimelineItems.map(({ item, index }) => {
+                      const isActive = index === activeExperienceIndex;
+                      const startDate = getExperienceStartDate(item.date);
 
-                        return (
-                          <article
-                            key={`${item.id}-card`}
-                            className={`experience-line experience-card-slot experience-node magic-border${isActive ? " is-active" : " is-inactive"}${isCurrent ? " is-current-role" : ""}${isRightPreview ? " is-right-preview" : ""}`}
-                            data-experience-index={index}
-                            role="button"
-                            tabIndex={0}
-                            aria-current={isActive ? "step" : undefined}
-                            onClick={() => selectExperience(index)}
-                            onKeyDown={(event) => {
-                              if (event.key === "Enter" || event.key === " ") {
-                                event.preventDefault();
-                                selectExperience(index);
-                              }
-                            }}
-                          >
-                            <div className="experience-node-card">
-                              <span className="experience-company-logo" aria-hidden="true">
-                                {companyInitials}
-                              </span>
-                              <div className="experience-node-copy">
-                                <span className="experience-node-company">{getTimelineCompanyLabel(item, isActive)}</span>
-                                {isActive && (
-                                  <>
-                                    <h3 className="experience-node-role">
-                                      {getTimelineRoleLines(item).map((line, lineIndex) => (
-                                        <span className="experience-node-role-line" key={`${line}-${lineIndex}`}>
-                                          {line}
-                                        </span>
-                                      ))}
-                                    </h3>
-                                    <p className="experience-node-location">{item.location}</p>
-                                  </>
-                                )}
-                              </div>
-                            </div>
-                          </article>
-                        );
-                      })}
-                    </div>
-
-                    <div className="experience-connector-row" aria-hidden="true">
-                      {experienceWave.d && (
-                        <svg
-                          className="experience-wave-connector"
-                          viewBox={`0 0 ${experienceWave.width} ${experienceWave.height}`}
-                          preserveAspectRatio="none"
-                          focusable="false"
+                      return (
+                        <article
+                          key={`${item.id}-timeline`}
+                          className={`experience-line${isActive ? " is-active" : " is-inactive"}`}
+                          data-experience-index={index}
+                          role="button"
+                          tabIndex={0}
+                          aria-current={isActive ? "step" : undefined}
+                          onClick={() => selectExperience(index)}
+                          onKeyDown={(event) => {
+                            if (event.key === "Enter" || event.key === " ") {
+                              event.preventDefault();
+                              selectExperience(index);
+                            }
+                          }}
                         >
-                          <path d={experienceWave.d} />
-                        </svg>
-                      )}
-                      {visibleTimelineItems.map(({ item, index }) => {
-                        const isActive = index === activeExperienceIndex;
-                        const isCurrent = item.id === "infosys";
-                        const isRightPreview = index === rightPreviewIndex;
-
-                        return (
-                          <span
-                            className={`experience-connector-slot${isActive ? " is-active" : " is-inactive"}${isCurrent ? " is-current-role" : ""}${isRightPreview ? " is-right-preview" : ""}`}
-                            key={`${item.id}-node`}
-                          >
-                            <span className="experience-dot" />
-                          </span>
-                        );
-                      })}
-                    </div>
-
-                    <div className="experience-date-row" aria-hidden="true">
-                      {visibleTimelineItems.map(({ item, index }) => {
-                        const isActive = index === activeExperienceIndex;
-                        const isCurrent = item.id === "infosys";
-                        const isRightPreview = index === rightPreviewIndex;
-                        const startDate = getExperienceStartDate(item.date);
-
-                        return (
-                          <div
-                            className={`experience-date-slot${isActive ? " is-active" : " is-inactive"}${isCurrent ? " is-current-role" : ""}${isRightPreview ? " is-right-preview" : ""}`}
-                            key={`${item.id}-date`}
-                          >
-                            <div className="experience-node-date">
-                              <span>{startDate.month ? startDate.month.toUpperCase() : ""}</span>
-                              <strong>{startDate.year}</strong>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
+                          <span className="experience-start-year">{startDate.year}</span>
+                          <span className="experience-dot" aria-hidden="true" />
+                          <span className="experience-node-company">{getTimelineCompanyLabel(item, isActive)}</span>
+                          <span className="experience-node-role">{getTimelineRoleLines(item)[0]}</span>
+                          <span className="experience-node-date-inline">{formatEditorialPeriod(item.date)}</span>
+                        </article>
+                      );
+                    })}
                   </div>
                 </div>
-                <button
-                  className="experience-arrow experience-arrow-next"
-                  type="button"
-                  aria-label="Next experience"
-                  onClick={() => selectExperience(Math.min(timelineExperiences.length - 1, activeExperienceIndex + 1))}
-                  disabled={activeExperienceIndex === timelineExperiences.length - 1}
-                >
-                  <span aria-hidden="true">&gt;</span>
-                </button>
-              </div>
-
-              <div className="experience-quote-block">
-                <span aria-hidden="true">&ldquo;</span>
-                <p>Clarity in systems.<br />Impact in the real world.</p>
-                <i aria-hidden="true" />
               </div>
             </div>
 
