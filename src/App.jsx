@@ -8,6 +8,10 @@ import componentProjectImage from "../assets/images/project-portfolio.png";
 import minigameImage from "../assets/images/project-minigame.png";
 import platformerImage from "../assets/images/project-unity-platformer.png";
 import photoImage from "../assets/images/profile-alt-ctharry.jpg";
+import infosysExperienceIcon from "../assets/images/experience-infosys-icon.png";
+import kyhuExperienceIcon from "../assets/images/experience-kyhu-icon.png";
+import uwExperienceIcon from "../assets/images/experience-uw-icon.png";
+import vpciExperienceIcon from "../assets/images/experience-vpci-icon.png";
 import resumePdf from "../assets/documents/harry-wu-resume.pdf";
 import DecryptedText from "./DecryptedText.jsx";
 import Masonry from "./Masonry.jsx";
@@ -268,6 +272,12 @@ function formatEditorialPeriod(period) {
   return `${startText} — ${endText}`;
 }
 
+function formatTimelinePeriod(period) {
+  const { startText, endText } = formatExperienceDateRange(period);
+
+  return `${startText} - ${endText}`;
+}
+
 function PeriodStamp({ period }) {
   const dates = period.split(/\s+-\s+/).map(parseDatePart);
 
@@ -326,9 +336,7 @@ function getTimelineRoleLines(experience) {
   return roleLines[experience.id] ?? [experience.role];
 }
 
-function getTimelineCompanyLabel(experience, isActive) {
-  if (isActive) return experience.company;
-
+function getTimelineCompanyLabel(experience) {
   const compactNames = {
     "vic-park": "Victoria Park",
     uwaterloo: "UWaterloo",
@@ -337,6 +345,63 @@ function getTimelineCompanyLabel(experience, isActive) {
   };
 
   return compactNames[experience.id] ?? experience.company;
+}
+
+function getTimelineIconSource(experience) {
+  const iconSources = {
+    "vic-park": vpciExperienceIcon,
+    uwaterloo: uwExperienceIcon,
+    kyhu: kyhuExperienceIcon,
+    infosys: infosysExperienceIcon,
+  };
+
+  return iconSources[experience.id];
+}
+
+const experiencePullTimers = new WeakMap();
+
+function updateExperienceTagMotion(event) {
+  if (event.pointerType === "touch" || event.currentTarget.dataset.pulling === "true") return;
+
+  const tag = event.currentTarget;
+  const bounds = tag.getBoundingClientRect();
+  const horizontal = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
+  const vertical = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
+
+  tag.style.setProperty("--tag-x", `${(horizontal * 5).toFixed(2)}px`);
+  tag.style.setProperty("--tag-y", `${(vertical * 2.5).toFixed(2)}px`);
+  tag.style.setProperty("--tag-rotate", `${(horizontal * 0.45).toFixed(2)}deg`);
+  tag.style.setProperty("--string-angle", `${(horizontal * -5).toFixed(2)}deg`);
+}
+
+function resetExperienceTagMotion(eventOrElement) {
+  const tag = eventOrElement?.currentTarget ?? eventOrElement;
+
+  if (!tag) return;
+
+  tag.style.setProperty("--tag-x", "0px");
+  tag.style.setProperty("--tag-y", "0px");
+  tag.style.setProperty("--tag-rotate", "0deg");
+  tag.style.setProperty("--string-angle", "0deg");
+}
+
+function playExperienceTagPull(tag) {
+  if (!tag) return;
+
+  const previousTimer = experiencePullTimers.get(tag);
+  if (previousTimer) window.clearTimeout(previousTimer);
+
+  resetExperienceTagMotion(tag);
+  delete tag.dataset.pulling;
+  void tag.offsetWidth;
+  tag.dataset.pulling = "true";
+
+  const timer = window.setTimeout(() => {
+    delete tag.dataset.pulling;
+    experiencePullTimers.delete(tag);
+  }, 620);
+
+  experiencePullTimers.set(tag, timer);
 }
 
 function getExperienceOverview(experience) {
@@ -373,43 +438,43 @@ function getExperienceWorkItems(experience) {
     kyhu: [
       {
         title: "Technical SEO refresh",
-        outcome: "improved discovery and made concussion resources easier to find.",
+        outcome: "Improved discovery and made concussion resources easier to find.",
       },
       {
         title: "Squarespace page system cleanup",
-        outcome: "standardized page structure so updates stayed consistent.",
+        outcome: "Standardized page structure so updates stayed consistent.",
       },
       {
         title: "JavaScript automation workflows",
-        outcome: "reduced repeated manual data handling for operations.",
+        outcome: "Reduced repeated manual data handling for operations.",
       },
     ],
     uwaterloo: [
       {
         title: "Systems and algorithms coursework",
-        outcome: "builds the CS foundation behind robotics, AI, and web projects.",
+        outcome: "Built the CS foundation behind robotics, AI, and web projects.",
       },
       {
         title: "Data structure implementations",
-        outcome: "turns theory into tested, debuggable code.",
+        outcome: "Turned theory into tested, debuggable code.",
       },
       {
         title: "Software design practice",
-        outcome: "connects implementation details with maintainable project structure.",
+        outcome: "Connected implementation details with maintainable project structure.",
       },
     ],
     "vic-park": [
       {
         title: "Math club sessions",
-        outcome: "supported peer learning and competition preparation.",
+        outcome: "Supported peer learning and competition preparation.",
       },
       {
         title: "Mandarin club programming",
-        outcome: "created recurring space for language and cultural events.",
+        outcome: "Created recurring space for language and cultural events.",
       },
       {
         title: "Student mentorship",
-        outcome: "built communication habits that carry into team projects.",
+        outcome: "Built communication habits that carry into team projects.",
       },
     ],
   };
@@ -444,7 +509,7 @@ function ExperienceDetails({ experience }) {
       <header className="experience-detail-top">
         <div className="experience-detail-title-row">
           <span className="experience-detail-company">{experience.company}</span>
-          <span className="experience-detail-date">{formatEditorialPeriod(experience.date)}</span>
+          <span className="experience-detail-date">{formatTimelinePeriod(experience.date)}</span>
         </div>
         <h3>{experience.role}</h3>
         <p>{experience.location}</p>
@@ -536,7 +601,7 @@ function App() {
     setAccentMode((mode) => (mode === "teal" ? "ember" : "teal"));
   };
 
-  const isExperienceFixedRail = () => false;
+  const isExperienceFixedRail = () => window.matchMedia("(min-width: 1141px)").matches;
 
   const scrollExperienceToFocus = (index, behavior = "smooth") => {
     const timeline = experienceTimelineRef.current;
@@ -569,6 +634,10 @@ function App() {
     }
 
     gsap.registerPlugin(ScrollTrigger);
+    const pageScroller = document.body;
+    const syncScrollTriggers = () => ScrollTrigger.update();
+
+    pageScroller.addEventListener("scroll", syncScrollTriggers, { passive: true });
 
     const ctx = gsap.context(() => {
       const openingTimeline = gsap.timeline({
@@ -705,6 +774,7 @@ function App() {
         .set(".intro-curtain", { autoAlpha: 0, pointerEvents: "none" });
 
       gsap.utils.toArray(".page-panel, .footer-section").forEach((section) => {
+        const isExperienceSection = section.classList.contains("experience-section");
         const heading = section.querySelector("h2");
         const kicker = section.querySelector(".section-kicker");
         const titlePanel = section.querySelector(".profile-copy");
@@ -712,7 +782,7 @@ function App() {
           section.querySelectorAll(".metric-grid, .experience-stack, .current-project-layout, .featured-grid, .other-gallery, .footer-links"),
         ).filter((panel) => !panel.contains(heading));
         const cards = section.querySelectorAll(
-          ".metric-card, .experience-line, .project-group-heading, .project-card, .other-card, .footer-links a",
+          ".metric-card, .project-group-heading, .project-card, .other-card, .footer-links a",
         );
 
         if (!heading) {
@@ -722,6 +792,7 @@ function App() {
         const sectionTimeline = gsap.timeline({
           scrollTrigger: {
             trigger: section,
+            scroller: pageScroller,
             start: "top 72%",
             once: true,
           },
@@ -817,6 +888,43 @@ function App() {
             },
             0.68,
           );
+
+        if (isExperienceSection) {
+          const experienceTrack = section.querySelector(".experience-track-editorial");
+          const experienceLines = section.querySelectorAll(".experience-line");
+          const experienceDetail = section.querySelector(".experience-detail-panel");
+
+          sectionTimeline
+            .fromTo(
+              experienceTrack,
+              { "--timeline-rail-progress": 0 },
+              { "--timeline-rail-progress": 1, duration: 0.78, ease: "power3.inOut" },
+              0.44,
+            )
+            .fromTo(
+              experienceLines,
+              {
+                "--timeline-enter-x": "-44px",
+                "--timeline-enter-scale": 0.94,
+                clipPath: "inset(0% 100% 0% 0%)",
+              },
+              {
+                "--timeline-enter-x": "0px",
+                "--timeline-enter-scale": 1,
+                clipPath: "inset(0% 0% 0% 0%)",
+                duration: 0.72,
+                stagger: 0.11,
+                ease: "power4.out",
+              },
+              0.5,
+            )
+            .fromTo(
+              experienceDetail,
+              { autoAlpha: 0, x: 24 },
+              { autoAlpha: 1, x: 0, duration: 0.78, ease: "power4.out" },
+              0.86,
+            );
+        }
       });
 
       gsap.utils.toArray(".project-card, .other-card").forEach((card) => {
@@ -828,6 +936,7 @@ function App() {
             ease: "none",
             scrollTrigger: {
               trigger: card,
+              scroller: pageScroller,
               start: "top bottom",
               end: "bottom top",
               scrub: 0.8,
@@ -841,6 +950,7 @@ function App() {
 
     return () => {
       openingTimelineRef.current = null;
+      pageScroller.removeEventListener("scroll", syncScrollTriggers);
       ctx.revert();
     };
   }, []);
@@ -1469,19 +1579,33 @@ function App() {
                           role="button"
                           tabIndex={0}
                           aria-current={isActive ? "step" : undefined}
-                          onClick={() => selectExperience(index)}
+                          aria-label={`${item.company}, ${getTimelineRoleLines(item)[0]}, ${item.date}`}
+                          onPointerMove={updateExperienceTagMotion}
+                          onPointerLeave={resetExperienceTagMotion}
+                          onPointerCancel={resetExperienceTagMotion}
+                          onBlur={resetExperienceTagMotion}
+                          onClick={(event) => {
+                            selectExperience(index);
+                            playExperienceTagPull(event.currentTarget);
+                          }}
                           onKeyDown={(event) => {
                             if (event.key === "Enter" || event.key === " ") {
                               event.preventDefault();
                               selectExperience(index);
+                              playExperienceTagPull(event.currentTarget);
                             }
                           }}
                         >
                           <span className="experience-start-year">{startDate.year}</span>
                           <span className="experience-dot" aria-hidden="true" />
-                          <span className="experience-node-company">{getTimelineCompanyLabel(item, isActive)}</span>
-                          <span className="experience-node-role">{getTimelineRoleLines(item)[0]}</span>
-                          <span className="experience-node-date-inline">{formatEditorialPeriod(item.date)}</span>
+                          <span className="experience-tag-content">
+                            <span className="experience-node-icon" aria-hidden="true">
+                              <img src={getTimelineIconSource(item)} alt="" />
+                            </span>
+                            <span className="experience-node-company">{getTimelineCompanyLabel(item)}</span>
+                            <span className="experience-node-role">{getTimelineRoleLines(item)[0]}</span>
+                            <span className="experience-node-date-inline">{formatTimelinePeriod(item.date)}</span>
+                          </span>
                         </article>
                       );
                     })}
