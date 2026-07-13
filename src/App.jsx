@@ -505,7 +505,7 @@ function ExperienceDetails({ experience }) {
   const techStack = getExperienceTechStack(experience);
 
   return (
-    <aside className="experience-detail-panel" key={experience.id} aria-live="polite">
+    <aside className="experience-detail-panel" data-experience-id={experience.id} aria-live="polite">
       <header className="experience-detail-top">
         <div className="experience-detail-title-row">
           <span className="experience-detail-company">{experience.company}</span>
@@ -912,6 +912,7 @@ function App() {
                 "--timeline-enter-x": "0px",
                 "--timeline-enter-scale": 1,
                 clipPath: "inset(0% 0% 0% 0%)",
+                clearProps: "clipPath",
                 duration: 0.72,
                 stagger: 0.11,
                 ease: "power4.out",
