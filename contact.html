@@ -1,75 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang='en'>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Contact Hong Ye Wu." />
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta name='description' content='Contact Hong Ye Wu about software, AI, robotics, web, and collaboration opportunities.' />
     <title>Contact | Hong Ye Wu</title>
-    <link rel="icon" type="image/png" href="assets/images/profile-hong-ye-wu.png" />
-    <script>
-      (() => {
-        const savedTheme = localStorage.getItem("portfolio-theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        document.documentElement.dataset.theme =
-          savedTheme === "dark" || savedTheme === "light"
-            ? savedTheme
-            : prefersDark
-              ? "dark"
-              : "light";
-      })();
-    </script>
-    <link rel="stylesheet" href="css/styles.css" />
-    <script src="js/main.js" defer></script>
+    <link rel='icon' type='image/png' href='assets/images/profile-hong-ye-wu.png' />
+    <link rel='stylesheet' href='css/editorial-pages.css' />
+    <script type='module' src='/js/editorial-pages.js'></script>
   </head>
-  <body data-page="contact">
-    <header class="site-header">
-      <nav class="top-nav" aria-label="Primary navigation">
-        <a class="nav-brand" href="index.html" data-nav-page="home">Harry Wu</a>
-        <button class="nav-menu-toggle" type="button" data-nav-toggle aria-label="Open navigation menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <div class="nav-links">
-          <a href="experience.html" data-nav-page="experience">Experience</a>
-          <a href="projects.html" data-nav-page="projects">Projects</a>
-          <a href="blog.html" data-nav-page="blog">Blog</a>
-          <a href="creative-lab.html" data-nav-page="creative-lab">Habits</a>
-          <a href="contact.html" data-nav-page="contact">Contact</a>
-        </div>
-        <div class="nav-actions">
-          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme"><span data-theme-icon>Dark</span></button>
-          <a class="ask-button" href="index.html#ask">Ask Me</a>
-        </div>
+  <body class='editorial-page contact-page'>
+    <a class='skip-link' href='#main-content'>Skip to content</a>
+    <header class='page-nav-shell' data-page-nav aria-label='Primary navigation'>
+      <a class='brand-mark' href='index.html#top' aria-label='Hong Ye Wu home'>HW</a>
+      <nav class='page-nav-links' aria-label='Desktop navigation'>
+        <a href='index.html#experience'>Experience</a>
+        <a href='projects.html'>Projects</a>
+        <a href='creative-lab.html'>Other</a>
+        <a href='contact.html' aria-current='page'>Contact</a>
       </nav>
+      <button class='palette-toggle' type='button' data-palette-toggle aria-label='Switch to teal accent colors' aria-pressed='false'>
+        <span class='palette-toggle-swatch' aria-hidden='true'></span><span>Color</span>
+      </button>
+      <button class='page-menu-button' type='button' data-page-menu-button aria-label='Open navigation menu' aria-controls='mobile-navigation' aria-expanded='false'>
+        <span></span><span></span><span></span>
+      </button>
     </header>
-
-    <main class="page-main">
-      <section class="section-shell contact-layout">
-        <div class="contact-info reveal-on-scroll">
-          <p class="eyebrow">Contact</p>
-          <h1>Let's Connect</h1>
-          <p>I am open to software development, full-stack, AI automation, SEO, and technical roles.</p>
-          <!-- CUSTOMIZE: Contact links and resume file. -->
-          <div class="contact-links">
-            <a href="mailto:hywu@uwaterloo.ca">hywu@uwaterloo.ca</a>
-            <a href="https://www.linkedin.com/in/hongyewu/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a href="https://github.com/CTHarry" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="assets/documents/harry-wu-resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+    <button class='mobile-nav-backdrop' type='button' data-mobile-nav-backdrop aria-label='Close navigation menu' tabindex='-1'></button>
+    <aside class='mobile-page-nav' id='mobile-navigation' data-mobile-page-nav aria-hidden='true'>
+      <nav aria-label='Mobile navigation'>
+        <a href='index.html#experience'>Experience</a>
+        <a href='projects.html'>Projects</a>
+        <a href='creative-lab.html'>Other</a>
+        <a href='contact.html' aria-current='page'>Contact</a>
+      </nav>
+      <button class='palette-toggle' type='button' data-palette-toggle aria-label='Switch to teal accent colors' aria-pressed='false'>
+        <span class='palette-toggle-swatch' aria-hidden='true'></span><span>Change color</span>
+      </button>
+    </aside>
+    <main class='editorial-main' id='main-content'>
+      <section class='contact-stage editorial-shell' aria-labelledby='contact-title'>
+        <div class='contact-copy' data-reveal>
+          <p class='section-kicker'>Contact / 2026</p>
+          <h1 id='contact-title'>Let&apos;s build <span>something.</span></h1>
+          <p class='contact-lede'>Have a software, AI, robotics, automation, or web idea? Send the useful context and I will get back to you.</p>
+          <p class='availability'>Open to internships, projects, and thoughtful collaborations</p>
+          <div class='contact-direct-links' aria-label='Direct contact links'>
+            <a href='mailto:ctharry0106@gmail.com'>
+              <span>Email</span><strong>ctharry0106@gmail.com</strong><span aria-hidden='true'>&nearr;</span>
+            </a>
+            <a href='https://www.linkedin.com/in/hongyewu/' target='_blank' rel='noreferrer'>
+              <span>LinkedIn</span><strong>hongyewu</strong><span aria-hidden='true'>&nearr;</span>
+            </a>
+            <a href='https://github.com/CTHarry' target='_blank' rel='noreferrer'>
+              <span>GitHub</span><strong>CTHarry</strong><span aria-hidden='true'>&nearr;</span>
+            </a>
+            <a href='assets/documents/harry-wu-resume.pdf' target='_blank' rel='noreferrer'>
+              <span>Resume</span><strong>View PDF</strong><span aria-hidden='true'>&nearr;</span>
+            </a>
           </div>
         </div>
-
-        <form class="contact-form reveal-on-scroll" data-contact-form data-email="hywu@uwaterloo.ca">
-          <label for="name">Name</label>
-          <input id="name" name="name" type="text" autocomplete="name" required />
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" autocomplete="email" required />
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="6" required></textarea>
-          <button class="form-button" type="submit">Send Message</button>
-          <p class="form-status" data-form-status aria-live="polite"></p>
-        </form>
+        <div class='contact-form-panel' data-reveal>
+          <h2>Send a short note.</h2>
+          <form class='contact-form' data-contact-form data-email='ctharry0106@gmail.com'>
+            <div class='form-field'>
+              <label for='contact-name'>Name</label>
+              <input id='contact-name' name='name' type='text' autocomplete='name' placeholder='Your name' required />
+            </div>
+            <div class='form-field'>
+              <label for='contact-email'>Email</label>
+              <input id='contact-email' name='email' type='email' autocomplete='email' placeholder='you@example.com' required />
+            </div>
+            <div class='form-field'>
+              <label for='contact-message'>Message</label>
+              <textarea id='contact-message' name='message' placeholder='What are you building?' required></textarea>
+            </div>
+            <button class='contact-submit' type='submit'>
+              <span>Open email draft</span><span aria-hidden='true'>&nearr;</span>
+            </button>
+            <p class='form-status' data-form-status aria-live='polite'></p>
+          </form>
+        </div>
       </section>
     </main>
+    <footer class='page-footer'>
+      <span>&copy; 2026 Hong Ye Wu</span>
+      <a href='index.html#top'>Back to the landing page &uarr;</a>
+    </footer>
   </body>
 </html>

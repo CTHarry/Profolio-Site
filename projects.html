@@ -1,256 +1,166 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang='en'>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Projects by Hong Ye Wu." />
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta name='description' content='Selected AI, robotics, automation, web, and software projects by Hong Ye Wu.' />
     <title>Projects | Hong Ye Wu</title>
-    <link rel="icon" type="image/png" href="assets/images/profile-hong-ye-wu.png" />
-    <script>
-      (() => {
-        const savedTheme = localStorage.getItem("portfolio-theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        document.documentElement.dataset.theme =
-          savedTheme === "dark" || savedTheme === "light"
-            ? savedTheme
-            : prefersDark
-              ? "dark"
-              : "light";
-      })();
-    </script>
-    <link rel="stylesheet" href="css/styles.css" />
-    <script src="js/main.js" defer></script>
+    <link rel='icon' type='image/png' href='assets/images/profile-hong-ye-wu.png' />
+    <link rel='stylesheet' href='css/editorial-pages.css' />
+    <script type='module' src='/js/editorial-pages.js'></script>
   </head>
-  <body data-page="projects">
-    <header class="site-header">
-      <nav class="top-nav" aria-label="Primary navigation">
-        <a class="nav-brand" href="index.html" data-nav-page="home">Harry Wu</a>
-        <button class="nav-menu-toggle" type="button" data-nav-toggle aria-label="Open navigation menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <div class="nav-links">
-          <a href="experience.html" data-nav-page="experience">Experience</a>
-          <a href="projects.html" data-nav-page="projects">Projects</a>
-          <a href="blog.html" data-nav-page="blog">Blog</a>
-          <a href="creative-lab.html" data-nav-page="creative-lab">Habits</a>
-          <a href="contact.html" data-nav-page="contact">Contact</a>
-        </div>
-        <div class="nav-actions">
-          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
-            <span data-theme-icon>Dark</span>
-          </button>
-          <a class="ask-button" href="index.html#ask">Ask Me</a>
-        </div>
+  <body class='editorial-page projects-page'>
+    <a class='skip-link' href='#main-content'>Skip to content</a>
+    <header class='page-nav-shell' data-page-nav aria-label='Primary navigation'>
+      <a class='brand-mark' href='index.html#top' aria-label='Hong Ye Wu home'>HW</a>
+      <nav class='page-nav-links' aria-label='Desktop navigation'>
+        <a href='index.html#experience'>Experience</a>
+        <a href='projects.html' aria-current='page'>Projects</a>
+        <a href='creative-lab.html'>Other</a>
+        <a href='contact.html'>Contact</a>
       </nav>
+      <button class='palette-toggle' type='button' data-palette-toggle aria-label='Switch to teal accent colors' aria-pressed='false'>
+        <span class='palette-toggle-swatch' aria-hidden='true'></span>
+        <span>Color</span>
+      </button>
+      <button class='page-menu-button' type='button' data-page-menu-button aria-label='Open navigation menu' aria-controls='mobile-navigation' aria-expanded='false'>
+        <span></span><span></span><span></span>
+      </button>
     </header>
-
-    <main class="page-main">
-      <section class="page-hero reveal-on-scroll">
-        <p class="eyebrow">Projects</p>
-        <h1>Projects</h1>
-        <p>Resume-backed builds across SEO automation, AI-assisted web components, RAG, and interactive software.</p>
+    <button class='mobile-nav-backdrop' type='button' data-mobile-nav-backdrop aria-label='Close navigation menu' tabindex='-1'></button>
+    <aside class='mobile-page-nav' id='mobile-navigation' data-mobile-page-nav aria-hidden='true'>
+      <nav aria-label='Mobile navigation'>
+        <a href='index.html#experience'>Experience</a>
+        <a href='projects.html' aria-current='page'>Projects</a>
+        <a href='creative-lab.html'>Other</a>
+        <a href='contact.html'>Contact</a>
+      </nav>
+      <button class='palette-toggle' type='button' data-palette-toggle aria-label='Switch to teal accent colors' aria-pressed='false'>
+        <span class='palette-toggle-swatch' aria-hidden='true'></span>
+        <span>Change color</span>
+      </button>
+    </aside>
+    <main class='editorial-main' id='main-content'>
+      <section class='editorial-hero editorial-shell' aria-labelledby='projects-title' data-reveal>
+        <div class='hero-meta' aria-label='Page metadata'>
+          <span>Portfolio / Projects</span>
+          <span>Selected systems</span>
+          <span>[2026]</span>
+        </div>
+        <h1 id='projects-title'>Pro<span>jects</span></h1>
+        <div class='hero-summary'>
+          <p>Systems built where AI, robotics, automation, and thoughtful interfaces meet.</p>
+          <aside>
+            <strong>Project index</strong>
+            One active build, followed by a selected archive of completed and earlier work.
+          </aside>
+        </div>
       </section>
 
-      <section class="section-shell project-sections" aria-label="Project cards">
-        <!-- CUSTOMIZE: Project images, links, names, roles, technologies, and details. -->
-        <!-- CUSTOMIZE: Replace GitHub profile placeholders with exact repository or live demo links when published. -->
-        <section class="project-group reveal-on-scroll" aria-labelledby="current-projects-title">
-          <div class="project-group-heading">
-            <p class="eyebrow">Currently Working On</p>
-            <h2 id="current-projects-title">Active Builds</h2>
+      <section class='editorial-section editorial-shell' aria-labelledby='current-project-title'>
+        <div class='section-label-row' data-reveal>
+          <span class='section-index'>01</span>
+          <span id='current-project-title'>Currently working on</span>
+          <span class='section-count'>01 project</span>
+        </div>
+        <a class='current-feature' href='https://www.infosys.com/' target='_blank' rel='noreferrer' data-reveal aria-label='Learn more about Infosys, where the Local VLM Semantic Costmap System is being developed'>
+          <img src='assets/images/project-character-app.png' alt='' aria-hidden='true' />
+          <div class='current-feature-content'>
+            <div>
+              <span class='feature-status'>Active / Jun. 2026 &mdash; Present</span>
+              <h2>Local VLM Semantic Costmap System</h2>
+              <p>A ROS2 and Nav2 workflow that uses local vision-language reasoning to translate scene context into semantic costmap updates for socially aware autonomous robot navigation.</p>
+              <div class='tool-list' aria-label='Technologies'>
+                <span>Python</span><span>C++</span><span>ROS2</span>
+                <span>Nav2</span><span>VLM</span><span>Costmaps</span>
+              </div>
+            </div>
+            <span class='feature-arrow' aria-hidden='true'>&nearr;</span>
           </div>
+        </a>
+      </section>
+      <section class='editorial-section editorial-shell' aria-labelledby='past-projects-title'>
+        <div class='section-label-row' data-reveal>
+          <span class='section-index'>02</span>
+          <span id='past-projects-title'>Past projects</span>
+          <span class='section-count'>06 selected</span>
+        </div>
+        <div class='past-project-grid'>
+          <a class='past-project-card' href='https://github.com/CTHarry/rag-sql-qa' target='_blank' rel='noreferrer' data-reveal>
+            <img src='assets/images/project-character-app.png' alt='' aria-hidden='true' loading='lazy' />
+            <div class='project-card-topline'><span>01 / AI system</span><span>Jan. &mdash; Mar. 2026</span></div>
+            <span class='project-kicker'>Retrieval workflow</span>
+            <h3>Document Q&amp;A RAG Prototype</h3>
+            <p>A PDF question-answering pipeline that indexes documents and returns cited passages with repeatable evaluation checks.</p>
+            <div class='project-card-footer'>
+              <div class='tool-list' aria-label='Technologies'><span>Python</span><span>SQLite</span><span>Embeddings</span></div>
+              <span class='project-arrow' aria-hidden='true'>&nearr;</span>
+            </div>
+          </a>
 
-          <div class="project-grid project-grid-current">
-            <article class="interactive-card project-card is-current bg-project-rag reveal-on-scroll" tabindex="0" role="link" data-card data-url="https://github.com/CTHarry/rag-sql-qa" aria-expanded="false">
-              <div class="card-media" aria-hidden="true"></div>
-              <div class="card-content">
-                <div class="card-date is-active" aria-label="Currently active">
-                  <span class="card-date-month">Active</span>
-                  <span class="card-date-year">Now</span>
-                </div>
-                <h2>Document Q&amp;A RAG Prototype</h2>
-                <p class="card-meta">AI / Backend Developer</p>
-                <p class="card-summary">A PDF question-answering pipeline that indexes documents and retrieves cited passages.</p>
-                <div class="tech-stack"><span>Python</span><span>SQLite</span><span>OpenAI API</span><span>Embeddings</span></div>
-                <div class="card-details">
-                  <ul>
-                    <li>Built a PDF Q&amp;A pipeline that indexes documents in SQLite and retrieves top-ranked passages with citations.</li>
-                    <li>Tuned chunk size and overlap across 4 configurations while refining prompts to improve retrieval relevance.</li>
-                    <li>Built an evaluation harness with 5+ queries and expected citations to validate retrieval quality after changes.</li>
-                  </ul>
-                  <div class="card-actions"><a href="https://github.com/CTHarry/rag-sql-qa" target="_blank" rel="noreferrer">GitHub</a></div>
-                </div>
-              </div>
-            </article>
+          <a class='past-project-card' href='https://github.com/CTHarry' target='_blank' rel='noreferrer' data-reveal>
+            <img src='assets/images/project-new-portfolio.png' alt='' aria-hidden='true' loading='lazy' />
+            <div class='project-card-topline'><span>02 / Automation</span><span>Nov. 2025 &mdash; Jan. 2026</span></div>
+            <span class='project-kicker'>Content system</span>
+            <h3>SEO Website Generator &amp; Optimizer</h3>
+            <p>A reusable generator that turns business context, location, and keyword intent into structured, SEO-ready webpages.</p>
+            <div class='project-card-footer'>
+              <div class='tool-list' aria-label='Technologies'><span>JavaScript</span><span>Node.js</span><span>OpenAI API</span></div>
+              <span class='project-arrow' aria-hidden='true'>&nearr;</span>
+            </div>
+          </a>
+          <a class='past-project-card' href='https://github.com/CTHarry' target='_blank' rel='noreferrer' data-reveal>
+            <img src='assets/images/project-portfolio.png' alt='' aria-hidden='true' loading='lazy' />
+            <div class='project-card-topline'><span>03 / Design system</span><span>Jul. 2025 &mdash; Jan. 2026</span></div>
+            <span class='project-kicker'>Interface library</span>
+            <h3>AI-Enhanced Web Components</h3>
+            <p>Reusable React components with accessibility-first patterns and structured AI-assisted interface copy.</p>
+            <div class='project-card-footer'>
+              <div class='tool-list' aria-label='Technologies'><span>React</span><span>Python</span><span>Gemini API</span></div>
+              <span class='project-arrow' aria-hidden='true'>&nearr;</span>
+            </div>
+          </a>
 
-            <article class="interactive-card project-card is-current bg-project-new-portfolio reveal-on-scroll" tabindex="0" role="link" data-card data-url="./index.html" aria-expanded="false">
-              <div class="card-media" aria-hidden="true"></div>
-              <div class="card-content">
-                <div class="card-date is-active" aria-label="Currently active">
-                  <span class="card-date-month">Active</span>
-                  <span class="card-date-year">Now</span>
-                </div>
-                <h2>Modern Portfolio Website</h2>
-                <p class="card-meta">Designer &amp; Front-End Developer</p>
-                <p class="card-summary">A responsive portfolio built with semantic HTML, CSS variables, and JavaScript interactions.</p>
-                <div class="tech-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-                <div class="card-details">
-                  <ul>
-                    <li>Creates a stronger professional first impression with a clear hero and navigation.</li>
-                    <li>Uses interactive cards for projects and experience while staying mobile-friendly.</li>
-                    <li>Includes customization comments for colors, assets, links, skills, and details.</li>
-                  </ul>
-                  <div class="card-actions"><a href="./index.html" target="_blank" rel="noreferrer">Live</a><a href="https://github.com/CTHarry" target="_blank" rel="noreferrer">GitHub</a></div>
-                </div>
-              </div>
-            </article>
+          <a class='past-project-card' href='index.html#top' data-reveal>
+            <img src='assets/images/project-new-portfolio.png' alt='' aria-hidden='true' loading='lazy' />
+            <div class='project-card-topline'><span>04 / Web</span><span>2026</span></div>
+            <span class='project-kicker'>Personal identity</span>
+            <h3>Modern Portfolio Website</h3>
+            <p>A responsive identity site shaped around editorial typography, interactive storytelling, and custom personal details.</p>
+            <div class='project-card-footer'>
+              <div class='tool-list' aria-label='Technologies'><span>React</span><span>Vite</span><span>GSAP</span></div>
+              <span class='project-arrow' aria-hidden='true'>&nearr;</span>
+            </div>
+          </a>
+          <a class='past-project-card' href='https://github.com/CTHarry' target='_blank' rel='noreferrer' data-reveal>
+            <img src='assets/images/project-unity-platformer.png' alt='' aria-hidden='true' loading='lazy' />
+            <div class='project-card-topline'><span>05 / Game development</span><span>Prototype</span></div>
+            <span class='project-kicker'>Interactive system</span>
+            <h3>Unity Platformer Fighting Game</h3>
+            <p>A Unity prototype focused on responsive movement, combat feel, gameplay state, and rapid mechanics iteration.</p>
+            <div class='project-card-footer'>
+              <div class='tool-list' aria-label='Technologies'><span>Unity</span><span>C#</span><span>Game design</span></div>
+              <span class='project-arrow' aria-hidden='true'>&nearr;</span>
+            </div>
+          </a>
 
-            <article class="interactive-card project-card is-current bg-project-unity reveal-on-scroll" tabindex="0" role="link" data-card data-url="https://github.com/CTHarry" aria-expanded="false">
-              <div class="card-media" aria-hidden="true"></div>
-              <div class="card-content">
-                <div class="card-date is-active" aria-label="Currently active">
-                  <span class="card-date-month">Active</span>
-                  <span class="card-date-year">Now</span>
-                </div>
-                <h2>Unity Platformer Fighting Game</h2>
-                <p class="card-meta">Game Developer</p>
-                <p class="card-summary">A Unity platformer fighting-game prototype focused on movement, combat feel, and playable mechanics.</p>
-                <div class="tech-stack"><span>Unity</span><span>C#</span><span>Game Design</span></div>
-                <div class="card-details">
-                  <ul>
-                    <li>Builds game logic through hands-on Unity and C# experimentation.</li>
-                    <li>Focuses on player control, responsiveness, and prototype iteration.</li>
-                    <li>Solves interaction and mechanics challenges through testing and refinement.</li>
-                  </ul>
-                  <div class="card-actions"><a href="https://github.com/CTHarry" target="_blank" rel="noreferrer">GitHub</a></div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section class="project-group reveal-on-scroll" aria-labelledby="previous-projects-title">
-          <div class="project-group-heading">
-            <p class="eyebrow">Previous Projects</p>
-            <h2 id="previous-projects-title">Completed Work</h2>
-          </div>
-
-          <div class="project-grid">
-            <article class="interactive-card project-card bg-project-seo reveal-on-scroll" tabindex="0" role="link" data-card data-url="https://github.com/CTHarry" aria-expanded="false">
-              <div class="card-media" aria-hidden="true"></div>
-              <div class="card-content">
-                <div class="card-date" aria-label="Ended January 2026">
-                  <span class="card-date-month">January</span>
-                  <span class="card-date-year">2026</span>
-                </div>
-                <h2>SEO Website Generator &amp; Optimizer</h2>
-                <p class="card-meta">Full-Stack / Automation Developer</p>
-                <p class="card-summary">A generator that turns business context, location, and keyword intent into SEO-ready webpages.</p>
-                <div class="tech-stack"><span>JavaScript</span><span>HTML/CSS</span><span>Node.js</span><span>OpenAI API</span></div>
-                <div class="card-details">
-                  <ul>
-                    <li>Built reusable generation flows for location-aware, keyword-targeted webpages.</li>
-                    <li>Designed 3 reusable templates and structured prompts with output validation for consistent HTML.</li>
-                    <li>Implemented Git-based regenerate-and-diff testing on 20 inputs to compare prompt and template changes.</li>
-                  </ul>
-                  <div class="card-actions"><a href="https://github.com/CTHarry" target="_blank" rel="noreferrer">GitHub</a></div>
-                </div>
-              </div>
-            </article>
-
-            <article class="interactive-card project-card bg-project-components reveal-on-scroll" tabindex="0" role="link" data-card data-url="https://github.com/CTHarry" aria-expanded="false">
-              <div class="card-media" aria-hidden="true"></div>
-              <div class="card-content">
-                <div class="card-date" aria-label="Ended January 2026">
-                  <span class="card-date-month">January</span>
-                  <span class="card-date-year">2026</span>
-                </div>
-                <h2>AI-Enhanced Web Components Library</h2>
-                <p class="card-meta">Front-End / API Developer</p>
-                <p class="card-summary">A reusable component library with accessibility-first UI patterns and AI-assisted copy generation.</p>
-                <div class="tech-stack"><span>React</span><span>JavaScript</span><span>Python</span><span>Gemini API</span></div>
-                <div class="card-details">
-                  <ul>
-                    <li>Built 10+ React components with accessibility-first patterns and structured UI copy generation.</li>
-                    <li>Built a REST service with 4 endpoints to generate consistent UI copy and component props for faster prototyping.</li>
-                    <li>Standardized 5+ prompt templates and a JSON output schema to keep responses deterministic.</li>
-                    <li>Wrote 20+ unit tests for component logic and API contracts to improve refactor reliability.</li>
-                  </ul>
-                  <div class="card-actions"><a href="https://github.com/CTHarry" target="_blank" rel="noreferrer">GitHub</a></div>
-                </div>
-              </div>
-            </article>
-
-            <article class="interactive-card project-card bg-project-minigame reveal-on-scroll" tabindex="0" role="link" data-card data-url="https://github.com/CTHarry" aria-expanded="false">
-              <div class="card-media" aria-hidden="true"></div>
-              <div class="card-content">
-                <div class="card-date" aria-label="Ended February 2024">
-                  <span class="card-date-month">February</span>
-                  <span class="card-date-year">2024</span>
-                </div>
-                <h2>Mini-Game Collection</h2>
-                <p class="card-meta">Java GUI Developer</p>
-                <p class="card-summary">A Java GUI project collecting multiple small games into one playable application.</p>
-                <div class="tech-stack"><span>Java</span><span>GUI</span><span>OOP</span></div>
-                <div class="card-details">
-                  <ul>
-                    <li>Designed multiple game flows and interfaces in a single Java project.</li>
-                    <li>Practiced event-driven programming, state management, and user input handling.</li>
-                    <li>Balanced simple gameplay with clear UI feedback and maintainable structure.</li>
-                  </ul>
-                  <div class="card-actions"><a href="https://github.com/CTHarry" target="_blank" rel="noreferrer">GitHub</a></div>
-                </div>
-              </div>
-            </article>
-
-            <article class="interactive-card project-card bg-project-portfolio reveal-on-scroll" tabindex="0" role="link" data-card data-url="https://github.com/CTHarry" aria-expanded="false">
-              <div class="card-media" aria-hidden="true"></div>
-              <div class="card-content">
-                <div class="card-date" aria-label="Ended December 2022">
-                  <span class="card-date-month">December</span>
-                  <span class="card-date-year">2022</span>
-                </div>
-                <h2>Personal Portfolio Website</h2>
-                <p class="card-meta">Front-End Developer</p>
-                <p class="card-summary">An earlier personal website built with HTML and CSS to present projects, education, and skills.</p>
-                <div class="tech-stack"><span>HTML</span><span>CSS</span><span>Design</span></div>
-                <div class="card-details">
-                  <ul>
-                    <li>Created the first version of a personal web presence.</li>
-                    <li>Organized academic, project, and skill information into web sections.</li>
-                    <li>Learned layout, navigation, responsive thinking, and visual hierarchy.</li>
-                  </ul>
-                  <div class="card-actions"><a href="https://github.com/CTHarry" target="_blank" rel="noreferrer">GitHub</a></div>
-                </div>
-              </div>
-            </article>
-
-            <article class="interactive-card project-card bg-project-character reveal-on-scroll" tabindex="0" role="link" data-card data-url="https://github.com/CTHarry" aria-expanded="false">
-              <div class="card-media" aria-hidden="true"></div>
-              <div class="card-content">
-                <div class="card-date" aria-label="Ended June 2022">
-                  <span class="card-date-month">June</span>
-                  <span class="card-date-year">2022</span>
-                </div>
-                <h2>Character Introduction Application</h2>
-                <p class="card-meta">Python Developer</p>
-                <p class="card-summary">A Python application created to introduce characters through a structured interactive program.</p>
-                <div class="tech-stack"><span>Python</span><span>Logic</span><span>Interaction</span></div>
-                <div class="card-details">
-                  <ul>
-                    <li>Built an early Python project with organized content and program flow.</li>
-                    <li>Practiced conditionals, functions, and basic user interaction.</li>
-                    <li>Improved clarity by structuring information for a user-facing experience.</li>
-                  </ul>
-                  <div class="card-actions"><a href="https://github.com/CTHarry" target="_blank" rel="noreferrer">GitHub</a></div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </section>
+          <a class='past-project-card' href='https://github.com/CTHarry' target='_blank' rel='noreferrer' data-reveal>
+            <img src='assets/images/project-minigame.png' alt='' aria-hidden='true' loading='lazy' />
+            <div class='project-card-topline'><span>06 / Software</span><span>Feb. 2024</span></div>
+            <span class='project-kicker'>Early work</span>
+            <h3>Mini-Game Collection</h3>
+            <p>A Java GUI application combining several small games while exploring event-driven programming and state management.</p>
+            <div class='project-card-footer'>
+              <div class='tool-list' aria-label='Technologies'><span>Java</span><span>GUI</span><span>OOP</span></div>
+              <span class='project-arrow' aria-hidden='true'>&nearr;</span>
+            </div>
+          </a>
+        </div>
       </section>
     </main>
+    <footer class='page-footer'>
+      <span>&copy; 2026 Hong Ye Wu</span>
+      <a href='contact.html'>Available for thoughtful collaborations &nearr;</a>
+    </footer>
   </body>
 </html>

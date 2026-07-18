@@ -37,9 +37,9 @@ const focusItems = [
 
 const navItems = [
   { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Other", href: "#other" },
-  { label: "Contact", href: "#contact" },
+  { label: "Projects", href: "projects.html" },
+  { label: "Other", href: "creative-lab.html" },
+  { label: "Contact", href: "contact.html" },
 ];
 
 const mobileNavItems = [{ label: "Home", href: "#top" }, ...navItems];
@@ -122,7 +122,10 @@ const experiences = [
     location: "Canada",
     detail:
       "Building ROS2/Nav2 AMR workflows, VLA/VLM costmap reasoning, and an AI agent layer for navigation, safety, alerts, and interaction.",
-    projects: ["Local VLM semantic costmap system", "Robot coordination agent for navigation, safety, alerts, and interaction"],
+    projects: [
+      "Local VLM semantic costmap system",
+      "Robot coordination agent for navigation, safety, alerts, and interaction",
+    ],
     languages: ["Python", "C++"],
     tools: ["ROS2", "AMR", "Nav2", "VLA", "VLM", "Costmap", "AI agent"],
     responsibilities: [
@@ -130,7 +133,8 @@ const experiences = [
       "Connect perception, safety, alerting, and interaction logic into coordinated robot workflows.",
       "Evaluate robotics behavior across navigation and human-facing edge cases.",
     ],
-    impact: "Advancing a more context-aware AMR workflow that can reason about navigation, safety, and interaction as one system.",
+    impact:
+      "Advancing a more context-aware AMR workflow that can reason about navigation, safety, and interaction as one system.",
   },
   {
     id: "kyhu",
@@ -140,7 +144,11 @@ const experiences = [
     location: "Waterloo, ON",
     detail:
       "Improved technical SEO, standardized the Squarespace site, and built JavaScript automation workflows for cleaner operations.",
-    projects: ["Technical SEO refresh", "Squarespace page system cleanup", "Automation workflows for operations"],
+    projects: [
+      "Technical SEO refresh",
+      "Squarespace page system cleanup",
+      "Automation workflows for operations",
+    ],
     languages: ["JavaScript", "HTML/CSS"],
     tools: ["Squarespace", "SEO", "Zapier", "Analytics"],
     responsibilities: [
@@ -148,7 +156,8 @@ const experiences = [
       "Built automation workflows to reduce repeated manual data handling.",
       "Improved search visibility through cleaner technical SEO and content organization.",
     ],
-    impact: "Made the site easier to maintain while improving discoverability for concussion-related resources.",
+    impact:
+      "Made the site easier to maintain while improving discoverability for concussion-related resources.",
   },
   {
     id: "uwaterloo",
@@ -158,7 +167,11 @@ const experiences = [
     location: "Waterloo, ON",
     detail:
       "Studying Honours Computer Science with focus on data structures, object-oriented programming, C/C++, testing, and software design.",
-    projects: ["Coursework labs", "Data structure implementations", "Software design and testing exercises"],
+    projects: [
+      "Coursework labs",
+      "Data structure implementations",
+      "Software design and testing exercises",
+    ],
     languages: ["C", "C++", "Python"],
     tools: ["Git", "Linux", "Testing", "Debugging"],
     responsibilities: [
@@ -166,7 +179,8 @@ const experiences = [
       "Practice testing, debugging, and clean implementation through coursework.",
       "Connect classroom CS fundamentals with robotics, AI, and web systems projects.",
     ],
-    impact: "Developing the technical base behind my full-stack, AI, and robotics work.",
+    impact:
+      "Developing the technical base behind my full-stack, AI, and robotics work.",
   },
   {
     id: "vic-park",
@@ -176,7 +190,11 @@ const experiences = [
     location: "Toronto, ON",
     detail:
       "Led student communities through teaching, competition preparation, cultural programming, and recurring events.",
-    projects: ["Math club sessions", "Mandarin club programming", "Student events and competition preparation"],
+    projects: [
+      "Math club sessions",
+      "Mandarin club programming",
+      "Student events and competition preparation",
+    ],
     languages: [],
     tools: ["Leadership", "Teaching", "Event planning", "Mentorship"],
     responsibilities: [
@@ -184,7 +202,8 @@ const experiences = [
       "Supported peers through teaching, mentorship, and competition preparation.",
       "Built communities around problem solving, language, and culture.",
     ],
-    impact: "Built the leadership and communication habits that still shape how I work on teams.",
+    impact:
+      "Built the leadership and communication habits that still shape how I work on teams.",
   },
 ];
 
@@ -224,7 +243,8 @@ const otherDetailItems = otherItems.reduce((itemsByCategory, item) => {
     height: masonryHeights[index],
     kicker: item.title,
     title: `${item.title} placeholder ${String(index + 1).padStart(2, "0")}`,
-    description: "Placeholder block for future content, captions, embeds, or selected work.",
+    description:
+      "Placeholder block for future content, captions, embeds, or selected work.",
   }));
 
   return itemsByCategory;
@@ -260,8 +280,15 @@ function getExperienceStartDate(period) {
 function formatExperienceDateRange(period) {
   const dates = period.split(/\s+-\s+/).map(parseDatePart);
   const [start, end] = dates;
-  const startText = start.month ? `${start.month.toUpperCase()} ${start.year}` : start.year;
-  const endText = end?.year === "Now" ? "PRESENT" : end?.month ? `${end.month.toUpperCase()} ${end.year}` : end?.year;
+  const startText = start.month
+    ? `${start.month.toUpperCase()} ${start.year}`
+    : start.year;
+  const endText =
+    end?.year === "Now"
+      ? "PRESENT"
+      : end?.month
+        ? `${end.month.toUpperCase()} ${end.year}`
+        : end?.year;
 
   return { startText, endText: endText || "PRESENT" };
 }
@@ -284,7 +311,10 @@ function PeriodStamp({ period }) {
   return (
     <span className="period-stamp" aria-label={period}>
       {dates.map((date, index) => (
-        <span className="period-piece" key={`${date.year}-${date.month}-${index}`}>
+        <span
+          className="period-piece"
+          key={`${date.year}-${date.month}-${index}`}
+        >
           {index > 0 && <span className="period-divider" aria-hidden="true" />}
           <span className="period-date">
             <strong>{date.year}</strong>
@@ -361,7 +391,11 @@ function getTimelineIconSource(experience) {
 const experiencePullTimers = new WeakMap();
 
 function updateExperienceTagMotion(event) {
-  if (event.pointerType === "touch" || event.currentTarget.dataset.pulling === "true") return;
+  if (
+    event.pointerType === "touch" ||
+    event.currentTarget.dataset.pulling === "true"
+  )
+    return;
 
   const tag = event.currentTarget;
   const bounds = tag.getBoundingClientRect();
@@ -408,8 +442,7 @@ function getExperienceOverview(experience) {
   const overview = {
     infosys:
       "Building semantic navigation systems for autonomous mobile robots using vision-language models, ROS2, Nav2, and local costmaps.",
-    kyhu:
-      "Improved the Squarespace site, technical SEO, and JavaScript automation for a youth-focused nonprofit.",
+    kyhu: "Improved the Squarespace site, technical SEO, and JavaScript automation for a youth-focused nonprofit.",
     uwaterloo:
       "Studying Honours Computer Science with a focus on systems programming, data structures, testing, and software design.",
     "vic-park":
@@ -424,21 +457,25 @@ function getExperienceWorkItems(experience) {
     infosys: [
       {
         title: "Semantic costmap generation",
-        outcome: "Converted visual scene interpretations into navigation-aware cost values.",
+        outcome:
+          "Converted visual scene interpretations into navigation-aware cost values.",
       },
       {
         title: "Robot coordination agent",
-        outcome: "Connected navigation state, safety events, and interaction logic.",
+        outcome:
+          "Connected navigation state, safety events, and interaction logic.",
       },
       {
         title: "ROS2 simulation workflows",
-        outcome: "Created repeatable test scenarios for evaluating robot behaviour.",
+        outcome:
+          "Created repeatable test scenarios for evaluating robot behaviour.",
       },
     ],
     kyhu: [
       {
         title: "Technical SEO refresh",
-        outcome: "Improved discovery and made concussion resources easier to find.",
+        outcome:
+          "Improved discovery and made concussion resources easier to find.",
       },
       {
         title: "Squarespace page system cleanup",
@@ -452,7 +489,8 @@ function getExperienceWorkItems(experience) {
     uwaterloo: [
       {
         title: "Systems and algorithms coursework",
-        outcome: "Built the CS foundation behind robotics, AI, and web projects.",
+        outcome:
+          "Built the CS foundation behind robotics, AI, and web projects.",
       },
       {
         title: "Data structure implementations",
@@ -460,7 +498,8 @@ function getExperienceWorkItems(experience) {
       },
       {
         title: "Software design practice",
-        outcome: "Connected implementation details with maintainable project structure.",
+        outcome:
+          "Connected implementation details with maintainable project structure.",
       },
     ],
     "vic-park": [
@@ -496,7 +535,11 @@ function getExperienceTechStack(experience) {
     "vic-park": ["Leadership", "Teaching", "Event planning", "Mentorship"],
   };
 
-  return stacks[experience.id] ?? [...new Set([...experience.languages, ...experience.tools])];
+  return (
+    stacks[experience.id] ?? [
+      ...new Set([...experience.languages, ...experience.tools]),
+    ]
+  );
 }
 
 function ExperienceDetails({ experience }) {
@@ -505,11 +548,19 @@ function ExperienceDetails({ experience }) {
   const techStack = getExperienceTechStack(experience);
 
   return (
-    <aside className="experience-detail-panel" data-experience-id={experience.id} aria-live="polite">
+    <aside
+      className="experience-detail-panel"
+      data-experience-id={experience.id}
+      aria-live="polite"
+    >
       <header className="experience-detail-top">
         <div className="experience-detail-title-row">
-          <span className="experience-detail-company">{experience.company}</span>
-          <span className="experience-detail-date">{formatTimelinePeriod(experience.date)}</span>
+          <span className="experience-detail-company">
+            {experience.company}
+          </span>
+          <span className="experience-detail-date">
+            {formatTimelinePeriod(experience.date)}
+          </span>
         </div>
         <h3>{experience.role}</h3>
         <p>{experience.location}</p>
@@ -522,9 +573,8 @@ function ExperienceDetails({ experience }) {
       <section className="experience-detail-card experience-work-section">
         <span>Selected work</span>
         <div className="experience-work-list">
-          {workItems.map((item, index) => (
-            <article className="experience-work-item" key={`${item.title}-${index}`}>
-              <span className="experience-work-index">{String(index + 1).padStart(2, "0")}</span>
+          {workItems.map((item) => (
+            <article className="experience-work-item" key={item.title}>
               <div>
                 <strong>{item.title}</strong>
                 <p>{item.outcome}</p>
@@ -547,10 +597,16 @@ function HeroTitle() {
     <h1 id="hero-title" className="hero-title" aria-label="Hong Ye Wu">
       <span className="hero-title-shine" aria-hidden="true">
         {heroTitleWords.map((word, wordIndex) => (
-          <span className={`hero-title-word hero-title-word-${wordIndex + 1}`} key={word}>
+          <span
+            className={`hero-title-word hero-title-word-${wordIndex + 1}`}
+            key={word}
+          >
             <span className="hero-title-word-inner">
               {[...word].map((letter, letterIndex) => (
-                <span className="hero-title-letter" key={`${word}-${letter}-${letterIndex}`}>
+                <span
+                  className="hero-title-letter"
+                  key={`${word}-${letter}-${letterIndex}`}
+                >
                   {letter}
                 </span>
               ))}
@@ -576,11 +632,15 @@ function App() {
   const [focusIndex, setFocusIndex] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeExperienceIndex, setActiveExperienceIndex] = useState(experiences.length - 1);
+  const [activeExperienceIndex, setActiveExperienceIndex] = useState(
+    experiences.length - 1,
+  );
   const [accentMode, setAccentMode] = useState(() => {
     if (typeof window === "undefined") return "ember";
 
-    return window.localStorage.getItem("portfolio-accent-mode") === "teal" ? "teal" : "ember";
+    return window.localStorage.getItem("portfolio-accent-mode") === "teal"
+      ? "teal"
+      : "ember";
   });
   const [introStarted, setIntroStarted] = useState(false);
   const [introDecrypted, setIntroDecrypted] = useState(false);
@@ -591,17 +651,24 @@ function App() {
   const selectedOtherId = activeOtherId || openingOtherId;
   const activeOther = otherItems.find((item) => item.id === selectedOtherId);
   const isOtherDetailVisible = Boolean(activeOther && otherPhase !== "idle");
-  const isOtherNavHidden = otherPhase !== "idle" || Boolean(activeOther) || Boolean(openingOtherId);
+  const isOtherNavHidden =
+    otherPhase !== "idle" || Boolean(activeOther) || Boolean(openingOtherId);
   const isTealAccent = accentMode === "teal";
   const timelineExperiences = [...experiences].reverse();
-  const activeExperience = timelineExperiences[activeExperienceIndex] ?? timelineExperiences[timelineExperiences.length - 1];
-  const timelineItems = timelineExperiences.map((item, index) => ({ item, index }));
+  const activeExperience =
+    timelineExperiences[activeExperienceIndex] ??
+    timelineExperiences[timelineExperiences.length - 1];
+  const timelineItems = timelineExperiences.map((item, index) => ({
+    item,
+    index,
+  }));
   const visibleTimelineItems = timelineItems;
   const toggleAccentMode = () => {
     setAccentMode((mode) => (mode === "teal" ? "ember" : "teal"));
   };
 
-  const isExperienceFixedRail = () => window.matchMedia("(min-width: 1141px)").matches;
+  const isExperienceFixedRail = () =>
+    window.matchMedia("(min-width: 1141px)").matches;
 
   const scrollExperienceToFocus = (index, behavior = "smooth") => {
     const timeline = experienceTimelineRef.current;
@@ -616,7 +683,10 @@ function App() {
       return;
     }
 
-    const targetLeft = node.offsetLeft + node.offsetWidth / 2 - timeline.clientWidth * EXPERIENCE_FOCUS_RATIO;
+    const targetLeft =
+      node.offsetLeft +
+      node.offsetWidth / 2 -
+      timeline.clientWidth * EXPERIENCE_FOCUS_RATIO;
     timeline.scrollTo({ left: Math.max(0, targetLeft), behavior });
   };
 
@@ -627,7 +697,9 @@ function App() {
 
   useLayoutEffect(() => {
     const root = siteRef.current;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     if (!root || prefersReducedMotion) {
       return undefined;
@@ -637,7 +709,9 @@ function App() {
     const pageScroller = document.body;
     const syncScrollTriggers = () => ScrollTrigger.update();
 
-    pageScroller.addEventListener("scroll", syncScrollTriggers, { passive: true });
+    pageScroller.addEventListener("scroll", syncScrollTriggers, {
+      passive: true,
+    });
 
     const ctx = gsap.context(() => {
       const openingTimeline = gsap.timeline({
@@ -662,11 +736,28 @@ function App() {
       gsap.set(".nav-shell", { autoAlpha: 0, x: -34 });
       gsap.set(".hero-video-frame", { autoAlpha: 0.42, scale: 1.14 });
       gsap.set(".hero-topline span", { autoAlpha: 0, y: -18 });
-      gsap.set(".hero-title", { autoAlpha: 0, x: -220, scaleX: 0.68, scaleY: 1.12, transformOrigin: "left center" });
-      gsap.set(".hero-title-word", { autoAlpha: 1, transformOrigin: "50% 50%" });
-      gsap.set(".hero-title-word-inner", { display: "inline-block", scaleX: 0.82, scaleY: 1.08 });
+      gsap.set(".hero-title", {
+        autoAlpha: 0,
+        x: -220,
+        scaleX: 0.68,
+        scaleY: 1.12,
+        transformOrigin: "left center",
+      });
+      gsap.set(".hero-title-word", {
+        autoAlpha: 1,
+        transformOrigin: "50% 50%",
+      });
+      gsap.set(".hero-title-word-inner", {
+        display: "inline-block",
+        scaleX: 0.82,
+        scaleY: 1.08,
+      });
       gsap.set(".hero-title-letter", { autoAlpha: 1, yPercent: 0 });
-      gsap.set(".hero-status-block > *", { autoAlpha: 0, x: -44, scaleX: 0.94 });
+      gsap.set(".hero-status-block > *", {
+        autoAlpha: 0,
+        x: -44,
+        scaleX: 0.94,
+      });
       gsap.set(".hero-console", { autoAlpha: 0, x: 56, scaleX: 0.92 });
 
       openingTimeline
@@ -774,12 +865,15 @@ function App() {
         .set(".intro-curtain", { autoAlpha: 0, pointerEvents: "none" });
 
       gsap.utils.toArray(".page-panel, .footer-section").forEach((section) => {
-        const isExperienceSection = section.classList.contains("experience-section");
+        const isExperienceSection =
+          section.classList.contains("experience-section");
         const heading = section.querySelector("h2");
         const kicker = section.querySelector(".section-kicker");
         const titlePanel = section.querySelector(".profile-copy");
         const visualPanels = Array.from(
-          section.querySelectorAll(".metric-grid, .experience-stack, .current-project-layout, .featured-grid, .other-gallery, .footer-links"),
+          section.querySelectorAll(
+            ".metric-grid, .experience-stack, .current-project-layout, .featured-grid, .other-gallery, .footer-links",
+          ),
         ).filter((panel) => !panel.contains(heading));
         const cards = section.querySelectorAll(
           ".metric-card, .project-group-heading, .project-card, .other-card, .footer-links a",
@@ -890,15 +984,23 @@ function App() {
           );
 
         if (isExperienceSection) {
-          const experienceTrack = section.querySelector(".experience-track-editorial");
+          const experienceTrack = section.querySelector(
+            ".experience-track-editorial",
+          );
           const experienceLines = section.querySelectorAll(".experience-line");
-          const experienceDetail = section.querySelector(".experience-detail-panel");
+          const experienceDetail = section.querySelector(
+            ".experience-detail-panel",
+          );
 
           sectionTimeline
             .fromTo(
               experienceTrack,
               { "--timeline-rail-progress": 0 },
-              { "--timeline-rail-progress": 1, duration: 0.78, ease: "power3.inOut" },
+              {
+                "--timeline-rail-progress": 1,
+                duration: 0.78,
+                ease: "power3.inOut",
+              },
               0.44,
             )
             .fromTo(
@@ -982,7 +1084,10 @@ function App() {
       return undefined;
     }
 
-    const scheduleFocusSnap = (index = activeExperienceIndexRef.current, delay = 180) => {
+    const scheduleFocusSnap = (
+      index = activeExperienceIndexRef.current,
+      delay = 180,
+    ) => {
       if (experienceSnapTimerRef.current) {
         window.clearTimeout(experienceSnapTimerRef.current);
       }
@@ -998,15 +1103,20 @@ function App() {
         return;
       }
 
-      const nodes = Array.from(timeline.querySelectorAll("[data-experience-index]"));
+      const nodes = Array.from(
+        timeline.querySelectorAll("[data-experience-index]"),
+      );
       const timelineRect = timeline.getBoundingClientRect();
-      const focusX = timelineRect.left + timelineRect.width * EXPERIENCE_FOCUS_RATIO;
+      const focusX =
+        timelineRect.left + timelineRect.width * EXPERIENCE_FOCUS_RATIO;
 
       const closestNode = nodes.reduce((closest, node) => {
         const rect = node.getBoundingClientRect();
         const distance = Math.abs(rect.left + rect.width / 2 - focusX);
 
-        return !closest || distance < closest.distance ? { node, distance } : closest;
+        return !closest || distance < closest.distance
+          ? { node, distance }
+          : closest;
       }, null);
 
       if (!closestNode) {
@@ -1030,11 +1140,16 @@ function App() {
         window.cancelAnimationFrame(experienceScrollFrameRef.current);
       }
 
-      experienceScrollFrameRef.current = window.requestAnimationFrame(updateActiveFromFocus);
+      experienceScrollFrameRef.current = window.requestAnimationFrame(
+        updateActiveFromFocus,
+      );
     };
 
     const handleWheel = (event) => {
-      if (isExperienceFixedRail() || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+      if (
+        isExperienceFixedRail() ||
+        Math.abs(event.deltaY) <= Math.abs(event.deltaX)
+      ) {
         return;
       }
 
@@ -1072,7 +1187,9 @@ function App() {
 
   useEffect(() => {
     const root = siteRef.current;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     if (!root || prefersReducedMotion) {
       return undefined;
@@ -1129,20 +1246,25 @@ function App() {
     };
   }, []);
 
-  useEffect(() => () => {
-    if (otherOpenTimerRef.current) {
-      window.clearTimeout(otherOpenTimerRef.current);
-    }
+  useEffect(
+    () => () => {
+      if (otherOpenTimerRef.current) {
+        window.clearTimeout(otherOpenTimerRef.current);
+      }
 
-    if (otherFinishTimerRef.current) {
-      window.clearTimeout(otherFinishTimerRef.current);
-    }
-  }, []);
+      if (otherFinishTimerRef.current) {
+        window.clearTimeout(otherFinishTimerRef.current);
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
     if (introStarted) return undefined;
 
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     const introStage = siteRef.current?.querySelector(".intro-stage");
 
     if (prefersReducedMotion || !introStage) {
@@ -1151,14 +1273,41 @@ function App() {
 
     const idleTimeline = gsap.timeline({ repeat: -1, repeatDelay: 3.8 });
     idleTimeline
-      .to(introStage, { y: -5, scaleX: 1.018, scaleY: 0.988, duration: 0.85, ease: "power2.inOut" })
-      .to(introStage, { y: 0, scaleX: 1, scaleY: 1, duration: 0.95, ease: "power3.out" });
+      .to(introStage, {
+        y: -5,
+        scaleX: 1.018,
+        scaleY: 0.988,
+        duration: 0.85,
+        ease: "power2.inOut",
+      })
+      .to(introStage, {
+        y: 0,
+        scaleX: 1,
+        scaleY: 1,
+        duration: 0.95,
+        ease: "power3.out",
+      });
 
-    const moveX = gsap.quickTo(introStage, "x", { duration: 0.48, ease: "power3.out" });
-    const moveY = gsap.quickTo(introStage, "y", { duration: 0.48, ease: "power3.out" });
-    const scaleX = gsap.quickTo(introStage, "scaleX", { duration: 0.48, ease: "power3.out" });
-    const scaleY = gsap.quickTo(introStage, "scaleY", { duration: 0.48, ease: "power3.out" });
-    const rotate = gsap.quickTo(introStage, "rotation", { duration: 0.48, ease: "power3.out" });
+    const moveX = gsap.quickTo(introStage, "x", {
+      duration: 0.48,
+      ease: "power3.out",
+    });
+    const moveY = gsap.quickTo(introStage, "y", {
+      duration: 0.48,
+      ease: "power3.out",
+    });
+    const scaleX = gsap.quickTo(introStage, "scaleX", {
+      duration: 0.48,
+      ease: "power3.out",
+    });
+    const scaleY = gsap.quickTo(introStage, "scaleY", {
+      duration: 0.48,
+      ease: "power3.out",
+    });
+    const rotate = gsap.quickTo(introStage, "rotation", {
+      duration: 0.48,
+      ease: "power3.out",
+    });
 
     const handlePointerMove = (event) => {
       const centerX = window.innerWidth / 2;
@@ -1274,7 +1423,12 @@ function App() {
     setIsMobileMenuOpen(false);
   };
 
-  const getScrollTop = () => Math.max(window.scrollY, document.documentElement.scrollTop, document.body.scrollTop);
+  const getScrollTop = () =>
+    Math.max(
+      window.scrollY,
+      document.documentElement.scrollTop,
+      document.body.scrollTop,
+    );
 
   const scrollToPagePosition = (top, behavior = "auto") => {
     window.scrollTo({ top, behavior });
@@ -1285,7 +1439,10 @@ function App() {
   const alignElementToViewportTop = (element, behavior = "auto") => {
     if (!element) return getScrollTop();
 
-    const targetTop = Math.max(0, element.getBoundingClientRect().top + getScrollTop());
+    const targetTop = Math.max(
+      0,
+      element.getBoundingClientRect().top + getScrollTop(),
+    );
     scrollToPagePosition(targetTop, behavior);
     return targetTop;
   };
@@ -1307,7 +1464,11 @@ function App() {
     const navGap = window.innerWidth < 760 ? 10 : 14;
     const targetTop = Math.max(
       0,
-      targetElement.getBoundingClientRect().top + getScrollTop() - navTop - navHeight - navGap,
+      targetElement.getBoundingClientRect().top +
+        getScrollTop() -
+        navTop -
+        navHeight -
+        navGap,
     );
 
     scrollToPagePosition(targetTop, behavior);
@@ -1343,7 +1504,12 @@ function App() {
   };
 
   const openOtherDetail = (itemId) => {
-    if (otherPhase !== "idle" || activeOtherId || openingOtherId || otherOpenTimerRef.current) {
+    if (
+      otherPhase !== "idle" ||
+      activeOtherId ||
+      openingOtherId ||
+      otherOpenTimerRef.current
+    ) {
       return;
     }
 
@@ -1351,7 +1517,10 @@ function App() {
     const targetElement = otherStageRef.current || otherSection;
     const currentScrollTop = getScrollTop();
     const targetScrollTop = targetElement
-      ? Math.max(0, targetElement.getBoundingClientRect().top + currentScrollTop)
+      ? Math.max(
+          0,
+          targetElement.getBoundingClientRect().top + currentScrollTop,
+        )
       : currentScrollTop;
     const scrollDistance = Math.abs(targetScrollTop - currentScrollTop);
     const scrollDelay = Math.min(780, Math.max(320, scrollDistance * 0.28));
@@ -1359,7 +1528,9 @@ function App() {
     scrollToPagePosition(targetScrollTop, "smooth");
 
     otherOpenTimerRef.current = window.setTimeout(() => {
-      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
 
       scrollToPagePosition(targetScrollTop);
 
@@ -1388,7 +1559,9 @@ function App() {
             setOpeningOtherId(null);
             setOtherPhase("open");
             otherFinishTimerRef.current = null;
-            window.requestAnimationFrame(() => alignElementToViewportTop(otherSection));
+            window.requestAnimationFrame(() =>
+              alignElementToViewportTop(otherSection),
+            );
           }, 880);
         });
       });
@@ -1398,7 +1571,12 @@ function App() {
   const startIntro = () => {
     if (introStarted) return;
     setIntroStarted(true);
-    gsap.to(".intro-prompt", { autoAlpha: 0, y: 10, duration: 0.16, ease: "power2.out" });
+    gsap.to(".intro-prompt", {
+      autoAlpha: 0,
+      y: 10,
+      duration: 0.16,
+      ease: "power2.out",
+    });
     gsap.to(".intro-stage", {
       x: 0,
       y: 0,
@@ -1419,8 +1597,15 @@ function App() {
 
   return (
     <div className="site" id="top" ref={siteRef}>
-      <header className={`nav-shell${isScrolled ? " is-scrolled" : ""}${isOtherNavHidden ? " is-hidden" : ""}`} aria-label="Primary navigation">
-        <a className="brand-mark magic-border" href="#top" aria-label="Hong Ye Wu home">
+      <header
+        className={`nav-shell${isScrolled ? " is-scrolled" : ""}${isOtherNavHidden ? " is-hidden" : ""}`}
+        aria-label="Primary navigation"
+      >
+        <a
+          className="brand-mark magic-border"
+          href="#top"
+          aria-label="Hong Ye Wu home"
+        >
           HW
         </a>
         <nav className="nav-links">
@@ -1433,7 +1618,9 @@ function App() {
         <button
           className={`mobile-menu-button magic-border${isMobileMenuOpen ? " is-open" : ""}`}
           type="button"
-          aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-label={
+            isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
           aria-controls="mobile-navigation"
           aria-expanded={isMobileMenuOpen}
           onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
@@ -1469,7 +1656,12 @@ function App() {
       >
         <nav aria-label="Mobile navigation">
           {mobileNavItems.map((item) => (
-            <a className="magic-border" key={item.href} href={item.href} onClick={closeMobileMenu}>
+            <a
+              className="magic-border"
+              key={item.href}
+              href={item.href}
+              onClick={closeMobileMenu}
+            >
               {item.label}
             </a>
           ))}
@@ -1537,10 +1729,19 @@ function App() {
               <div className="hero-status-block">
                 <p className="hero-status-kicker">Computer Science Student</p>
                 <strong>@ UWaterloo</strong>
-                <p className="hero-trait-line">Fast Learner & creative thinker</p>
+                <p className="hero-trait-line">
+                  Fast Learner & creative thinker
+                </p>
                 <div className="hero-actions">
-                  <a className="magic-border" href="#projects">View Projects</a>
-                  <a className="magic-border" href="mailto:ctharry0106@gmail.com">Contact Me</a>
+                  <a className="magic-border" href="projects.html">
+                    View Projects
+                  </a>
+                  <a
+                    className="magic-border"
+                    href="contact.html"
+                  >
+                    Contact Me
+                  </a>
                 </div>
               </div>
 
@@ -1555,18 +1756,28 @@ function App() {
           </div>
         </section>
 
-
-        <section className="profile-section experience-section page-panel" id="experience" aria-labelledby="experience-title">
+        <section
+          className="profile-section experience-section page-panel"
+          id="experience"
+          aria-labelledby="experience-title"
+        >
           <div className="experience-showcase content-shell">
             <div className="experience-timeline-panel">
               <div className="experience-display-heading">
                 <p className="experience-eyebrow">My Journey</p>
                 <h2 id="experience-title">Experience</h2>
-                <p className="experience-lede">I build web and robotics systems, with recent work focused on semantic navigation and vision-language models.</p>
+                <p className="experience-lede">
+                  I build web and robotics systems, with recent work focused on
+                  semantic navigation and vision-language models.
+                </p>
               </div>
 
               <div className="experience-carousel-shell">
-                <div className="experience-timeline" ref={experienceTimelineRef} aria-label="Horizontal experience timeline">
+                <div
+                  className="experience-timeline"
+                  ref={experienceTimelineRef}
+                  aria-label="Horizontal experience timeline"
+                >
                   <div className="experience-track experience-track-editorial">
                     {visibleTimelineItems.map(({ item, index }) => {
                       const isActive = index === activeExperienceIndex;
@@ -1597,15 +1808,26 @@ function App() {
                             }
                           }}
                         >
-                          <span className="experience-start-year">{startDate.year}</span>
+                          <span className="experience-start-year">
+                            {startDate.year}
+                          </span>
                           <span className="experience-dot" aria-hidden="true" />
                           <span className="experience-tag-content">
-                            <span className="experience-node-icon" aria-hidden="true">
+                            <span
+                              className="experience-node-icon"
+                              aria-hidden="true"
+                            >
                               <img src={getTimelineIconSource(item)} alt="" />
                             </span>
-                            <span className="experience-node-company">{getTimelineCompanyLabel(item)}</span>
-                            <span className="experience-node-role">{getTimelineRoleLines(item)[0]}</span>
-                            <span className="experience-node-date-inline">{formatTimelinePeriod(item.date)}</span>
+                            <span className="experience-node-company">
+                              {getTimelineCompanyLabel(item)}
+                            </span>
+                            <span className="experience-node-role">
+                              {getTimelineRoleLines(item)[0]}
+                            </span>
+                            <span className="experience-node-date-inline">
+                              {formatTimelinePeriod(item.date)}
+                            </span>
                           </span>
                         </article>
                       );
@@ -1618,11 +1840,18 @@ function App() {
             <ExperienceDetails experience={activeExperience} />
           </div>
         </section>
-        <section className="projects-section page-panel" id="projects" aria-labelledby="projects-title">
+        <section
+          className="projects-section page-panel"
+          id="projects"
+          aria-labelledby="projects-title"
+        >
           <div className="content-shell">
-            <div className="section-heading">
-              <p className="section-kicker">Featured Projects</p>
-              <h2 id="projects-title">Selected systems, interfaces, and AI workflows.</h2>
+            <div className="projects-display-heading">
+              <p className="projects-eyebrow">Featured Work</p>
+              <h2 id="projects-title">Projects</h2>
+              <p className="projects-lede">
+                Selected systems, interfaces, and AI workflows.
+              </p>
             </div>
 
             <div className="project-group">
@@ -1631,7 +1860,12 @@ function App() {
               </div>
               <div className="current-project-layout">
                 {currentProjects.map((project, index) => (
-                  <ProjectCard project={project} index={index} variant="current" key={project.title} />
+                  <ProjectCard
+                    project={project}
+                    index={index}
+                    variant="current"
+                    key={project.title}
+                  />
                 ))}
               </div>
             </div>
@@ -1642,7 +1876,11 @@ function App() {
               </div>
               <div className="featured-grid featured-grid-compact">
                 {previousProjects.map((project, index) => (
-                  <ProjectCard project={project} index={index + currentProjects.length} key={project.title} />
+                  <ProjectCard
+                    project={project}
+                    index={index + currentProjects.length}
+                    key={project.title}
+                  />
                 ))}
               </div>
             </div>
@@ -1690,54 +1928,67 @@ function App() {
                       <h3>{item.title}</h3>
                       <p>{item.text}</p>
                     </div>
-                    {isOtherDetailVisible && otherPhase !== "staging" && item.id === selectedOtherId && (
-                      <button
-                        className="other-return-button magic-border"
-                        type="button"
-                        onClick={(event) => {
-                          event.stopPropagation();
-                          closeOtherDetail();
-                        }}
-                        aria-label={`Return from ${item.title}`}
-                      >
-                        Return
-                      </button>
-                    )}
+                    {isOtherDetailVisible &&
+                      otherPhase !== "staging" &&
+                      item.id === selectedOtherId && (
+                        <button
+                          className="other-return-button magic-border"
+                          type="button"
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            closeOtherDetail();
+                          }}
+                          aria-label={`Return from ${item.title}`}
+                        >
+                          Return
+                        </button>
+                      )}
                   </article>
                 ))}
               </div>
 
-              {isOtherDetailVisible && otherPhase !== "staging" && activeOther && (
-                <div className={`other-detail-view is-${otherPhase}`} aria-live="polite">
-                  <div className="other-detail-panel">
-                    <div className="other-detail-bar" aria-label={`${activeOther.title} detail controls`}>
-                      <span>draft collection</span>
-                      <span>10 draft slots</span>
+              {isOtherDetailVisible &&
+                otherPhase !== "staging" &&
+                activeOther && (
+                  <div
+                    className={`other-detail-view is-${otherPhase}`}
+                    aria-live="polite"
+                  >
+                    <div className="other-detail-panel">
+                      <div
+                        className="other-detail-bar"
+                        aria-label={`${activeOther.title} detail controls`}
+                      >
+                        <span>draft collection</span>
+                        <span>10 draft slots</span>
+                      </div>
+                      <div className="other-detail-copy">
+                        <span>{activeOther.title}</span>
+                        <strong>{activeOther.text}</strong>
+                        <p>
+                          Ten draft slots are ready for future media, notes,
+                          embeds, selected work, or personal collections.
+                        </p>
+                      </div>
+                      <Masonry
+                        key={activeOther.id}
+                        items={otherDetailItems[activeOther.id]}
+                        ease="power3.out"
+                        duration={0.6}
+                        stagger={0.055}
+                        initialDelay={0.34}
+                        animateFrom="bottom"
+                        scaleOnHover
+                        hoverScale={0.985}
+                        blurToFocus
+                        fitToContainer
+                        maxColumns={3}
+                        minItemHeight={132}
+                        itemGap={14}
+                      />
                     </div>
-                    <div className="other-detail-copy">
-                      <span>{activeOther.title}</span>
-                      <strong>{activeOther.text}</strong>
-                      <p>Ten draft slots are ready for future media, notes, embeds, selected work, or personal collections.</p>
-                    </div>
-                    <Masonry
-                      key={activeOther.id}
-                      items={otherDetailItems[activeOther.id]}
-                      ease="power3.out"
-                      duration={0.6}
-                      stagger={0.055}
-                      initialDelay={0.34}
-                      animateFrom="bottom"
-                      scaleOnHover
-                      hoverScale={0.985}
-                      blurToFocus
-                      fitToContainer
-                      maxColumns={3}
-                      minItemHeight={132}
-                      itemGap={14}
-                    />
                   </div>
-                </div>
-              )}
+                )}
             </div>
           </div>
         </section>
@@ -1749,7 +2000,13 @@ function App() {
           <h2>Let's build something precise, useful, and memorable.</h2>
           <div className="footer-links">
             {contactLinks.map((link) => (
-              <a className="magic-border" href={link.href} key={link.label} target={link.href.startsWith("http") ? "_blank" : undefined} rel={link.href.startsWith("http") ? "noreferrer" : undefined}>
+              <a
+                className="magic-border"
+                href={link.href}
+                key={link.label}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+              >
                 {link.label}
               </a>
             ))}

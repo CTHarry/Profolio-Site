@@ -1,78 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang='en'>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="More about Hong Ye Wu beyond technical work." />
-    <title>More About Me | Hong Ye Wu</title>
-    <link rel="icon" type="image/png" href="assets/images/profile-hong-ye-wu.png" />
-    <script>
-      (() => {
-        const savedTheme = localStorage.getItem("portfolio-theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        document.documentElement.dataset.theme =
-          savedTheme === "dark" || savedTheme === "light"
-            ? savedTheme
-            : prefersDark
-              ? "dark"
-              : "light";
-      })();
-    </script>
-    <link rel="stylesheet" href="css/styles.css" />
-    <script src="js/main.js" defer></script>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta name='description' content='Photography, music, video, and gaming interests from Hong Ye Wu.' />
+    <title>Other | Hong Ye Wu</title>
+    <link rel='icon' type='image/png' href='assets/images/profile-hong-ye-wu.png' />
+    <link rel='stylesheet' href='css/editorial-pages.css' />
+    <script type='module' src='/js/editorial-pages.js'></script>
   </head>
-  <body data-page="creative-lab">
-    <header class="site-header">
-      <nav class="top-nav" aria-label="Primary navigation">
-        <a class="nav-brand" href="index.html" data-nav-page="home">Harry Wu</a>
-        <button class="nav-menu-toggle" type="button" data-nav-toggle aria-label="Open navigation menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <div class="nav-links">
-          <a href="experience.html" data-nav-page="experience">Experience</a>
-          <a href="projects.html" data-nav-page="projects">Projects</a>
-          <a href="blog.html" data-nav-page="blog">Blog</a>
-          <a href="creative-lab.html" data-nav-page="creative-lab">Habits</a>
-          <a href="contact.html" data-nav-page="contact">Contact</a>
-        </div>
-        <div class="nav-actions">
-          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme"><span data-theme-icon>Dark</span></button>
-          <a class="ask-button" href="index.html#ask">Ask Me</a>
-        </div>
+  <body class='editorial-page others-page'>
+    <a class='skip-link' href='#main-content'>Skip to content</a>
+    <header class='page-nav-shell' data-page-nav aria-label='Primary navigation'>
+      <a class='brand-mark' href='index.html#top' aria-label='Hong Ye Wu home'>HW</a>
+      <nav class='page-nav-links' aria-label='Desktop navigation'>
+        <a href='index.html#experience'>Experience</a>
+        <a href='projects.html'>Projects</a>
+        <a href='creative-lab.html' aria-current='page'>Other</a>
+        <a href='contact.html'>Contact</a>
       </nav>
+      <button class='palette-toggle' type='button' data-palette-toggle aria-label='Switch to teal accent colors' aria-pressed='false'>
+        <span class='palette-toggle-swatch' aria-hidden='true'></span><span>Color</span>
+      </button>
+      <button class='page-menu-button' type='button' data-page-menu-button aria-label='Open navigation menu' aria-controls='mobile-navigation' aria-expanded='false'>
+        <span></span><span></span><span></span>
+      </button>
     </header>
-
-    <main class="habits-page">
-      <section class="habits-shell reveal-on-scroll" aria-labelledby="habits-title">
-        <!--
-          CUSTOMIZE:
-          - Category names: edit each .habit-card label.
-          - Links: replace href="#" with real gallery/project links.
-          - Images: edit --habit-image below or in css/styles.css.
-          - Breakpoint: see --habits-breakpoint comment in css/styles.css.
-        -->
-        <article class="habits-title-card">
-          <h1 id="habits-title">More about me</h1>
-        </article>
-
-        <a class="habit-card habit-photo" href="#" aria-label="Open photo section">
-          <span>photo</span>
-        </a>
-        <a class="habit-card habit-music" href="#" aria-label="Open music section">
-          <span>music</span>
-        </a>
-        <a class="habit-card habit-video" href="#" aria-label="Open video section">
-          <span>video</span>
-        </a>
-        <a class="habit-card habit-anime" href="#" aria-label="Open anime section">
-          <span>anime</span>
-        </a>
-        <a class="habit-card habit-sports" href="#" aria-label="Open sports section">
-          <span>sports</span>
-        </a>
+    <button class='mobile-nav-backdrop' type='button' data-mobile-nav-backdrop aria-label='Close navigation menu' tabindex='-1'></button>
+    <aside class='mobile-page-nav' id='mobile-navigation' data-mobile-page-nav aria-hidden='true'>
+      <nav aria-label='Mobile navigation'>
+        <a href='index.html#experience'>Experience</a>
+        <a href='projects.html'>Projects</a>
+        <a href='creative-lab.html' aria-current='page'>Other</a>
+        <a href='contact.html'>Contact</a>
+      </nav>
+      <button class='palette-toggle' type='button' data-palette-toggle aria-label='Switch to teal accent colors' aria-pressed='false'>
+        <span class='palette-toggle-swatch' aria-hidden='true'></span><span>Change color</span>
+      </button>
+    </aside>
+    <main class='editorial-main' id='main-content'>
+      <section class='editorial-hero editorial-shell' aria-labelledby='other-title' data-reveal>
+        <div class='hero-meta' aria-label='Page metadata'>
+          <span>Portfolio / Other</span>
+          <span>Four collections</span>
+          <span>[Beyond work]</span>
+        </div>
+        <h1 id='other-title'>Oth<span>er</span></h1>
+        <div class='hero-summary'>
+          <p>The interests that shape how I notice rhythm, motion, composition, and play.</p>
+          <aside>
+            <strong>Personal index</strong>
+            Four compact collections, kept deliberately separate from project work.
+          </aside>
+        </div>
+      </section>
+      <section class='others-grid-section editorial-shell' aria-labelledby='collections-title'>
+        <div class='section-label-row' data-reveal>
+          <span class='section-index'>01</span>
+          <span id='collections-title'>Personal collections</span>
+          <span class='section-count'>04 categories</span>
+        </div>
+        <div class='others-grid'>
+          <article class='other-tile' data-reveal>
+            <img src='assets/images/profile-alt-ctharry.jpg' alt='' aria-hidden='true' />
+            <span class='other-tile-number'>01</span><span class='other-tile-status'>Visual notes</span>
+            <div class='other-tile-copy'><h2>photos</h2><p>Travel moments, quiet details, and everyday composition practice.</p></div>
+          </article>
+          <article class='other-tile' data-reveal>
+            <img src='assets/images/project-new-portfolio.png' alt='' aria-hidden='true' />
+            <span class='other-tile-number'>02</span><span class='other-tile-status'>In rotation</span>
+            <div class='other-tile-copy'><h2>music</h2><p>Rhythm, focus sessions, and sound collected as a design moodboard.</p></div>
+          </article>
+          <article class='other-tile' data-reveal>
+            <img src='assets/images/project-unity-platformer.png' alt='' aria-hidden='true' />
+            <span class='other-tile-number'>03</span><span class='other-tile-status'>Motion studies</span>
+            <div class='other-tile-copy'><h2>videos</h2><p>Short edits, motion experiments, and visual storytelling references.</p></div>
+          </article>
+          <article class='other-tile' data-reveal>
+            <img src='assets/images/project-minigame.png' alt='' aria-hidden='true' />
+            <span class='other-tile-number'>04</span><span class='other-tile-status'>Play systems</span>
+            <div class='other-tile-copy'><h2>gaming</h2><p>Mechanics, worlds, and interaction ideas learned through play.</p></div>
+          </article>
+        </div>
       </section>
     </main>
+    <footer class='page-footer'>
+      <span>&copy; 2026 Hong Ye Wu</span>
+      <a href='contact.html'>Start a conversation &nearr;</a>
+    </footer>
   </body>
 </html>
