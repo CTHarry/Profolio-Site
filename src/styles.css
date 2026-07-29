@@ -1947,7 +1947,7 @@ video {
   --other-gap: 14px;
   --other-detail-gap: clamp(34px, 3.4vw, 64px);
   --other-card-height: clamp(430px, 54svh, 600px);
-  --other-transition: 880ms cubic-bezier(0.22, 1, 0.36, 1);
+  --other-transition: 740ms cubic-bezier(0.32, 0.72, 0, 1);
   scroll-margin-top: 0;
   padding-block: clamp(104px, 7.5vw, 144px);
   background:
@@ -2047,8 +2047,26 @@ video {
 
 .other-stage {
   position: relative;
+  --other-stage-offset: 0px;
   min-height: var(--other-card-height);
   isolation: isolate;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.other-stage.is-staging {
+  transform: translate3d(0, var(--other-stage-offset), 0);
+}
+
+.other-stage.is-opening,
+.other-stage.is-open {
+  transform: translate3d(0, 0, 0);
+  transition: transform var(--other-transition);
+}
+
+.other-stage.is-closing {
+  transform: translate3d(0, var(--other-stage-offset), 0);
+  transition: transform var(--other-transition);
 }
 
 .other-section.is-detail-open .other-stage {
@@ -2203,7 +2221,7 @@ video {
   --media-scale: 1.02;
   border-color: rgba(243, 246, 242, 0.1);
   box-shadow: none;
-  transform: translateX(-125%);
+  transform: translate3d(0, 0, 0);
 }
 
 .other-section.is-detail-open .other-gallery.is-pulling .other-card {
@@ -2256,7 +2274,7 @@ video {
   .other-gallery.is-pulling
   .other-card:not(.is-active) {
   opacity: 0;
-  filter: blur(8px) saturate(0.72);
+  filter: blur(3px) saturate(0.84);
   transform: translateX(0);
   pointer-events: none;
 }
@@ -2266,7 +2284,8 @@ video {
   filter: blur(0) saturate(1);
   height: var(--other-card-height);
   transform: translateX(0);
-  transition-duration: 980ms;
+  transition-duration: 740ms;
+  transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .other-section.is-detail-open.other-phase-closing .other-card.is-active div {
@@ -2345,7 +2364,22 @@ video {
   letter-spacing: 0.12em;
   line-height: 1;
   text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition:
+    opacity 260ms ease-out,
+    transform 460ms cubic-bezier(0.32, 0.72, 0, 1),
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.other-phase-opening .other-return-button,
+.other-phase-open .other-return-button {
+  opacity: 1;
   pointer-events: auto;
+  transform: translateY(0);
+  transition-delay: 180ms, 180ms, 0ms, 0ms;
 }
 
 .other-return-button:hover {
@@ -2363,25 +2397,26 @@ video {
   min-width: 0;
   pointer-events: none;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translate3d(0, 18px, 0) scale(0.992);
+  transform-origin: left top;
   transition:
-    opacity 620ms ease,
-    transform 780ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 420ms ease-out,
+    transform 660ms cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .other-detail-view.is-opening,
 .other-detail-view.is-open {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0) scale(1);
   pointer-events: auto;
-  transition-delay: 300ms;
+  transition-delay: 90ms;
 }
 
 .other-detail-view.is-closing {
   opacity: 0;
-  transform: translateY(8px);
+  transform: translate3d(0, 10px, 0) scale(0.995);
   transition-delay: 0ms;
-  transition-duration: 460ms;
+  transition-duration: 300ms, 420ms;
 }
 
 .other-detail-panel {
@@ -2418,8 +2453,8 @@ video {
   transform-origin: left center;
   opacity: 0;
   transition:
-    opacity 440ms ease,
-    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 300ms ease-out,
+    transform 560ms cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .other-detail-bar span:first-child {
@@ -2430,7 +2465,7 @@ video {
 .other-detail-view.is-open .other-detail-bar {
   opacity: 1;
   transform: scaleX(1);
-  transition-delay: 360ms;
+  transition-delay: 150ms;
 }
 
 .other-detail-view.is-closing .other-detail-bar {
@@ -2449,8 +2484,8 @@ video {
   opacity: 0;
   transform: translateY(14px);
   transition:
-    opacity 420ms ease,
-    transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 320ms ease-out,
+    transform 560ms cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .other-detail-copy span,
@@ -2460,36 +2495,36 @@ video {
   transform: translateY(18px) scaleY(0.94);
   transform-origin: left top;
   transition:
-    opacity 460ms ease,
-    transform 680ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 340ms ease-out,
+    transform 580ms cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .other-detail-view.is-opening .other-detail-copy,
 .other-detail-view.is-open .other-detail-copy {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 430ms;
+  transition-delay: 210ms;
 }
 
 .other-detail-view.is-opening .other-detail-copy span,
 .other-detail-view.is-open .other-detail-copy span {
   opacity: 1;
   transform: translateY(0) scaleY(1);
-  transition-delay: 500ms;
+  transition-delay: 250ms;
 }
 
 .other-detail-view.is-opening .other-detail-copy strong,
 .other-detail-view.is-open .other-detail-copy strong {
   opacity: 1;
   transform: translateY(0) scaleY(1);
-  transition-delay: 590ms;
+  transition-delay: 310ms;
 }
 
 .other-detail-view.is-opening .other-detail-copy p,
 .other-detail-view.is-open .other-detail-copy p {
   opacity: 1;
   transform: translateY(0) scaleY(1);
-  transition-delay: 690ms;
+  transition-delay: 370ms;
 }
 
 .other-detail-view.is-closing .other-detail-copy {

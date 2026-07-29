@@ -1,4 +1,10 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { flushSync } from "react-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -35,14 +41,53 @@ const focusItems = [
   },
 ];
 
+const sectionOrder = ["home", "experience", "projects", "other", "contact"];
+
 const navItems = [
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "projects.html" },
-  { label: "Other", href: "creative-lab.html" },
-  { label: "Contact", href: "contact.html" },
+  { id: "experience", label: "Experience", href: "#experience" },
+  { id: "projects", label: "Projects", href: "#projects" },
+  { id: "other", label: "Other", href: "#other" },
+  { id: "contact", label: "Contact", href: "#contact" },
 ];
 
-const mobileNavItems = [{ label: "Home", href: "#top" }, ...navItems];
+const mobileNavItems = [
+  { id: "home", label: "Home", href: "#home" },
+  ...navItems,
+];
+
+const assistantPrompts = [
+  {
+    id: "current-work",
+    label: "What is Harry working on?",
+    response:
+      "Harry is building semantic navigation workflows for autonomous mobile robots using ROS2, Nav2, local costmaps, and vision-language models.",
+  },
+  {
+    id: "best-project",
+    label: "Show me a featured project",
+    response:
+      "Start with the Local VLM Semantic Costmap System. It translates visual scene reasoning into navigation-aware costmap updates for socially aware robot movement.",
+  },
+  {
+    id: "infosys",
+    label: "Tell me about Infosys",
+    response:
+      "At Infosys, Harry works across robotics perception, navigation, safety, alerts, and interaction through a coordinated ROS2 and AI-agent workflow.",
+  },
+  {
+    id: "contact",
+    label: "How can I contact Harry?",
+    response:
+      "Email ctharry0106@gmail.com, or use the LinkedIn and GitHub links in the Contact section.",
+  },
+];
+
+function getInitialSection() {
+  if (typeof window === "undefined") return "home";
+
+  const requestedSection = window.location.hash.replace("#", "");
+  return sectionOrder.includes(requestedSection) ? requestedSection : "home";
+}
 
 const heroTitleWords = ["HONG", "YE", "WU"];
 const EXPERIENCE_FOCUS_RATIO = 0.68;
@@ -55,7 +100,7 @@ const currentProjects = [
     image: characterProjectImage,
     description:
       "A ROS2/Nav2 AMR workflow using local VLM reasoning to generate semantic costmap updates for socially aware robot navigation.",
-    tools: ["ROS2", "AMR", "Nav2", "VLM", "Costmap"],
+    tools: ["Python", "ROS2", "Nav2", "VLM", "Costmap"],
     link: "https://www.infosys.com/",
   },
   {
@@ -65,7 +110,7 @@ const currentProjects = [
     image: componentProjectImage,
     description:
       "A VLA-inspired AI agent layer that coordinates robot navigation, safety, alerts, and human interaction.",
-    tools: ["AI Agent", "VLA", "ROS2", "AMR", "Safety"],
+    tools: ["Python", "ROS2", "AI Agents", "VLA", "Safety"],
     link: "https://www.infosys.com/",
   },
   {
@@ -75,7 +120,7 @@ const currentProjects = [
     image: portfolioProjectImage,
     description:
       "A responsive identity site shaped around clear presentation, interactive cards, and custom personal details.",
-    tools: ["React", "Vite", "CSS", "Design"],
+    tools: ["JavaScript", "React", "Vite", "CSS"],
     link: "#top",
   },
 ];
@@ -338,6 +383,7 @@ function ProjectCard({ project, index, variant = "featured" }) {
       href={project.link}
       target={project.link.startsWith("#") ? undefined : "_blank"}
       rel={project.link.startsWith("#") ? undefined : "noreferrer"}
+      data-project-index={String(index + 1).padStart(2, "0")}
     >
       <img src={project.image} alt="" aria-hidden="true" />
       <div className="project-overlay">
@@ -347,7 +393,10 @@ function ProjectCard({ project, index, variant = "featured" }) {
         </div>
         <h3>{project.title}</h3>
         <p>{project.description}</p>
-        <div className="tool-row">
+        <div
+          className="tool-row"
+          aria-label={`Skills used: ${project.tools.join(", ")}`}
+        >
           {project.tools.map((tool) => (
             <span key={tool}>{tool}</span>
           ))}
@@ -618,6 +667,91 @@ function HeroTitle() {
   );
 }
 
+function PortfolioAssistant({
+  activeSection,
+  isOpen,
+  message,
+  onClose,
+  onPrompt,
+  onToggle,
+}) {
+  const drawerSide = activeSection === "projects" ? "left" : "right";
+
+  return (
+    <div
+      className={`portfolio-assistant assistant-${activeSection} drawer-${drawerSide}${isOpen ? " is-open" : ""}`}
+    >
+      <button
+        className="assistant-scrim"
+        type="button"
+        aria-label="Close portfolio assistant"
+        aria-hidden={!isOpen}
+        tabIndex={isOpen ? 0 : -1}
+        onClick={onClose}
+      />
+
+      <aside
+        className="assistant-drawer"
+        aria-label="Portfolio assistant"
+        aria-hidden={!isOpen}
+        inert={!isOpen}
+      >
+        <div className="assistant-drawer-header">
+          <div>
+            <span>Harry's assistant</span>
+            <strong>Portfolio guide</strong>
+          </div>
+          <button
+            className="assistant-close"
+            type="button"
+            aria-label="Close portfolio assistant"
+            tabIndex={isOpen ? 0 : -1}
+            onClick={onClose}
+          >
+            <span />
+            <span />
+          </button>
+        </div>
+
+          <div className="assistant-chat-log">
+            <span className="assistant-chat-status" aria-hidden="true" />
+            <p className="assistant-message" aria-live="polite">
+              {message}
+            </p>
+          </div>
+
+        <div className="assistant-prompts" aria-label="Suggested questions">
+          {assistantPrompts.map((prompt) => (
+            <button
+              type="button"
+              key={prompt.id}
+              tabIndex={isOpen ? 0 : -1}
+              onClick={() => onPrompt(prompt)}
+            >
+              {prompt.label}
+            </button>
+          ))}
+          </div>
+
+          <div className="assistant-future-input" aria-hidden="true">
+            <span>Ask me anything</span>
+            <i>LLM later</i>
+          </div>
+      </aside>
+
+      <button
+        className="assistant-placeholder"
+        type="button"
+        aria-label={isOpen ? "Close portfolio assistant" : "Open portfolio assistant"}
+        aria-expanded={isOpen}
+        onClick={onToggle}
+      >
+        <span>Assistant image</span>
+      </button>
+    </div>
+  );
+}
+
 function App() {
   const siteRef = useRef(null);
   const openingTimelineRef = useRef(null);
@@ -627,14 +761,18 @@ function App() {
   const experienceTimelineRef = useRef(null);
   const experienceScrollFrameRef = useRef(null);
   const experienceSnapTimerRef = useRef(null);
-  const activeExperienceIndexRef = useRef(experiences.length - 1);
+  const sectionPointerStartRef = useRef(null);
+  const activeExperienceIndexRef = useRef(0);
   const previousOtherNavHiddenRef = useRef(false);
   const [focusIndex, setFocusIndex] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeExperienceIndex, setActiveExperienceIndex] = useState(
-    experiences.length - 1,
+  const [activeSection, setActiveSection] = useState(getInitialSection);
+  const [isAssistantOpen, setIsAssistantOpen] = useState(false);
+  const [assistantMessage, setAssistantMessage] = useState(
+    "Choose a question to explore Harry's work and background.",
   );
+  const [activeExperienceIndex, setActiveExperienceIndex] = useState(0);
   const [accentMode, setAccentMode] = useState(() => {
     if (typeof window === "undefined") return "ember";
 
@@ -652,12 +790,12 @@ function App() {
   const activeOther = otherItems.find((item) => item.id === selectedOtherId);
   const isOtherDetailVisible = Boolean(activeOther && otherPhase !== "idle");
   const isOtherNavHidden =
-    otherPhase !== "idle" || Boolean(activeOther) || Boolean(openingOtherId);
+    otherPhase !== "idle" && otherPhase !== "closing";
   const isTealAccent = accentMode === "teal";
-  const timelineExperiences = [...experiences].reverse();
+  const timelineExperiences = experiences;
   const activeExperience =
     timelineExperiences[activeExperienceIndex] ??
-    timelineExperiences[timelineExperiences.length - 1];
+    timelineExperiences[0];
   const timelineItems = timelineExperiences.map((item, index) => ({
     item,
     index,
@@ -667,33 +805,112 @@ function App() {
     setAccentMode((mode) => (mode === "teal" ? "ember" : "teal"));
   };
 
-  const isExperienceFixedRail = () =>
-    window.matchMedia("(min-width: 1141px)").matches;
+  const navigateToSection = useCallback(
+    (sectionId, { updateHistory = true } = {}) => {
+      if (!sectionOrder.includes(sectionId)) return;
 
-  const scrollExperienceToFocus = (index, behavior = "smooth") => {
-    const timeline = experienceTimelineRef.current;
-    const node = timeline?.querySelector(`[data-experience-index="${index}"]`);
+      setActiveSection(sectionId);
+      setIsMobileMenuOpen(false);
+      setIsAssistantOpen(false);
 
-    if (!timeline || !node) {
+      if (updateHistory) {
+        window.history.pushState(null, "", `#${sectionId}`);
+      }
+
+      window.requestAnimationFrame(() => {
+        document
+          .querySelector(`[data-section-id="${sectionId}"]`)
+          ?.scrollTo({ top: 0, behavior: "auto" });
+      });
+    },
+    [],
+  );
+
+  const getSceneState = (sectionId) => {
+    const sectionIndex = sectionOrder.indexOf(sectionId);
+    const activeIndex = sectionOrder.indexOf(activeSection);
+
+    if (sectionIndex === activeIndex) return "active";
+    return sectionIndex < activeIndex ? "before" : "after";
+  };
+
+  const handleSectionLink = (event, sectionId) => {
+    event.preventDefault();
+    navigateToSection(sectionId);
+  };
+
+  const moveBySection = useCallback(
+    (direction) => {
+      const activeIndex = sectionOrder.indexOf(activeSection);
+      const nextIndex = Math.min(
+        sectionOrder.length - 1,
+        Math.max(0, activeIndex + direction),
+      );
+
+      if (nextIndex !== activeIndex) {
+        navigateToSection(sectionOrder[nextIndex]);
+      }
+    },
+    [activeSection, navigateToSection],
+  );
+
+  const handleScenePointerDown = (event) => {
+    if (event.pointerType === "mouse") return;
+
+    sectionPointerStartRef.current = {
+      id: event.pointerId,
+      x: event.clientX,
+      y: event.clientY,
+    };
+  };
+
+  const handleScenePointerUp = (event) => {
+    const start = sectionPointerStartRef.current;
+    sectionPointerStartRef.current = null;
+
+    if (!start || start.id !== event.pointerId) return;
+
+    const deltaX = event.clientX - start.x;
+    const deltaY = event.clientY - start.y;
+
+    if (Math.abs(deltaX) < 64 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) {
       return;
     }
 
-    if (isExperienceFixedRail()) {
-      timeline.scrollTo({ left: 0, behavior: "auto" });
-      return;
-    }
-
-    const targetLeft =
-      node.offsetLeft +
-      node.offsetWidth / 2 -
-      timeline.clientWidth * EXPERIENCE_FOCUS_RATIO;
-    timeline.scrollTo({ left: Math.max(0, targetLeft), behavior });
+    moveBySection(deltaX < 0 ? 1 : -1);
   };
 
   const selectExperience = (index) => {
-    flushSync(() => setActiveExperienceIndex(index));
-    window.requestAnimationFrame(() => scrollExperienceToFocus(index));
+    setActiveExperienceIndex(index);
   };
+
+  useEffect(() => {
+    const centerActiveExperience = () => {
+      if (activeSection !== "experience" || window.innerWidth > 820) return;
+
+      const timeline = experienceTimelineRef.current;
+      const activeItem = timeline?.querySelector(
+        ".experience-vertical-item.is-active",
+      );
+
+      if (!timeline || !activeItem) return;
+
+      timeline.scrollTo({
+        left:
+          activeItem.offsetLeft -
+          (timeline.clientWidth - activeItem.clientWidth) / 2,
+        behavior: "smooth",
+      });
+    };
+
+    const frameId = window.requestAnimationFrame(centerActiveExperience);
+    window.addEventListener("resize", centerActiveExperience);
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      window.removeEventListener("resize", centerActiveExperience);
+    };
+  }, [activeExperienceIndex, activeSection]);
 
   useLayoutEffect(() => {
     const root = siteRef.current;
@@ -864,191 +1081,6 @@ function App() {
         )
         .set(".intro-curtain", { autoAlpha: 0, pointerEvents: "none" });
 
-      gsap.utils.toArray(".page-panel, .footer-section").forEach((section) => {
-        const isExperienceSection =
-          section.classList.contains("experience-section");
-        const heading = section.querySelector("h2");
-        const kicker = section.querySelector(".section-kicker");
-        const titlePanel = section.querySelector(".profile-copy");
-        const visualPanels = Array.from(
-          section.querySelectorAll(
-            ".metric-grid, .experience-stack, .current-project-layout, .featured-grid, .other-gallery, .footer-links",
-          ),
-        ).filter((panel) => !panel.contains(heading));
-        const cards = section.querySelectorAll(
-          ".metric-card, .project-group-heading, .project-card, .other-card, .footer-links a",
-        );
-
-        if (!heading) {
-          return;
-        }
-
-        const sectionTimeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: section,
-            scroller: pageScroller,
-            start: "top 72%",
-            once: true,
-          },
-          defaults: { ease: "power4.out" },
-        });
-
-        if (titlePanel) {
-          sectionTimeline.fromTo(
-            titlePanel,
-            {
-              autoAlpha: 0,
-              y: 54,
-              scaleY: 0.9,
-              clipPath: "inset(16% 0% 0% 0%)",
-              transformOrigin: "top center",
-            },
-            {
-              autoAlpha: 1,
-              y: 0,
-              scaleY: 1,
-              clipPath: "inset(0% 0% 0% 0%)",
-              duration: 0.9,
-            },
-            0,
-          );
-        }
-
-        if (kicker) {
-          sectionTimeline.fromTo(
-            kicker,
-            { autoAlpha: 0, y: 26 },
-            { autoAlpha: 1, y: 0, duration: 0.62 },
-            titlePanel ? 0.16 : 0,
-          );
-        }
-
-        sectionTimeline
-          .fromTo(
-            heading,
-            {
-              autoAlpha: 0,
-              y: 96,
-              scaleY: 0.72,
-              skewY: 4,
-              clipPath: "inset(0% 0% 100% 0%)",
-              transformOrigin: "left bottom",
-            },
-            {
-              autoAlpha: 1,
-              y: 0,
-              scaleY: 1,
-              skewY: 0,
-              clipPath: "inset(0% 0% 0% 0%)",
-              duration: 1.08,
-            },
-            titlePanel ? 0.18 : 0.08,
-          )
-          .fromTo(
-            visualPanels,
-            {
-              autoAlpha: 0,
-              y: 54,
-              scaleY: 0.88,
-              clipPath: "inset(18% 0% 0% 0%)",
-              transformOrigin: "top center",
-            },
-            {
-              autoAlpha: 1,
-              y: 0,
-              scaleY: 1,
-              clipPath: "inset(0% 0% 0% 0%)",
-              duration: 0.86,
-              stagger: 0.08,
-            },
-            0.44,
-          )
-          .fromTo(
-            cards,
-            {
-              autoAlpha: 0,
-              y: 64,
-              scaleY: 0.92,
-              clipPath: "inset(18% 0% 0% 0%)",
-              transformOrigin: "top center",
-            },
-            {
-              autoAlpha: 1,
-              y: 0,
-              scaleY: 1,
-              clipPath: "inset(0% 0% 0% 0%)",
-              duration: 0.9,
-              stagger: 0.075,
-            },
-            0.68,
-          );
-
-        if (isExperienceSection) {
-          const experienceTrack = section.querySelector(
-            ".experience-track-editorial",
-          );
-          const experienceLines = section.querySelectorAll(".experience-line");
-          const experienceDetail = section.querySelector(
-            ".experience-detail-panel",
-          );
-
-          sectionTimeline
-            .fromTo(
-              experienceTrack,
-              { "--timeline-rail-progress": 0 },
-              {
-                "--timeline-rail-progress": 1,
-                duration: 0.78,
-                ease: "power3.inOut",
-              },
-              0.44,
-            )
-            .fromTo(
-              experienceLines,
-              {
-                "--timeline-enter-x": "-44px",
-                "--timeline-enter-scale": 0.94,
-                clipPath: "inset(0% 100% 0% 0%)",
-              },
-              {
-                "--timeline-enter-x": "0px",
-                "--timeline-enter-scale": 1,
-                clipPath: "inset(0% 0% 0% 0%)",
-                clearProps: "clipPath",
-                duration: 0.72,
-                stagger: 0.11,
-                ease: "power4.out",
-              },
-              0.5,
-            )
-            .fromTo(
-              experienceDetail,
-              { autoAlpha: 0, x: 24 },
-              { autoAlpha: 1, x: 0, duration: 0.78, ease: "power4.out" },
-              0.86,
-            );
-        }
-      });
-
-      gsap.utils.toArray(".project-card, .other-card").forEach((card) => {
-        gsap.fromTo(
-          card,
-          { "--media-y": "34px" },
-          {
-            "--media-y": "-34px",
-            ease: "none",
-            scrollTrigger: {
-              trigger: card,
-              scroller: pageScroller,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 0.8,
-            },
-          },
-        );
-      });
-
-      window.setTimeout(() => ScrollTrigger.refresh(), 350);
     }, root);
 
     return () => {
@@ -1074,116 +1106,73 @@ function App() {
   }, [accentMode]);
 
   useEffect(() => {
-    activeExperienceIndexRef.current = activeExperienceIndex;
-  }, [activeExperienceIndex]);
+    document.documentElement.dataset.activeSection = activeSection;
+    setIsScrolled(activeSection !== "home");
+
+    const activeScene = document.querySelector(
+      `[data-section-id="${activeSection}"]`,
+    );
+    activeScene?.focus({ preventScroll: true });
+  }, [activeSection]);
 
   useEffect(() => {
-    const timeline = experienceTimelineRef.current;
-
-    if (!timeline) {
-      return undefined;
-    }
-
-    const scheduleFocusSnap = (
-      index = activeExperienceIndexRef.current,
-      delay = 180,
-    ) => {
-      if (experienceSnapTimerRef.current) {
-        window.clearTimeout(experienceSnapTimerRef.current);
-      }
-
-      experienceSnapTimerRef.current = window.setTimeout(() => {
-        scrollExperienceToFocus(index, "smooth");
-      }, delay);
+    const handleHistoryChange = () => {
+      navigateToSection(getInitialSection(), { updateHistory: false });
     };
 
-    const updateActiveFromFocus = () => {
-      if (isExperienceFixedRail()) {
-        timeline.scrollLeft = 0;
-        return;
-      }
+    window.addEventListener("hashchange", handleHistoryChange);
+    window.addEventListener("popstate", handleHistoryChange);
 
-      const nodes = Array.from(
-        timeline.querySelectorAll("[data-experience-index]"),
-      );
-      const timelineRect = timeline.getBoundingClientRect();
-      const focusX =
-        timelineRect.left + timelineRect.width * EXPERIENCE_FOCUS_RATIO;
-
-      const closestNode = nodes.reduce((closest, node) => {
-        const rect = node.getBoundingClientRect();
-        const distance = Math.abs(rect.left + rect.width / 2 - focusX);
-
-        return !closest || distance < closest.distance
-          ? { node, distance }
-          : closest;
-      }, null);
-
-      if (!closestNode) {
-        return;
-      }
-
-      const nextIndex = Number(closestNode.node.dataset.experienceIndex);
-
-      if (activeExperienceIndexRef.current !== nextIndex) {
-        activeExperienceIndexRef.current = nextIndex;
-        setActiveExperienceIndex(nextIndex);
-        window.requestAnimationFrame(() => scheduleFocusSnap(nextIndex, 90));
-        return;
-      }
-
-      scheduleFocusSnap(nextIndex);
+    return () => {
+      window.removeEventListener("hashchange", handleHistoryChange);
+      window.removeEventListener("popstate", handleHistoryChange);
     };
+  }, [navigateToSection]);
 
-    const requestFocusUpdate = () => {
-      if (experienceScrollFrameRef.current) {
-        window.cancelAnimationFrame(experienceScrollFrameRef.current);
-      }
-
-      experienceScrollFrameRef.current = window.requestAnimationFrame(
-        updateActiveFromFocus,
-      );
-    };
-
-    const handleWheel = (event) => {
+  useEffect(() => {
+    const handleSectionKeyDown = (event) => {
       if (
-        isExperienceFixedRail() ||
-        Math.abs(event.deltaY) <= Math.abs(event.deltaX)
+        isAssistantOpen ||
+        isMobileMenuOpen ||
+        event.altKey ||
+        event.ctrlKey ||
+        event.metaKey ||
+        ["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(
+          event.target?.tagName,
+        )
       ) {
         return;
       }
 
-      event.preventDefault();
-      timeline.scrollLeft += event.deltaY;
-    };
-
-    const handleResize = () => {
-      scrollExperienceToFocus(activeExperienceIndexRef.current, "auto");
-      requestFocusUpdate();
-    };
-
-    const animationFrame = window.requestAnimationFrame(() => {
-      scrollExperienceToFocus(activeExperienceIndexRef.current, "auto");
-      updateActiveFromFocus();
-    });
-
-    timeline.addEventListener("scroll", requestFocusUpdate, { passive: true });
-    timeline.addEventListener("wheel", handleWheel, { passive: false });
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.cancelAnimationFrame(animationFrame);
-      if (experienceScrollFrameRef.current) {
-        window.cancelAnimationFrame(experienceScrollFrameRef.current);
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        moveBySection(1);
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        moveBySection(-1);
       }
-      if (experienceSnapTimerRef.current) {
-        window.clearTimeout(experienceSnapTimerRef.current);
-      }
-      timeline.removeEventListener("scroll", requestFocusUpdate);
-      timeline.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("resize", handleResize);
     };
-  }, []);
+
+    window.addEventListener("keydown", handleSectionKeyDown);
+    return () => window.removeEventListener("keydown", handleSectionKeyDown);
+  }, [isAssistantOpen, isMobileMenuOpen, moveBySection]);
+
+  useEffect(() => {
+    if (!isAssistantOpen) return undefined;
+
+    const handleAssistantEscape = (event) => {
+      if (event.key === "Escape") {
+        setIsAssistantOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleAssistantEscape);
+    return () => window.removeEventListener("keydown", handleAssistantEscape);
+  }, [isAssistantOpen]);
+
+  useEffect(() => {
+    activeExperienceIndexRef.current = activeExperienceIndex;
+  }, [activeExperienceIndex]);
 
   useEffect(() => {
     const root = siteRef.current;
@@ -1353,26 +1342,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = Math.max(
-        window.scrollY,
-        document.documentElement.scrollTop,
-        document.body.scrollTop,
-      );
-      setIsScrolled(scrollTop > 24);
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    document.body.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      document.body.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
     const nav = siteRef.current?.querySelector(".nav-shell");
 
     if (!nav || !introDecrypted) {
@@ -1423,58 +1392,6 @@ function App() {
     setIsMobileMenuOpen(false);
   };
 
-  const getScrollTop = () =>
-    Math.max(
-      window.scrollY,
-      document.documentElement.scrollTop,
-      document.body.scrollTop,
-    );
-
-  const scrollToPagePosition = (top, behavior = "auto") => {
-    window.scrollTo({ top, behavior });
-    document.documentElement.scrollTo?.({ top, behavior });
-    document.body.scrollTo?.({ top, behavior });
-  };
-
-  const alignElementToViewportTop = (element, behavior = "auto") => {
-    if (!element) return getScrollTop();
-
-    const targetTop = Math.max(
-      0,
-      element.getBoundingClientRect().top + getScrollTop(),
-    );
-    scrollToPagePosition(targetTop, behavior);
-    return targetTop;
-  };
-
-  const alignOtherTitleBelowNav = (behavior = "auto") => {
-    const title = document.getElementById("other-title");
-    const heading = title?.closest(".other-heading");
-    const targetElement = heading || title;
-
-    if (!targetElement) {
-      return alignElementToViewportTop(otherStageRef.current, behavior);
-    }
-
-    const nav = siteRef.current?.querySelector(".nav-shell");
-    const navRect = nav?.getBoundingClientRect();
-    const navStyles = nav ? window.getComputedStyle(nav) : null;
-    const navTop = navStyles ? parseFloat(navStyles.top) || 0 : 16;
-    const navHeight = navRect?.height || 52;
-    const navGap = window.innerWidth < 760 ? 10 : 14;
-    const targetTop = Math.max(
-      0,
-      targetElement.getBoundingClientRect().top +
-        getScrollTop() -
-        navTop -
-        navHeight -
-        navGap,
-    );
-
-    scrollToPagePosition(targetTop, behavior);
-    return targetTop;
-  };
-
   const closeOtherDetail = () => {
     if (!selectedOtherId || otherPhase === "idle" || otherPhase === "closing") {
       return;
@@ -1499,8 +1416,7 @@ function App() {
         setOtherPhase("idle");
       });
       otherFinishTimerRef.current = null;
-      alignOtherTitleBelowNav("smooth");
-    }, 980);
+    }, 780);
   };
 
   const openOtherDetail = (itemId) => {
@@ -1513,59 +1429,49 @@ function App() {
       return;
     }
 
-    const otherSection = document.getElementById("other");
-    const targetElement = otherStageRef.current || otherSection;
-    const currentScrollTop = getScrollTop();
-    const targetScrollTop = targetElement
-      ? Math.max(
-          0,
-          targetElement.getBoundingClientRect().top + currentScrollTop,
-        )
-      : currentScrollTop;
-    const scrollDistance = Math.abs(targetScrollTop - currentScrollTop);
-    const scrollDelay = Math.min(780, Math.max(320, scrollDistance * 0.28));
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const stage = otherStageRef.current;
+    const startTop = stage?.getBoundingClientRect().top ?? 0;
+    const startOffsetTop = stage?.offsetTop ?? 0;
 
-    scrollToPagePosition(targetScrollTop, "smooth");
-
-    otherOpenTimerRef.current = window.setTimeout(() => {
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-
-      scrollToPagePosition(targetScrollTop);
-
+    flushSync(() => {
       setActiveOtherId(null);
       setOpeningOtherId(itemId);
       setOtherPhase(prefersReducedMotion ? "open" : "staging");
-      otherOpenTimerRef.current = null;
+    });
 
+    if (prefersReducedMotion) {
+      setActiveOtherId(itemId);
+      setOpeningOtherId(null);
+      return;
+    }
+
+    const endTop = stage?.getBoundingClientRect().top ?? startTop;
+    const endOffsetTop = stage?.offsetTop ?? startOffsetTop;
+    const stageOffset = Math.max(
+      0,
+      startTop - endTop,
+      startOffsetTop - endOffsetTop,
+    );
+    stage?.style.setProperty(
+      "--other-stage-offset",
+      `${stageOffset}px`,
+    );
+
+    window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
-        alignElementToViewportTop(otherSection);
+        setOtherPhase("opening");
+
+        otherFinishTimerRef.current = window.setTimeout(() => {
+          setActiveOtherId(itemId);
+          setOpeningOtherId(null);
+          setOtherPhase("open");
+          otherFinishTimerRef.current = null;
+        }, 740);
       });
-
-      if (prefersReducedMotion) {
-        setActiveOtherId(itemId);
-        setOpeningOtherId(null);
-        return;
-      }
-
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => {
-          alignElementToViewportTop(otherSection);
-          setOtherPhase("opening");
-
-          otherFinishTimerRef.current = window.setTimeout(() => {
-            setActiveOtherId(itemId);
-            setOpeningOtherId(null);
-            setOtherPhase("open");
-            otherFinishTimerRef.current = null;
-            window.requestAnimationFrame(() =>
-              alignElementToViewportTop(otherSection),
-            );
-          }, 880);
-        });
-      });
-    }, scrollDelay);
+    });
   };
 
   const startIntro = () => {
@@ -1603,14 +1509,22 @@ function App() {
       >
         <a
           className="brand-mark magic-border"
-          href="#top"
+          href="#home"
           aria-label="Hong Ye Wu home"
+          aria-current={activeSection === "home" ? "page" : undefined}
+          onClick={(event) => handleSectionLink(event, "home")}
         >
           HW
         </a>
         <nav className="nav-links">
           {navItems.map((item) => (
-            <a className="magic-border" key={item.href} href={item.href}>
+            <a
+              className={`magic-border${activeSection === item.id ? " is-active" : ""}`}
+              key={item.id}
+              href={item.href}
+              aria-current={activeSection === item.id ? "page" : undefined}
+              onClick={(event) => handleSectionLink(event, item.id)}
+            >
               {item.label}
             </a>
           ))}
@@ -1645,6 +1559,7 @@ function App() {
         className={`mobile-nav-backdrop${isMobileMenuOpen ? " is-open" : ""}`}
         type="button"
         aria-label="Close navigation menu"
+        aria-hidden={!isMobileMenuOpen}
         tabIndex={isMobileMenuOpen ? 0 : -1}
         onClick={closeMobileMenu}
       />
@@ -1653,14 +1568,16 @@ function App() {
         className={`mobile-nav-panel${isMobileMenuOpen ? " is-open" : ""}`}
         id="mobile-navigation"
         aria-hidden={!isMobileMenuOpen}
+        inert={!isMobileMenuOpen}
       >
         <nav aria-label="Mobile navigation">
           {mobileNavItems.map((item) => (
             <a
-              className="magic-border"
-              key={item.href}
+              className={`magic-border${activeSection === item.id ? " is-active" : ""}`}
+              key={item.id}
               href={item.href}
-              onClick={closeMobileMenu}
+              aria-current={activeSection === item.id ? "page" : undefined}
+              onClick={(event) => handleSectionLink(event, item.id)}
             >
               {item.label}
             </a>
@@ -1710,8 +1627,23 @@ function App() {
         </div>
       </div>
 
-      <main>
-        <section className="hero-section" aria-labelledby="hero-title">
+      <main
+        className="app-scenes"
+        onPointerDown={handleScenePointerDown}
+        onPointerUp={handleScenePointerUp}
+        onPointerCancel={() => {
+          sectionPointerStartRef.current = null;
+        }}
+      >
+        <section
+          className="hero-section app-scene"
+          id="home"
+          data-section-id="home"
+          data-scene-state={getSceneState("home")}
+          tabIndex={-1}
+          aria-hidden={activeSection !== "home"}
+          aria-labelledby="hero-title"
+        >
           <div className="hero-video-frame" aria-hidden="true">
             <div className="hero-video-fallback" />
           </div>
@@ -1733,12 +1665,17 @@ function App() {
                   Fast Learner & creative thinker
                 </p>
                 <div className="hero-actions">
-                  <a className="magic-border" href="projects.html">
+                  <a
+                    className="magic-border"
+                    href="#projects"
+                    onClick={(event) => handleSectionLink(event, "projects")}
+                  >
                     View Projects
                   </a>
                   <a
                     className="magic-border"
-                    href="contact.html"
+                    href="#contact"
+                    onClick={(event) => handleSectionLink(event, "contact")}
                   >
                     Contact Me
                   </a>
@@ -1757,102 +1694,91 @@ function App() {
         </section>
 
         <section
-          className="profile-section experience-section page-panel"
+          className="profile-section experience-section page-panel app-scene"
           id="experience"
+          data-section-id="experience"
+          data-scene-state={getSceneState("experience")}
+          tabIndex={-1}
+          aria-hidden={activeSection !== "experience"}
           aria-labelledby="experience-title"
         >
           <div className="experience-showcase content-shell">
-            <div className="experience-timeline-panel">
-              <div className="experience-display-heading">
-                <p className="experience-eyebrow">My Journey</p>
-                <h2 id="experience-title">Experience</h2>
-                <p className="experience-lede">
-                  I build web and robotics systems, with recent work focused on
-                  semantic navigation and vision-language models.
-                </p>
-              </div>
-
-              <div className="experience-carousel-shell">
-                <div
-                  className="experience-timeline"
-                  ref={experienceTimelineRef}
-                  aria-label="Horizontal experience timeline"
-                >
-                  <div className="experience-track experience-track-editorial">
-                    {visibleTimelineItems.map(({ item, index }) => {
-                      const isActive = index === activeExperienceIndex;
-                      const startDate = getExperienceStartDate(item.date);
-
-                      return (
-                        <article
-                          key={`${item.id}-timeline`}
-                          className={`experience-line${isActive ? " is-active" : " is-inactive"}`}
-                          data-experience-index={index}
-                          role="button"
-                          tabIndex={0}
-                          aria-current={isActive ? "step" : undefined}
-                          aria-label={`${item.company}, ${getTimelineRoleLines(item)[0]}, ${item.date}`}
-                          onPointerMove={updateExperienceTagMotion}
-                          onPointerLeave={resetExperienceTagMotion}
-                          onPointerCancel={resetExperienceTagMotion}
-                          onBlur={resetExperienceTagMotion}
-                          onClick={(event) => {
-                            selectExperience(index);
-                            playExperienceTagPull(event.currentTarget);
-                          }}
-                          onKeyDown={(event) => {
-                            if (event.key === "Enter" || event.key === " ") {
-                              event.preventDefault();
-                              selectExperience(index);
-                              playExperienceTagPull(event.currentTarget);
-                            }
-                          }}
-                        >
-                          <span className="experience-start-year">
-                            {startDate.year}
-                          </span>
-                          <span className="experience-dot" aria-hidden="true" />
-                          <span className="experience-tag-content">
-                            <span
-                              className="experience-node-icon"
-                              aria-hidden="true"
-                            >
-                              <img src={getTimelineIconSource(item)} alt="" />
-                            </span>
-                            <span className="experience-node-company">
-                              {getTimelineCompanyLabel(item)}
-                            </span>
-                            <span className="experience-node-role">
-                              {getTimelineRoleLines(item)[0]}
-                            </span>
-                            <span className="experience-node-date-inline">
-                              {formatTimelinePeriod(item.date)}
-                            </span>
-                          </span>
-                        </article>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
+            <div className="experience-display-heading">
+              <p className="experience-eyebrow">My Journey</p>
+              <h2 id="experience-title">Experience</h2>
+              <p className="experience-lede">
+                Web systems, automation, and robotics work shaped through
+                practical delivery.
+              </p>
             </div>
 
-            <ExperienceDetails experience={activeExperience} />
+            <div className="experience-vertical-layout">
+              <div
+                className="experience-vertical-timeline"
+                ref={experienceTimelineRef}
+                aria-label="Experience timeline"
+              >
+                {visibleTimelineItems.map(({ item, index }) => {
+                  const isActive = index === activeExperienceIndex;
+                  const startDate = getExperienceStartDate(item.date);
+
+                  return (
+                    <button
+                      className={`experience-vertical-item${isActive ? " is-active" : ""}`}
+                      type="button"
+                      key={`${item.id}-timeline`}
+                      aria-current={isActive ? "step" : undefined}
+                      onClick={() => selectExperience(index)}
+                    >
+                      <span className="experience-vertical-marker" aria-hidden="true" />
+                      <span className="experience-vertical-icon" aria-hidden="true">
+                        <img src={getTimelineIconSource(item)} alt="" />
+                      </span>
+                      <span className="experience-vertical-copy">
+                        <span className="experience-vertical-year">
+                          {startDate.year}
+                        </span>
+                        <strong>{getTimelineCompanyLabel(item)}</strong>
+                        <span>{getTimelineRoleLines(item)[0]}</span>
+                        <small>{formatTimelinePeriod(item.date)}</small>
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <ExperienceDetails
+                key={activeExperience.id}
+                experience={activeExperience}
+              />
+
+              <div className="experience-assistant-reserve" aria-hidden="true" />
+            </div>
           </div>
         </section>
         <section
-          className="projects-section page-panel"
+          className="projects-section page-panel app-scene"
           id="projects"
+          data-section-id="projects"
+          data-scene-state={getSceneState("projects")}
+          tabIndex={-1}
+          aria-hidden={activeSection !== "projects"}
           aria-labelledby="projects-title"
-        >
-          <div className="content-shell">
-            <div className="projects-display-heading">
-              <p className="projects-eyebrow">Featured Work</p>
-              <h2 id="projects-title">Projects</h2>
-              <p className="projects-lede">
-                Selected systems, interfaces, and AI workflows.
-              </p>
-            </div>
+          >
+            <div className="content-shell">
+              <div className="projects-header-row">
+                <div className="projects-display-heading">
+                  <p className="projects-eyebrow">Featured Work</p>
+                  <h2 id="projects-title">Projects</h2>
+                  <p className="projects-lede">
+                    Selected systems, interfaces, and AI workflows.
+                  </p>
+                </div>
+                <div className="projects-header-note" aria-label="Project overview">
+                  <span>03 active builds</span>
+                  <p>Robotics, applied AI, and web systems.</p>
+                </div>
+              </div>
 
             <div className="project-group">
               <div className="project-group-heading">
@@ -1888,8 +1814,12 @@ function App() {
         </section>
 
         <section
-          className={`other-section page-panel other-phase-${otherPhase}${isOtherDetailVisible ? " is-detail-open" : ""}`}
+          className={`other-section page-panel app-scene other-phase-${otherPhase}${isOtherDetailVisible ? " is-detail-open" : ""}`}
           id="other"
+          data-section-id="other"
+          data-scene-state={getSceneState("other")}
+          tabIndex={-1}
+          aria-hidden={activeSection !== "other"}
           aria-labelledby="other-title"
         >
           <div className="other-shell content-shell">
@@ -1929,7 +1859,6 @@ function App() {
                       <p>{item.text}</p>
                     </div>
                     {isOtherDetailVisible &&
-                      otherPhase !== "staging" &&
                       item.id === selectedOtherId && (
                         <button
                           className="other-return-button magic-border"
@@ -1947,9 +1876,7 @@ function App() {
                 ))}
               </div>
 
-              {isOtherDetailVisible &&
-                otherPhase !== "staging" &&
-                activeOther && (
+              {isOtherDetailVisible && activeOther && (
                   <div
                     className={`other-detail-view is-${otherPhase}`}
                     aria-live="polite"
@@ -1970,49 +1897,107 @@ function App() {
                           embeds, selected work, or personal collections.
                         </p>
                       </div>
-                      <Masonry
-                        key={activeOther.id}
-                        items={otherDetailItems[activeOther.id]}
-                        ease="power3.out"
-                        duration={0.6}
-                        stagger={0.055}
-                        initialDelay={0.34}
-                        animateFrom="bottom"
-                        scaleOnHover
-                        hoverScale={0.985}
-                        blurToFocus
-                        fitToContainer
-                        maxColumns={3}
-                        minItemHeight={132}
-                        itemGap={14}
-                      />
+                      {otherPhase !== "staging" && (
+                        <Masonry
+                          key={activeOther.id}
+                          items={otherDetailItems[activeOther.id]}
+                          ease="power2.out"
+                          duration={0.7}
+                          stagger={0.045}
+                          initialDelay={0.2}
+                          animateFrom="bottom"
+                          scaleOnHover
+                          hoverScale={0.985}
+                          blurToFocus
+                          fitToContainer
+                          maxColumns={3}
+                          minItemHeight={132}
+                          itemGap={14}
+                        />
+                      )}
                     </div>
                   </div>
                 )}
             </div>
           </div>
         </section>
-      </main>
-
-      <footer className="footer-section" id="contact">
-        <div className="footer-inner content-shell">
-          <p className="section-kicker">Contact</p>
-          <h2>Let's build something precise, useful, and memorable.</h2>
-          <div className="footer-links">
-            {contactLinks.map((link) => (
-              <a
-                className="magic-border"
-                href={link.href}
-                key={link.label}
-                target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-              >
-                {link.label}
-              </a>
-            ))}
+        <section
+          className="footer-section app-scene"
+          id="contact"
+          data-section-id="contact"
+          data-scene-state={getSceneState("contact")}
+          tabIndex={-1}
+          aria-hidden={activeSection !== "contact"}
+          aria-labelledby="contact-title"
+        >
+          <div className="footer-inner content-shell">
+            <p className="section-kicker">Contact</p>
+            <h2 id="contact-title">
+              Let's build something precise, useful, and memorable.
+            </h2>
+            <div className="footer-links">
+              {contactLinks.map((link) => (
+                <a
+                  className="magic-border"
+                  href={link.href}
+                  key={link.label}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </div>
+        </section>
+        </main>
+
+        {introDecrypted && (
+          <div
+            className={`mobile-control-dock${isAssistantOpen ? " is-chat-open" : ""}`}
+            aria-hidden="true"
+          />
+        )}
+
+        {introDecrypted && (
+          <PortfolioAssistant
+          activeSection={activeSection}
+          isOpen={isAssistantOpen}
+          message={assistantMessage}
+          onClose={() => setIsAssistantOpen(false)}
+          onToggle={() => setIsAssistantOpen((isOpen) => !isOpen)}
+          onPrompt={(prompt) => setAssistantMessage(prompt.response)}
+        />
+      )}
+
+        {introDecrypted && (
+          <div
+            className={`section-navigation${isOtherNavHidden ? " is-hidden" : ""}${isAssistantOpen ? " is-chat-open" : ""}`}
+            aria-label="Section navigation"
+          >
+          <button
+            type="button"
+            aria-label="Previous section"
+            disabled={activeSection === sectionOrder[0]}
+            onClick={() => moveBySection(-1)}
+          >
+            <span aria-hidden="true">&larr;</span>
+          </button>
+          <span>
+            {String(sectionOrder.indexOf(activeSection) + 1).padStart(2, "0")}
+            <i>/</i>
+            {String(sectionOrder.length).padStart(2, "0")}
+          </span>
+          <button
+            type="button"
+            aria-label="Next section"
+            disabled={activeSection === sectionOrder[sectionOrder.length - 1]}
+            onClick={() => moveBySection(1)}
+          >
+            <span aria-hidden="true">&rarr;</span>
+          </button>
         </div>
-      </footer>
+      )}
     </div>
   );
 }
