@@ -18,6 +18,10 @@ import infosysExperienceIcon from "../assets/images/experience-infosys-icon.png"
 import kyhuExperienceIcon from "../assets/images/experience-kyhu-icon.png";
 import uwExperienceIcon from "../assets/images/experience-uw-icon.png";
 import vpciExperienceIcon from "../assets/images/experience-vpci-icon.png";
+import assistantStandingImage from "../assets/images/assistant-standing.png";
+import assistantLeaningImage from "../assets/images/assistant-leaning.png";
+import assistantHangingImage from "../assets/images/assistant-hanging.png";
+import assistantLyingImage from "../assets/images/assistant-lying.png";
 import resumePdf from "../assets/documents/harry-wu-resume.pdf";
 import DecryptedText from "./DecryptedText.jsx";
 import Masonry from "./Masonry.jsx";
@@ -676,6 +680,32 @@ function PortfolioAssistant({
   onToggle,
 }) {
   const drawerSide = activeSection === "projects" ? "left" : "right";
+  const assistantImage = {
+    home: assistantLeaningImage,
+    experience: assistantStandingImage,
+    projects: assistantLeaningImage,
+    other: assistantHangingImage,
+    contact: assistantLyingImage,
+  }[activeSection] ?? assistantStandingImage;
+  const triggerAssistantReaction = (event) => {
+    if ("repeat" in event && event.repeat) return;
+
+    event.currentTarget
+      .querySelectorAll(".assistant-pose")
+      .forEach((pose) => {
+        pose.classList.remove("is-reacting");
+        void pose.offsetWidth;
+        pose.classList.add("is-reacting");
+      });
+  };
+  const handleAssistantKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      triggerAssistantReaction(event);
+    }
+  };
+  const clearAssistantReaction = (event) => {
+    event.currentTarget.classList.remove("is-reacting");
+  };
 
   return (
     <div
@@ -744,9 +774,24 @@ function PortfolioAssistant({
         type="button"
         aria-label={isOpen ? "Close portfolio assistant" : "Open portfolio assistant"}
         aria-expanded={isOpen}
+        onPointerDown={triggerAssistantReaction}
+        onKeyDown={handleAssistantKeyDown}
         onClick={onToggle}
       >
-        <span>Assistant image</span>
+        <img
+          className="assistant-pose assistant-pose-desktop"
+          src={assistantImage}
+          alt=""
+          aria-hidden="true"
+          onAnimationEnd={clearAssistantReaction}
+        />
+        <img
+          className="assistant-pose assistant-pose-mobile"
+          src={assistantStandingImage}
+          alt=""
+          aria-hidden="true"
+          onAnimationEnd={clearAssistantReaction}
+        />
       </button>
     </div>
   );
