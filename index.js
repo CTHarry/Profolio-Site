@@ -8,11 +8,11 @@ function changeImage() {
 
     setTimeout(function() {
     if (image.src.includes("Hong%20Ye%20Wu.png")) {
-        image.src = "Image/CTHarry.jpg";
+        image.src = "assets/images/profile-alt-ctharry.jpg";
         image.alt = "Grade 8 selfie, very cool!"
     } else {
         console.log(image.src);
-        image.src = "Image/Hong Ye Wu.png";
+        image.src = "assets/images/profile-hong-ye-wu.png";
         image.alt = "Newer selfie, also very cool!"
     }
     }, 160);

@@ -1092,7 +1092,7 @@ p {
 .bg-project-minigame { --card-image: url("../assets/images/project-minigame.png"); }
 .bg-project-portfolio { --card-image: url("../assets/images/project-portfolio.png"); }
 .bg-project-character { --card-image: url("../assets/images/project-character-app.png"); }
-.bg-experience-kyhu { --card-image: url("../assets/images/experience-placeholder.png"); }
+.bg-experience-kyhu { --card-image: url("../assets/images/experience-kyhu-icon.png"); }
 .bg-experience-math { --card-image: url("../assets/images/experience-math-club.png"); }
 .bg-experience-mandarin { --card-image: url("../assets/images/experience-mandarin-club.png"); }
 

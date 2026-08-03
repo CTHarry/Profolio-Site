@@ -11,9 +11,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import characterProjectImage from "../assets/images/project-character-app.png";
 import portfolioProjectImage from "../assets/images/project-new-portfolio.png";
 import componentProjectImage from "../assets/images/project-portfolio.png";
-import minigameImage from "../assets/images/project-minigame.png";
-import platformerImage from "../assets/images/project-unity-platformer.png";
-import photoImage from "../assets/images/profile-alt-ctharry.jpg";
 import infosysExperienceIcon from "../assets/images/experience-infosys-icon.png";
 import kyhuExperienceIcon from "../assets/images/experience-kyhu-icon.png";
 import uwExperienceIcon from "../assets/images/experience-uw-icon.png";
@@ -22,6 +19,45 @@ import assistantStandingImage from "../assets/images/assistant-standing.png";
 import assistantLeaningImage from "../assets/images/assistant-leaning.png";
 import assistantHangingImage from "../assets/images/assistant-hanging.png";
 import assistantLyingImage from "../assets/images/assistant-lying.png";
+import videoCoverImage from "../assets/images/videos/muzimi-cake-cover.png";
+import muzimiCakePlanCover from "../assets/images/videos/muzimi-cake-plan.jpg";
+import tonyBirthdayAdventureCover from "../assets/images/videos/tony-birthday-adventure.jpg";
+import lavaBalloonsCover from "../assets/images/videos/lava-balloons.jpg";
+import laoQiaoFallCover from "../assets/images/videos/lao-qiao-fall.jpg";
+import monitoringBestFriendCover from "../assets/images/music/monitoring-best-friend-remix.png";
+import sensoryOverloadCover from "../assets/images/music/sensory-overload-cover.png";
+import emotionalRecyclingStationCover from "../assets/images/music/emotional-recycling-station-cover.png";
+import mikazukiCover from "../assets/images/music/mikazuki.jpg";
+import tekItCover from "../assets/images/music/tek-it.jpg";
+import kuzuriCover from "../assets/images/music/kuzuri.jpg";
+import eireneCover from "../assets/images/music/eirene.jpg";
+import nightDancerCover from "../assets/images/music/night-dancer.jpg";
+import lazySongCover from "../assets/images/music/the-lazy-song.jpg";
+import youngDumbBrokeCover from "../assets/images/music/young-dumb-and-broke.jpg";
+import kokoronashiCover from "../assets/images/music/kokoronashi.jpg";
+import ghostInAFlowerCover from "../assets/images/music/ghost-in-a-flower.jpg";
+import travelersEncoreCover from "../assets/images/music/travelers-encore.jpg";
+import heroismCover from "../assets/images/music/heroism.jpg";
+import deepSeaGirlCover from "../assets/images/music/deep-sea-girl.jpg";
+import patchworkStaccatoCover from "../assets/images/music/patchwork-staccato.jpg";
+import handInHandCover from "../assets/images/music/hand-in-hand.jpg";
+import whiteMindCover from "../assets/images/music/white-mind.jpg";
+import overwatchCover from "../assets/images/games/overwatch-2.jpg";
+import counterStrikeCover from "../assets/images/games/counter-strike-2.jpg";
+import apexLegendsCover from "../assets/images/games/apex-legends.jpg";
+import repoCover from "../assets/images/games/repo.jpg";
+import lethalCompanyCover from "../assets/images/games/lethal-company.jpg";
+import contentWarningCover from "../assets/images/games/content-warning.jpg";
+import left4DeadCover from "../assets/images/games/left-4-dead.jpg";
+import sevenDaysCover from "../assets/images/games/7-days-to-die.jpg";
+import terrariaCover from "../assets/images/games/terraria.jpg";
+import minecraftCover from "../assets/images/games/minecraft.jpg";
+import noitaCover from "../assets/images/games/noita.jpg";
+import shapeOfDreamsCover from "../assets/images/games/shape-of-dreams.jpg";
+import deadCellsCover from "../assets/images/games/dead-cells.jpg";
+import cyberpunkCover from "../assets/images/games/cyberpunk-2077.jpg";
+import emotionalRecyclingStationPreview from "../assets/music/previews/emotional-recycling-station-preview.mp3";
+import sensoryOverloadPreview from "../assets/music/previews/sensory-overload-preview.mp3";
 import resumePdf from "../assets/documents/harry-wu-resume.pdf";
 import DecryptedText from "./DecryptedText.jsx";
 import Masonry from "./Masonry.jsx";
@@ -29,6 +65,23 @@ import Masonry from "./Masonry.jsx";
 const assets = {
   resume: resumePdf,
 };
+
+const photoFiles = import.meta.glob("../assets/images/photos/*", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+const photoPreviewFiles = import.meta.glob("../assets/images/photos/web/*", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+
+const getPhotoUrl = (fileName) => photoFiles[`../assets/images/photos/${fileName}`];
+const getPhotoPreviewUrl = (fileName) =>
+  photoPreviewFiles[
+    `../assets/images/photos/web/${fileName.replace(/\.[^.]+$/, ".jpg")}`
+  ];
 
 const focusItems = [
   {
@@ -256,48 +309,351 @@ const experiences = [
   },
 ];
 
+const photoJournal = [
+  { file: "IMG_1396.JPG", title: "Quiet water", height: 320 },
+  { file: "IMG_1669.JPG", title: "Garden lights", height: 280 },
+  { file: "IMG_1821.JPG", title: "Autumn trail", height: 360 },
+  { file: "IMG_1916.JPG", title: "Weather front", height: 280 },
+  { file: "IMG_20240801_173318.jpg", title: "Pagoda day", height: 420 },
+  { file: "IMG_20240803_143831.jpg", title: "Mahjong table", height: 320 },
+  { file: "IMG_20240902_215649.jpg", title: "Painted portrait", height: 380 },
+  { file: "IMG_20260126_213823.jpg", title: "Miku collection", height: 300 },
+  { file: "IMG_2684.JPG", title: "Window light", height: 420 },
+  { file: "IMG_3240.JPG", title: "Wide-angle hello", height: 300 },
+  { file: "IMG_4281.JPG", title: "Summer frame", height: 300 },
+  { file: "IMG_4639.JPG", title: "Old Quebec", height: 440 },
+  { file: "IMG_5031.png", title: "Adiyogi", height: 320 },
+  { file: "IMG_5091.JPG", title: "Red wall", height: 400 },
+  { file: "IMG_5158.JPG", title: "Roadside type", height: 300 },
+  { file: "IMG_1885.JPG", title: "Perspective check", height: 300 },
+].map((photo, index) => ({
+  id: `photo-${index + 1}`,
+  img: getPhotoPreviewUrl(photo.file),
+  href: getPhotoUrl(photo.file),
+  height: photo.height,
+  kicker: "Photo journal",
+  title: photo.title,
+  description: "Photographed by Hong Ye Wu.",
+  alt: photo.title,
+}));
+
+const musicRecommendations = [
+  { title: "ミカヅキ", artist: "Sayuri", cover: mikazukiCover },
+  { title: "Tek It", artist: "Cafuné", cover: tekItCover },
+  { title: "KUZURI", artist: "ZUTOMAYO", cover: kuzuriCover },
+  { title: "エイレネ", artist: "Chao's Mall", cover: eireneCover },
+  { title: "NIGHT DANCER", artist: "imase", cover: nightDancerCover },
+  { title: "The Lazy Song", artist: "Bruno Mars", cover: lazySongCover },
+  {
+    title: "Young Dumb & Broke",
+    artist: "Khalid",
+    cover: youngDumbBrokeCover,
+  },
+  { title: "心做し", artist: "majiko", cover: kokoronashiCover },
+  {
+    title: "Ghost In A Flower",
+    artist: "Yorushika",
+    cover: ghostInAFlowerCover,
+  },
+  {
+    title: "Travelers' Encore",
+    artist: "Andrew Prahlow",
+    cover: travelersEncoreCover,
+    appleHref: "https://music.apple.com/us/song/1641696360",
+  },
+  {
+    title: "感官过载",
+    artist: "M3mo",
+    cover: sensoryOverloadCover,
+    previewUrl: sensoryOverloadPreview,
+    sourceHref: "https://www.bilibili.com/video/BV1hkGt6hEva/",
+    sourceLabel: "Bilibili",
+  },
+  {
+    title: "情绪回收站",
+    artist: "失落花园",
+    cover: emotionalRecyclingStationCover,
+    previewUrl: emotionalRecyclingStationPreview,
+    sourceHref: "https://www.bilibili.com/video/BV1J4zWB8EuQ",
+    sourceLabel: "Bilibili",
+  },
+  {
+    title: "英雄主义",
+    artist: "在虚无中永存",
+    cover: heroismCover,
+    appleHref:
+      "https://music.apple.com/us/album/%E8%8B%B1%E9%9B%84%E4%B8%BB%E4%B9%89-single/1831162924",
+  },
+  {
+    title: "深海少女",
+    artist: "Yuuyu-P feat. Hatsune Miku",
+    cover: deepSeaGirlCover,
+  },
+  {
+    title: "拼凑的断音",
+    artist: "Toa feat. Hatsune Miku",
+    cover: patchworkStaccatoCover,
+    previewTitle: "Patchwork Staccato",
+    appleHref:
+      "https://music.apple.com/hk/song/patchwork-staccato-feat-hatsune-miku/1585735640",
+  },
+  {
+    title: "Monitoring (Best Friend Remix)",
+    artist: "DECO*27 feat. Hatsune Miku",
+    cover: monitoringBestFriendCover,
+    previewUrl:
+      "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/29/05/a8/2905a8c7-9cb0-1204-1923-a212ef935627/mzaf_16246785443421993678.plus.aac.p.m4a",
+    appleHref:
+      "https://music.apple.com/us/song/1832605668",
+  },
+  {
+    title: "Hand in Hand (Magical Mirai ver.)",
+    artist: "kz (livetune) feat. Hatsune Miku",
+    cover: handInHandCover,
+  },
+  {
+    title: "White Mind",
+    artist: "Glue feat. Hatsune Miku",
+    cover: whiteMindCover,
+  },
+].map((song, index) => ({
+  ...song,
+  id: `song-${index + 1}`,
+  href:
+    song.sourceHref ??
+    song.appleHref ??
+    `https://open.spotify.com/search/${encodeURIComponent(`${song.title} ${song.artist}`)}`,
+}));
+
+// Music groups: move song IDs between groups to reorganize the collection.
+const musicGroups = [
+  {
+    id: "japanese-alt",
+    title: "Japanese alt",
+    description: "Sharp vocals and restless arrangements",
+    songIds: ["song-1", "song-3", "song-4", "song-8", "song-9"],
+  },
+  {
+    id: "instrumental-focus",
+    title: "Instrumental focus",
+    description: "Game scores and quiet electronic pieces",
+    songIds: ["song-10", "song-11", "song-12", "song-13"],
+  },
+  {
+    id: "vocaloid",
+    title: "Vocaloid & Miku",
+    description: "Digital voices, bright hooks, and nostalgia",
+    songIds: ["song-14", "song-15", "song-16", "song-17", "song-18"],
+  },
+  {
+    id: "late-night-pop",
+    title: "Late-night pop",
+    description: "Easy energy and familiar comfort tracks",
+    songIds: ["song-2", "song-5", "song-6", "song-7"],
+  },
+].map((group) => ({
+  ...group,
+  songs: group.songIds
+    .map((songId) => musicRecommendations.find((song) => song.id === songId))
+    .filter(Boolean),
+}));
+
+// Video collection: update titles, BVIDs, page numbers, and covers here.
+const videoCollection = [
+  {
+    title: "睦子米蛋糕计划",
+    bvid: "BV1tQ3c62E3C",
+    page: 1,
+    cover: muzimiCakePlanCover,
+    href: "https://www.bilibili.com/video/BV1tQ3c62E3C/?vd_source=eaea3286194f606c08f5a6343db5d443",
+  },
+  {
+    title: "Tony的奇妙冒险【生日作品】",
+    bvid: "BV168NX6cEsz",
+    page: 2,
+    cover: tonyBirthdayAdventureCover,
+    href: "https://www.bilibili.com/video/BV168NX6cEsz?vd_source=eaea3286194f606c08f5a6343db5d443&p=2&spm_id_from=333.788.player.switch",
+  },
+  {
+    title: "我有两颗熔岩气球!",
+    bvid: "BV1THKQ6rEmM",
+    page: 1,
+    cover: lavaBalloonsCover,
+    href: "https://www.bilibili.com/video/BV1THKQ6rEmM/?vd_source=eaea3286194f606c08f5a6343db5d443",
+  },
+  {
+    title: "老乔：坠落",
+    bvid: "BV1RzdKBLEcE",
+    page: 1,
+    cover: laoQiaoFallCover,
+    href: "https://www.bilibili.com/video/BV1RzdKBLEcE/?vd_source=eaea3286194f606c08f5a6343db5d443",
+  },
+].map((video, index) => ({
+  ...video,
+  id: `video-${index + 1}`,
+  embedUrl: `https://player.bilibili.com/player.html?bvid=${video.bvid}&page=${video.page}&high_quality=1&danmaku=0&autoplay=1`,
+}));
+
+const gameCatalog = {
+  overwatch: {
+    title: "Overwatch 2",
+    cover: overwatchCover,
+    href: "https://store.steampowered.com/app/2357570/Overwatch_2/",
+  },
+  counterStrike: {
+    title: "Counter-Strike 2",
+    cover: counterStrikeCover,
+    href: "https://store.steampowered.com/app/730/CounterStrike_2/",
+  },
+  apexLegends: {
+    title: "Apex Legends",
+    cover: apexLegendsCover,
+    href: "https://store.steampowered.com/app/1172470/Apex_Legends/",
+  },
+  repo: {
+    title: "R.E.P.O.",
+    cover: repoCover,
+    href: "https://store.steampowered.com/app/3241660/REPO/",
+  },
+  lethalCompany: {
+    title: "Lethal Company",
+    cover: lethalCompanyCover,
+    href: "https://store.steampowered.com/app/1966720/Lethal_Company/",
+  },
+  contentWarning: {
+    title: "Content Warning",
+    cover: contentWarningCover,
+    href: "https://store.steampowered.com/app/2881650/Content_Warning/",
+  },
+  left4Dead: {
+    title: "Left 4 Dead",
+    cover: left4DeadCover,
+    href: "https://store.steampowered.com/app/500/Left_4_Dead/",
+  },
+  sevenDays: {
+    title: "7 Days to Die",
+    cover: sevenDaysCover,
+    href: "https://store.steampowered.com/app/251570/7_Days_to_Die/",
+  },
+  terraria: {
+    title: "Terraria",
+    cover: terrariaCover,
+    href: "https://store.steampowered.com/app/105600/Terraria/",
+  },
+  minecraft: {
+    title: "Minecraft",
+    cover: minecraftCover,
+    href: "https://www.xbox.com/en-US/games/store/minecraft-java-bedrock-edition-for-pc/9NXP44L49SHJ",
+  },
+  noita: {
+    title: "Noita",
+    cover: noitaCover,
+    href: "https://store.steampowered.com/app/881100/Noita/",
+  },
+  shapeOfDreams: {
+    title: "Shape of Dreams",
+    cover: shapeOfDreamsCover,
+    href: "https://store.steampowered.com/app/2444750/Shape_of_Dreams/",
+  },
+  deadCells: {
+    title: "Dead Cells",
+    cover: deadCellsCover,
+    href: "https://store.steampowered.com/app/588650/Dead_Cells/",
+  },
+  cyberpunk: {
+    title: "Cyberpunk 2077",
+    cover: cyberpunkCover,
+    href: "https://store.steampowered.com/app/1091500/Cyberpunk_2077/",
+  },
+};
+
+// Gaming library: add or reorganize game objects within these groups.
+const gamingGroups = [
+  {
+    id: "competitive",
+    title: "Competitive",
+    games: [
+      gameCatalog.overwatch,
+      gameCatalog.counterStrike,
+      gameCatalog.apexLegends,
+    ],
+  },
+  {
+    id: "co-op-horror",
+    title: "Co-op horror",
+    games: [
+      gameCatalog.repo,
+      gameCatalog.lethalCompany,
+      gameCatalog.contentWarning,
+      gameCatalog.left4Dead,
+    ],
+  },
+  {
+    id: "survival-sandbox",
+    title: "Survival & sandbox",
+    games: [gameCatalog.sevenDays, gameCatalog.terraria, gameCatalog.minecraft],
+  },
+  {
+    id: "action-adventure",
+    title: "Action & adventure",
+    games: [
+      gameCatalog.noita,
+      gameCatalog.shapeOfDreams,
+      gameCatalog.deadCells,
+      gameCatalog.cyberpunk,
+    ],
+  },
+];
+
+const gamingCount = gamingGroups.reduce(
+  (total, group) => total + group.games.length,
+  0,
+);
+
 const otherItems = [
   {
     id: "photos",
     title: "photos",
-    image: photoImage,
-    text: "Visual notes, travel moments, and quiet composition practice.",
+    image: getPhotoPreviewUrl("IMG_1396.JPG"),
+    text: "Visual notes from places, people, and small moments.",
+    detailLabel: "Photo journal",
+    detailMeta: `${photoJournal.length} frames`,
+    detailBody:
+      "A personal archive of landscapes, travel, friends, and quiet details worth keeping.",
   },
   {
     id: "music",
     title: "music",
-    image: portfolioProjectImage,
+    image: getPhotoPreviewUrl("IMG_20260126_213823.jpg"),
     text: "Rhythm, focus sessions, and sound as a design moodboard.",
+    detailLabel: "On repeat",
+    detailMeta: `${musicRecommendations.length} recommendations`,
+    detailBody:
+      "Japanese alt, instrumental scores, Vocaloid, and familiar late-night tracks in my regular rotation.",
   },
   {
     id: "videos",
     title: "videos",
-    image: platformerImage,
-    text: "Motion, short edits, and visual storytelling experiments.",
+    image: videoCoverImage,
+    text: "Animation, gameplay, and character-led video experiments.",
+    detailLabel: "Video collection",
+    detailMeta: `${videoCollection.length} films`,
+    detailBody:
+      "Four separate videos, each with its own story, edit, and visual direction.",
   },
   {
     id: "gaming",
     title: "gaming",
-    image: minigameImage,
+    image: deadCellsCover,
     text: "Game systems, playful mechanics, and interactive experiments.",
+    detailLabel: "Games library",
+    detailMeta: `${gamingCount} favorites`,
+    detailBody:
+      "A mix of competitive teamwork, chaotic co-op sessions, survival sandboxes, and sharp action games.",
   },
 ];
 
-const masonryHeights = [460, 320, 520, 280, 390, 580, 340, 430, 300, 500];
-
-const otherDetailItems = otherItems.reduce((itemsByCategory, item) => {
-  itemsByCategory[item.id] = Array.from({ length: 10 }, (_, index) => ({
-    id: `${item.id}-${index + 1}`,
-    img: "",
-    height: masonryHeights[index],
-    kicker: item.title,
-    title: `${item.title} placeholder ${String(index + 1).padStart(2, "0")}`,
-    description:
-      "Placeholder block for future content, captions, embeds, or selected work.",
-  }));
-
-  return itemsByCategory;
-}, {});
+const otherDetailItems = { photos: photoJournal };
 
 const contactLinks = [
   { label: "ctharry0106@gmail.com", href: "mailto:ctharry0106@gmail.com" },
@@ -595,15 +951,18 @@ function getExperienceTechStack(experience) {
   );
 }
 
-function ExperienceDetails({ experience }) {
+function ExperienceDetails({ experience, transitionDirection, transitionPhase }) {
   const overview = getExperienceOverview(experience);
   const workItems = getExperienceWorkItems(experience);
   const techStack = getExperienceTechStack(experience);
+  const directionClass =
+    transitionDirection < 0 ? "is-windmill-backward" : "is-windmill-forward";
 
   return (
     <aside
-      className="experience-detail-panel"
+      className={`experience-detail-panel is-windmill-${transitionPhase} ${directionClass}`}
       data-experience-id={experience.id}
+      aria-busy={transitionPhase !== "idle"}
       aria-live="polite"
     >
       <header className="experience-detail-top">
@@ -797,15 +1156,381 @@ function PortfolioAssistant({
   );
 }
 
+function normalizeMusicText(value = "") {
+  return value
+    .normalize("NFKC")
+    .toLocaleLowerCase()
+    .replace(/feat\.?|featuring|remix|ver\.?/g, " ")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim();
+}
+
+function selectBestMusicResult(results, song) {
+  const expectedTitle = normalizeMusicText(song.previewTitle ?? song.title);
+  const expectedArtist = normalizeMusicText(song.artist);
+
+  const bestMatch = results
+    .filter((result) => result.previewUrl)
+    .map((result) => {
+      const title = normalizeMusicText(result.trackName);
+      const artist = normalizeMusicText(result.artistName);
+      let score = 0;
+
+      if (title === expectedTitle) score += 12;
+      else if (title.includes(expectedTitle) || expectedTitle.includes(title)) score += 7;
+
+      if (artist === expectedArtist) score += 8;
+      else if (
+        artist.includes(expectedArtist) ||
+        expectedArtist.includes(artist) ||
+        expectedArtist
+          .split(" ")
+          .some((part) => part.length > 2 && artist.includes(part))
+      ) {
+        score += 4;
+      }
+
+      return { result, score };
+    })
+    .sort((first, second) => second.score - first.score)[0];
+
+  return bestMatch?.score >= 4 ? bestMatch.result : undefined;
+}
+
+function requestMusicPreviewWithJsonp(url) {
+  return new Promise((resolve, reject) => {
+    const callbackName = `__portfolioMusicPreview${Date.now()}${Math.random()
+      .toString(16)
+      .slice(2)}`;
+    const script = document.createElement("script");
+    const cleanup = () => {
+      window.clearTimeout(timeout);
+      script.remove();
+      delete window[callbackName];
+    };
+    const timeout = window.setTimeout(() => {
+      cleanup();
+      reject(new Error("Preview search timed out."));
+    }, 8000);
+
+    window[callbackName] = (data) => {
+      cleanup();
+      resolve(data);
+    };
+    script.onerror = () => {
+      cleanup();
+      reject(new Error("Preview search failed."));
+    };
+    script.src = `${url}&callback=${callbackName}`;
+    document.body.appendChild(script);
+  });
+}
+
+async function findMusicPreview(song) {
+  const query = encodeURIComponent(
+    `${song.previewTitle ?? song.title} ${song.artist}`,
+  );
+  const url = `https://itunes.apple.com/search?term=${query}&country=CA&media=music&entity=song&limit=8`;
+  const data = await requestMusicPreviewWithJsonp(url);
+
+  const match = selectBestMusicResult(data.results ?? [], song);
+  if (!match) throw new Error("No preview is available for this track.");
+
+  return {
+    previewUrl: match.previewUrl,
+    trackUrl: song.appleHref ?? match.trackViewUrl,
+  };
+}
+
+function formatPreviewTime(value) {
+  if (!Number.isFinite(value) || value < 0) return "0:00";
+  const minutes = Math.floor(value / 60);
+  const seconds = Math.floor(value % 60);
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
+}
+
+function MusicLibrary() {
+  const audioRef = useRef(null);
+  const requestIdRef = useRef(0);
+  const [preview, setPreview] = useState({
+    status: "idle",
+    song: null,
+    trackUrl: null,
+    embedUrl: null,
+    message: "Choose a track to hear a short preview.",
+  });
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(30);
+
+  useEffect(
+    () => () => {
+      requestIdRef.current += 1;
+      audioRef.current?.pause();
+    },
+    [],
+  );
+
+  const togglePreview = async (song) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (preview.song?.id === song.id && preview.status === "ready") {
+      if (audio.paused) {
+        try {
+          await audio.play();
+          setIsPlaying(true);
+        } catch {
+          setIsPlaying(false);
+        }
+      } else {
+        audio.pause();
+        setIsPlaying(false);
+      }
+      return;
+    }
+
+    const requestId = requestIdRef.current + 1;
+    requestIdRef.current = requestId;
+    audio.pause();
+    audio.removeAttribute("src");
+    audio.load();
+    setCurrentTime(0);
+    setDuration(30);
+    setIsPlaying(false);
+
+    if (song.previewUrl) {
+      audio.src = song.previewUrl;
+      audio.load();
+      setPreview({
+        status: "ready",
+        song,
+        trackUrl: song.href,
+        embedUrl: null,
+        message: "30-second preview",
+      });
+
+      try {
+        await audio.play();
+        setIsPlaying(true);
+      } catch {
+        setIsPlaying(false);
+      }
+      return;
+    }
+
+    if (song.embedUrl || song.bilibiliBvid) {
+      setPreview({
+        status: "embedded",
+        song,
+        trackUrl: song.href,
+        embedUrl:
+          song.embedUrl ??
+          `https://player.bilibili.com/player.html?bvid=${song.bilibiliBvid}&page=1&high_quality=1&danmaku=0&autoplay=0`,
+        message: `${song.sourceLabel ?? "Embedded"} preview`,
+      });
+      return;
+    }
+
+    setPreview({
+      status: "loading",
+      song,
+      trackUrl: null,
+      embedUrl: null,
+      message: "Finding a preview...",
+    });
+
+    try {
+      const result = await findMusicPreview(song);
+      if (requestId !== requestIdRef.current) return;
+
+      audio.src = result.previewUrl;
+      audio.load();
+      setPreview({
+        status: "ready",
+        song,
+        trackUrl: result.trackUrl,
+        embedUrl: null,
+        message: "30-second preview",
+      });
+
+      try {
+        await audio.play();
+        setIsPlaying(true);
+      } catch {
+        setIsPlaying(false);
+      }
+    } catch (error) {
+      if (requestId !== requestIdRef.current) return;
+      setPreview({
+        status: "error",
+        song,
+        trackUrl: null,
+        embedUrl: null,
+        message: error.message || "Preview unavailable.",
+      });
+    }
+  };
+
+  const seekPreview = (event) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.currentTime = Number(event.target.value);
+    setCurrentTime(audio.currentTime);
+  };
+
+  return (
+    <div className="music-library">
+      <audio
+        ref={audioRef}
+        preload="none"
+        onDurationChange={(event) => {
+          const nextDuration = event.currentTarget.duration;
+          if (Number.isFinite(nextDuration)) setDuration(nextDuration);
+        }}
+        onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
+        onPause={() => setIsPlaying(false)}
+        onPlay={() => setIsPlaying(true)}
+        onEnded={() => {
+          setIsPlaying(false);
+          setCurrentTime(0);
+        }}
+      />
+
+      <div className="music-groups" aria-label="Harry's music recommendations">
+        {musicGroups.map((group, groupIndex) => (
+          <section
+            className="music-group"
+            key={group.id}
+            style={{ "--music-group-index": groupIndex }}
+          >
+            <header>
+              <span>{String(groupIndex + 1).padStart(2, "0")}</span>
+              <div>
+                <h3>{group.title}</h3>
+                <p>{group.description}</p>
+              </div>
+            </header>
+            <div className="music-group-tracks">
+              {group.songs.map((song, trackIndex) => {
+                const isActive = preview.song?.id === song.id;
+                const isLoading = isActive && preview.status === "loading";
+
+                return (
+                  <article
+                    className={`music-track${isActive ? " is-active" : ""}`}
+                    key={song.id}
+                    style={{ "--track-index": trackIndex }}
+                  >
+                    <button
+                      className={`music-track-preview${song.cover ? " has-cover" : ""}`}
+                      type="button"
+                      onClick={() => togglePreview(song)}
+                      aria-label={`${isActive && isPlaying ? "Pause" : "Preview"} ${song.title} by ${song.artist}`}
+                    >
+                      {song.cover && <img src={song.cover} alt="" />}
+                      <span aria-hidden="true">
+                        {isLoading ? "..." : isActive && isPlaying ? "Ⅱ" : "▶"}
+                      </span>
+                    </button>
+                    <span className="music-track-copy">
+                      <strong>{song.title}</strong>
+                      <small>{song.artist}</small>
+                    </span>
+                    <a
+                      className="music-track-link"
+                      href={song.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`Open ${song.title} by ${song.artist} on ${song.sourceLabel ?? (song.appleHref ? "Apple Music" : "Spotify")}`}
+                      title={`Open on ${song.sourceLabel ?? (song.appleHref ? "Apple Music" : "Spotify")}`}
+                    >
+                      ↗
+                    </a>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <div className={`music-preview-dock is-${preview.status}`} aria-live="polite">
+        {preview.status === "embedded" ? (
+          <div className="music-preview-embed">
+            <iframe
+              src={preview.embedUrl}
+              title={`${preview.song.title} ${preview.song.sourceLabel ?? "embedded"} preview`}
+              loading="lazy"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        ) : (
+          <button
+            className={`music-preview-toggle${preview.song?.cover ? " has-cover" : ""}`}
+            type="button"
+            onClick={() => preview.song && togglePreview(preview.song)}
+            disabled={!preview.song || preview.status === "loading" || preview.status === "error"}
+            aria-label={isPlaying ? "Pause preview" : "Play preview"}
+          >
+            {preview.song?.cover && <img src={preview.song.cover} alt="" />}
+            <span aria-hidden="true">
+              {preview.status === "loading" ? "..." : isPlaying ? "Ⅱ" : "▶"}
+            </span>
+          </button>
+        )}
+        <div className="music-preview-copy">
+          <span>{preview.message}</span>
+          <strong>{preview.song?.title ?? "Preview a track"}</strong>
+          <small>{preview.song?.artist ?? "Play without leaving this page"}</small>
+        </div>
+        {preview.status !== "embedded" && (
+          <div className="music-preview-progress">
+            <input
+              type="range"
+              min="0"
+              max={Math.max(duration, 1)}
+              step="0.1"
+              value={Math.min(currentTime, duration)}
+              onChange={seekPreview}
+              disabled={preview.status !== "ready"}
+              aria-label="Preview position"
+            />
+            <time>{formatPreviewTime(currentTime)}</time>
+            <span>/</span>
+            <time>{formatPreviewTime(duration)}</time>
+          </div>
+        )}
+        <div className="music-preview-actions">
+          {preview.trackUrl && (
+            <a href={preview.trackUrl} target="_blank" rel="noreferrer">
+              Full track ↗
+            </a>
+          )}
+          <small>
+            {preview.status === "embedded"
+              ? `Preview hosted by ${preview.song?.sourceLabel ?? "the source"}.`
+              : "Preview provided courtesy of iTunes."}
+          </small>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const siteRef = useRef(null);
+  const photoLightboxCloseRef = useRef(null);
   const openingTimelineRef = useRef(null);
   const otherOpenTimerRef = useRef(null);
   const otherFinishTimerRef = useRef(null);
   const otherStageRef = useRef(null);
+  const videoPlayerCloseRef = useRef(null);
   const experienceTimelineRef = useRef(null);
   const experienceScrollFrameRef = useRef(null);
   const experienceSnapTimerRef = useRef(null);
+  const experienceTransitionTimerRef = useRef(null);
   const sectionPointerStartRef = useRef(null);
   const activeExperienceIndexRef = useRef(0);
   const previousOtherNavHiddenRef = useRef(false);
@@ -818,6 +1543,11 @@ function App() {
     "Choose a question to explore Harry's work and background.",
   );
   const [activeExperienceIndex, setActiveExperienceIndex] = useState(0);
+  const [displayedExperienceIndex, setDisplayedExperienceIndex] = useState(0);
+  const [experienceTransitionDirection, setExperienceTransitionDirection] =
+    useState(1);
+  const [experienceTransitionPhase, setExperienceTransitionPhase] =
+    useState("idle");
   const [accentMode, setAccentMode] = useState(() => {
     if (typeof window === "undefined") return "ember";
 
@@ -830,6 +1560,8 @@ function App() {
   const [openingOtherId, setOpeningOtherId] = useState(null);
   const [activeOtherId, setActiveOtherId] = useState(null);
   const [otherPhase, setOtherPhase] = useState("idle");
+  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null);
+  const [selectedVideoIndex, setSelectedVideoIndex] = useState(null);
   const currentFocus = focusItems[focusIndex];
   const selectedOtherId = activeOtherId || openingOtherId;
   const activeOther = otherItems.find((item) => item.id === selectedOtherId);
@@ -837,9 +1569,18 @@ function App() {
   const isOtherNavHidden =
     otherPhase !== "idle" && otherPhase !== "closing";
   const isTealAccent = accentMode === "teal";
+  const isPhotoLightboxOpen = selectedPhotoIndex !== null;
+  const selectedPhoto = isPhotoLightboxOpen
+    ? photoJournal[selectedPhotoIndex]
+    : null;
+  const isVideoPlayerOpen = selectedVideoIndex !== null;
+  const selectedVideo = isVideoPlayerOpen
+    ? videoCollection[selectedVideoIndex]
+    : null;
+  const isMediaViewerOpen = isPhotoLightboxOpen || isVideoPlayerOpen;
   const timelineExperiences = experiences;
-  const activeExperience =
-    timelineExperiences[activeExperienceIndex] ??
+  const displayedExperience =
+    timelineExperiences[displayedExperienceIndex] ??
     timelineExperiences[0];
   const timelineItems = timelineExperiences.map((item, index) => ({
     item,
@@ -849,6 +1590,42 @@ function App() {
   const toggleAccentMode = () => {
     setAccentMode((mode) => (mode === "teal" ? "ember" : "teal"));
   };
+
+  useEffect(() => {
+    if (!isPhotoLightboxOpen) return undefined;
+
+    photoLightboxCloseRef.current?.focus();
+
+    const handlePhotoKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setSelectedPhotoIndex(null);
+      } else if (event.key === "ArrowRight") {
+        setSelectedPhotoIndex((index) => (index + 1) % photoJournal.length);
+      } else if (event.key === "ArrowLeft") {
+        setSelectedPhotoIndex(
+          (index) => (index - 1 + photoJournal.length) % photoJournal.length,
+        );
+      }
+    };
+
+    window.addEventListener("keydown", handlePhotoKeyDown);
+    return () => window.removeEventListener("keydown", handlePhotoKeyDown);
+  }, [isPhotoLightboxOpen]);
+
+  useEffect(() => {
+    if (!isVideoPlayerOpen) return undefined;
+
+    videoPlayerCloseRef.current?.focus();
+
+    const handleVideoKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setSelectedVideoIndex(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleVideoKeyDown);
+    return () => window.removeEventListener("keydown", handleVideoKeyDown);
+  }, [isVideoPlayerOpen]);
 
   const navigateToSection = useCallback(
     (sectionId, { updateHistory = true } = {}) => {
@@ -926,8 +1703,44 @@ function App() {
   };
 
   const selectExperience = (index) => {
+    if (
+      index === activeExperienceIndex ||
+      experienceTransitionPhase !== "idle"
+    ) {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    window.clearTimeout(experienceTransitionTimerRef.current);
     setActiveExperienceIndex(index);
+    setExperienceTransitionDirection(
+      index > activeExperienceIndex ? 1 : -1,
+    );
+
+    if (prefersReducedMotion) {
+      setDisplayedExperienceIndex(index);
+      setExperienceTransitionPhase("idle");
+      return;
+    }
+
+    setExperienceTransitionPhase("leaving");
+    experienceTransitionTimerRef.current = window.setTimeout(() => {
+      setDisplayedExperienceIndex(index);
+      setExperienceTransitionPhase("entering");
+
+      experienceTransitionTimerRef.current = window.setTimeout(() => {
+        setExperienceTransitionPhase("idle");
+      }, 430);
+    }, 230);
   };
+
+  useEffect(
+    () => () => window.clearTimeout(experienceTransitionTimerRef.current),
+    [],
+  );
 
   useEffect(() => {
     const centerActiveExperience = () => {
@@ -1442,6 +2255,9 @@ function App() {
       return;
     }
 
+    setSelectedPhotoIndex(null);
+    setSelectedVideoIndex(null);
+
     if (otherOpenTimerRef.current) {
       window.clearTimeout(otherOpenTimerRef.current);
       otherOpenTimerRef.current = null;
@@ -1757,7 +2573,11 @@ function App() {
               </p>
             </div>
 
-            <div className="experience-vertical-layout">
+            <div
+              className={`experience-vertical-layout${
+                experienceTransitionPhase !== "idle" ? " is-switching" : ""
+              }`}
+            >
               <div
                 className="experience-vertical-timeline"
                 ref={experienceTimelineRef}
@@ -1793,8 +2613,10 @@ function App() {
               </div>
 
               <ExperienceDetails
-                key={activeExperience.id}
-                experience={activeExperience}
+                key={displayedExperience.id}
+                experience={displayedExperience}
+                transitionDirection={experienceTransitionDirection}
+                transitionPhase={experienceTransitionPhase}
               />
 
               <div className="experience-assistant-reserve" aria-hidden="true" />
@@ -1906,7 +2728,7 @@ function App() {
                     {isOtherDetailVisible &&
                       item.id === selectedOtherId && (
                         <button
-                          className="other-return-button magic-border"
+                          className="other-return-button"
                           type="button"
                           onClick={(event) => {
                             event.stopPropagation();
@@ -1914,7 +2736,7 @@ function App() {
                           }}
                           aria-label={`Return from ${item.title}`}
                         >
-                          Return
+                          Back
                         </button>
                       )}
                   </article>
@@ -1926,23 +2748,96 @@ function App() {
                     className={`other-detail-view is-${otherPhase}`}
                     aria-live="polite"
                   >
-                    <div className="other-detail-panel">
+                    <div
+                      className={`other-detail-panel other-detail-panel-${activeOther.id}`}
+                    >
                       <div
                         className="other-detail-bar"
                         aria-label={`${activeOther.title} detail controls`}
                       >
-                        <span>draft collection</span>
-                        <span>10 draft slots</span>
+                        <span>{activeOther.detailLabel}</span>
+                        <span>{activeOther.detailMeta}</span>
                       </div>
                       <div className="other-detail-copy">
                         <span>{activeOther.title}</span>
                         <strong>{activeOther.text}</strong>
-                        <p>
-                          Ten draft slots are ready for future media, notes,
-                          embeds, selected work, or personal collections.
-                        </p>
+                        <p>{activeOther.detailBody}</p>
                       </div>
-                      {otherPhase !== "staging" && (
+                      {otherPhase !== "staging" && activeOther.id === "music" && (
+                        <MusicLibrary />
+                      )}
+                      {otherPhase !== "staging" && activeOther.id === "videos" && (
+                        <div
+                          className="video-collection"
+                          aria-label="Harry's Bilibili video collection"
+                        >
+                          {videoCollection.map((video, index) => (
+                            <button
+                              className="video-card"
+                              type="button"
+                              key={video.id}
+                              style={{ "--video-index": index }}
+                              aria-label={`Play ${video.title}`}
+                              onClick={() => setSelectedVideoIndex(index)}
+                            >
+                              <img src={video.cover} alt="" loading="lazy" />
+                              <span className="video-card-shade" aria-hidden="true" />
+                              <span className="video-card-play" aria-hidden="true">
+                                <span />
+                              </span>
+                              <span className="video-card-copy">
+                                <strong>{video.title}</strong>
+                              </span>
+                              <span className="video-card-link" aria-hidden="true">
+                                Bilibili ↗
+                              </span>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                      {otherPhase !== "staging" && activeOther.id === "gaming" && (
+                        <div
+                          className="gaming-library"
+                          aria-label="Harry's favorite games by category"
+                        >
+                          {gamingGroups.map((group, groupIndex) => (
+                            <section
+                              className="gaming-group"
+                              key={group.id}
+                              style={{ "--group-index": groupIndex }}
+                              aria-labelledby={`gaming-group-${group.id}`}
+                            >
+                              <header>
+                                <span>{String(groupIndex + 1).padStart(2, "0")}</span>
+                                <h3 id={`gaming-group-${group.id}`}>{group.title}</h3>
+                                <small>{group.games.length}</small>
+                              </header>
+                              <ol>
+                                {group.games.map((game, gameIndex) => (
+                                  <li key={game.title}>
+                                    <a
+                                      href={game.href}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      aria-label={`Open ${game.title} store page`}
+                                    >
+                                      <img src={game.cover} alt="" loading="lazy" />
+                                      <strong>{game.title}</strong>
+                                      <span>
+                                        {String(gameIndex + 1).padStart(2, "0")}
+                                      </span>
+                                    </a>
+                                  </li>
+                                ))}
+                              </ol>
+                            </section>
+                          ))}
+                        </div>
+                      )}
+                      {otherPhase !== "staging" &&
+                        activeOther.id !== "music" &&
+                        activeOther.id !== "videos" &&
+                        activeOther.id !== "gaming" && (
                         <Masonry
                           key={activeOther.id}
                           items={otherDetailItems[activeOther.id]}
@@ -1951,13 +2846,28 @@ function App() {
                           stagger={0.045}
                           initialDelay={0.2}
                           animateFrom="bottom"
-                          scaleOnHover
+                          scaleOnHover={activeOther.id !== "photos"}
                           hoverScale={0.985}
                           blurToFocus
-                          fitToContainer
-                          maxColumns={3}
-                          minItemHeight={132}
-                          itemGap={14}
+                          fitToContainer={activeOther.id !== "photos"}
+                          maxColumns={activeOther.id === "photos" ? 4 : 3}
+                          minItemHeight={activeOther.id === "photos" ? 56 : 132}
+                          itemGap={activeOther.id === "photos" ? 10 : 14}
+                          showCopy={activeOther.id !== "photos"}
+                          variant={activeOther.id}
+                          waitForImages={activeOther.id !== "photos"}
+                          onItemClick={
+                            activeOther.id === "photos"
+                              ? (photo) => {
+                                  const photoIndex = photoJournal.findIndex(
+                                    (item) => item.id === photo.id,
+                                  );
+                                  if (photoIndex >= 0) {
+                                    setSelectedPhotoIndex(photoIndex);
+                                  }
+                                }
+                              : undefined
+                          }
                         />
                       )}
                     </div>
@@ -1965,6 +2875,124 @@ function App() {
                 )}
             </div>
           </div>
+          {selectedPhoto && (
+            <div
+              className="photo-lightbox"
+              role="dialog"
+              aria-modal="true"
+              aria-label={`${selectedPhoto.title} enlarged photo`}
+            >
+              <button
+                className="photo-lightbox-backdrop"
+                type="button"
+                aria-label="Close enlarged photo"
+                onClick={() => setSelectedPhotoIndex(null)}
+              />
+              <figure className="photo-lightbox-frame">
+                <header>
+                  <span>
+                    {String(selectedPhotoIndex + 1).padStart(2, "0")} /{" "}
+                    {String(photoJournal.length).padStart(2, "0")}
+                  </span>
+                  <strong>{selectedPhoto.title}</strong>
+                  <button
+                    ref={photoLightboxCloseRef}
+                    type="button"
+                    aria-label="Close enlarged photo"
+                    onClick={() => setSelectedPhotoIndex(null)}
+                  >
+                    Close
+                  </button>
+                </header>
+                <div
+                  className="photo-lightbox-stage"
+                  onClick={(event) => {
+                    if (event.target === event.currentTarget) {
+                      setSelectedPhotoIndex(null);
+                    }
+                  }}
+                >
+                  <button
+                    className="photo-lightbox-control is-previous"
+                    type="button"
+                    aria-label="Previous photo"
+                    onClick={() =>
+                      setSelectedPhotoIndex(
+                        (index) =>
+                          (index - 1 + photoJournal.length) % photoJournal.length,
+                      )
+                    }
+                  >
+                    ←
+                  </button>
+                  <img
+                    key={selectedPhoto.id}
+                    src={selectedPhoto.href}
+                    alt={selectedPhoto.alt}
+                  />
+                  <button
+                    className="photo-lightbox-control is-next"
+                    type="button"
+                    aria-label="Next photo"
+                    onClick={() =>
+                      setSelectedPhotoIndex(
+                        (index) => (index + 1) % photoJournal.length,
+                      )
+                    }
+                  >
+                    →
+                  </button>
+                </div>
+                <figcaption>Photographed by Hong Ye Wu.</figcaption>
+              </figure>
+            </div>
+          )}
+          {selectedVideo && (
+            <div
+              className="video-player-modal"
+              role="dialog"
+              aria-modal="true"
+              aria-label={`${selectedVideo.title} video player`}
+            >
+              <button
+                className="video-player-backdrop"
+                type="button"
+                aria-label="Close video player"
+                onClick={() => setSelectedVideoIndex(null)}
+              />
+              <div className="video-player-frame">
+                <header>
+                  <strong>{selectedVideo.title}</strong>
+                  <div>
+                    <a
+                      href={selectedVideo.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Open on Bilibili
+                    </a>
+                    <button
+                      ref={videoPlayerCloseRef}
+                      type="button"
+                      aria-label="Close video player"
+                      onClick={() => setSelectedVideoIndex(null)}
+                    >
+                      Close
+                    </button>
+                  </div>
+                </header>
+                <div className="video-player-stage">
+                  <iframe
+                    key={selectedVideo.id}
+                    src={selectedVideo.embedUrl}
+                    title={selectedVideo.title}
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+            </div>
+          )}
         </section>
         <section
           className="footer-section app-scene"
@@ -1997,14 +3025,14 @@ function App() {
         </section>
         </main>
 
-        {introDecrypted && (
+        {introDecrypted && !isMediaViewerOpen && (
           <div
             className={`mobile-control-dock${isAssistantOpen ? " is-chat-open" : ""}`}
             aria-hidden="true"
           />
         )}
 
-        {introDecrypted && (
+        {introDecrypted && !isMediaViewerOpen && (
           <PortfolioAssistant
           activeSection={activeSection}
           isOpen={isAssistantOpen}

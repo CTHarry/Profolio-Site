@@ -2007,7 +2007,8 @@ body {
   .other-detail-copy span,
   .other-detail-copy strong,
   .other-detail-copy p,
-  .other-return-button {
+  .other-return-button,
+  .music-track {
     animation: none !important;
     transition-duration: 0.01ms !important;
   }
@@ -2020,8 +2021,99 @@ body {
   .other-detail-copy span,
   .other-detail-copy strong,
   .other-detail-copy p,
-  .other-return-button {
+  .other-return-button,
+  .music-track {
     transform: none !important;
+  }
+}
+
+/* Experience switch: four content groups fold around the panel center like restrained blades. */
+.experience-section .experience-detail-panel.is-windmill-idle,
+.experience-section .experience-detail-panel.is-windmill-leaving,
+.experience-section .experience-detail-panel.is-windmill-entering {
+  animation: none !important;
+}
+
+.experience-detail-panel > * {
+  --windmill-x: -16px;
+  --windmill-y: -10px;
+  --windmill-rotation: -4deg;
+  --windmill-delay: 0ms;
+  --windmill-enter-delay: 0ms;
+  transform-origin: center center;
+}
+
+.experience-detail-panel > :nth-child(2) {
+  --windmill-x: 16px;
+  --windmill-y: -10px;
+  --windmill-rotation: 4deg;
+  --windmill-delay: 15ms;
+  --windmill-enter-delay: 30ms;
+}
+
+.experience-detail-panel > :nth-child(3) {
+  --windmill-x: 16px;
+  --windmill-y: 10px;
+  --windmill-rotation: -4deg;
+  --windmill-delay: 30ms;
+  --windmill-enter-delay: 60ms;
+}
+
+.experience-detail-panel > :nth-child(4) {
+  --windmill-x: -16px;
+  --windmill-y: 10px;
+  --windmill-rotation: 4deg;
+  --windmill-delay: 45ms;
+  --windmill-enter-delay: 90ms;
+}
+
+.experience-detail-panel.is-windmill-backward > :nth-child(1),
+.experience-detail-panel.is-windmill-backward > :nth-child(4) {
+  --windmill-x: 16px;
+  --windmill-rotation: 4deg;
+}
+
+.experience-detail-panel.is-windmill-backward > :nth-child(2),
+.experience-detail-panel.is-windmill-backward > :nth-child(3) {
+  --windmill-x: -16px;
+  --windmill-rotation: -4deg;
+}
+
+.experience-detail-panel.is-windmill-leaving > * {
+  animation: experience-windmill-out 180ms cubic-bezier(0.4, 0, 1, 1)
+    var(--windmill-delay) both;
+  will-change: transform, opacity;
+}
+
+.experience-detail-panel.is-windmill-entering > * {
+  animation: experience-windmill-in 320ms cubic-bezier(0.22, 1, 0.36, 1)
+    var(--windmill-enter-delay) both;
+  will-change: transform, opacity;
+}
+
+@keyframes experience-windmill-out {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(var(--windmill-x), var(--windmill-y), 0)
+      rotate(var(--windmill-rotation)) scale(0.95);
+  }
+}
+
+@keyframes experience-windmill-in {
+  from {
+    opacity: 0;
+    transform: translate3d(var(--windmill-x), var(--windmill-y), 0)
+      rotate(var(--windmill-rotation)) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0) scale(1);
   }
 }
 
@@ -2360,6 +2452,29 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .video-card,
+  .video-card > img,
+  .video-card-play,
+  .gaming-group,
+  .gaming-group li,
+  .photo-lightbox,
+  .photo-lightbox-stage > img,
+  .photo-lightbox-control,
+  .video-player-modal {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .video-card {
+    opacity: 1;
+    transform: none;
+  }
+
+  .gaming-group {
+    opacity: 1;
+    transform: none;
+  }
+
   .assistant-pose.is-reacting {
     animation: assistant-reduced-reaction 160ms ease-out !important;
   }

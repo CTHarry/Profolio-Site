@@ -72,23 +72,36 @@ function Masonry({
   maxColumns = 3,
   minItemHeight = 128,
   itemGap = 12,
+  showCopy = true,
+  variant = "default",
+  waitForImages = true,
+  onItemClick,
 }) {
+  const [containerRef, { width, height: measuredHeight }] = useMeasure();
   const responsiveColumns = useMedia(
     ["(min-width:1500px)", "(min-width:1100px)", "(min-width:720px)", "(min-width:460px)"],
     [4, 3, 2, 2],
     1,
   );
-  const columns = Math.min(responsiveColumns, maxColumns);
+  const photoColumns = width >= 720 ? 4 : width >= 460 ? 3 : 2;
+  const columns = Math.min(
+    variant === "photos" ? photoColumns : responsiveColumns,
+    maxColumns,
+  );
 
-  const [containerRef, { width, height: measuredHeight }] = useMeasure();
   const [imagesReady, setImagesReady] = useState(false);
   const hasMounted = useRef(false);
 
   useEffect(() => {
     hasMounted.current = false;
+    if (!waitForImages) {
+      setImagesReady(true);
+      return;
+    }
+
     setImagesReady(false);
     preloadImages(items.map((item) => item.img)).then(() => setImagesReady(true));
-  }, [items]);
+  }, [items, waitForImages]);
 
   const { grid, height } = useMemo(() => {
     if (!width) return { grid: [], height: 420 };
@@ -97,8 +110,9 @@ function Masonry({
     const columnHeights = new Array(columns).fill(0);
     const columnWidth = (width - gap * (columns - 1)) / columns;
     const availableHeight = fitToContainer ? Math.max(320, measuredHeight || 520) : null;
+    const heightFloor = variant === "photos" ? 44 : 96;
     const adaptiveMinHeight = availableHeight
-      ? Math.max(96, Math.min(minItemHeight, availableHeight / 3.1))
+      ? Math.max(heightFloor, Math.min(minItemHeight, availableHeight / 3.1))
       : minItemHeight;
     const totalSourceHeight = items.reduce((sum, item) => sum + Math.max(adaptiveMinHeight, item.height / 2), 0);
     const fitScale = availableHeight
@@ -120,7 +134,7 @@ function Masonry({
       grid: masonryGrid,
       height: fitToContainer ? "100%" : Math.max(...columnHeights, 420),
     };
-  }, [columns, fitToContainer, itemGap, items, measuredHeight, minItemHeight, width]);
+  }, [columns, fitToContainer, itemGap, items, measuredHeight, minItemHeight, variant, width]);
 
   const getInitialPosition = (item) => {
     const containerRect = containerRef.current?.getBoundingClientRect();
@@ -194,8 +208,10 @@ function Masonry({
     if (!scaleOnHover) return;
     gsap.to(`[data-masonry-key="${item.id}"]`, {
       scale: hoverScale,
-      duration: 0.3,
-      ease: "power2.out",
+      zIndex: 20,
+      transformOrigin: "center center",
+      duration: 0.38,
+      ease: "power3.out",
     });
   };
 
@@ -203,30 +219,75 @@ function Masonry({
     if (!scaleOnHover) return;
     gsap.to(`[data-masonry-key="${item.id}"]`, {
       scale: 1,
-      duration: 0.3,
-      ease: "power2.out",
+      duration: 0.36,
+      ease: "power3.out",
+      onComplete: () => {
+        gsap.set(`[data-masonry-key="${item.id}"]`, { zIndex: "auto" });
+      },
     });
   };
 
   return (
-    <div ref={containerRef} className="masonry-list" style={{ height }}>
-      {grid.map((item) => (
-        <div
-          key={item.id}
-          data-masonry-key={item.id}
-          className="masonry-item-wrapper"
-          onMouseEnter={() => handleMouseEnter(item)}
-          onMouseLeave={() => handleMouseLeave(item)}
-        >
-          <div className="masonry-item-img" style={item.img ? { backgroundImage: `url(${item.img})` } : undefined}>
-            <div className="masonry-item-copy">
-              <span>{item.kicker}</span>
-              <strong>{item.title}</strong>
-              <p>{item.description}</p>
-            </div>
+    <div
+      ref={containerRef}
+      className={`masonry-list masonry-list--${variant}`}
+      style={{ height }}
+    >
+      {grid.map((item) => {
+        const opensLightbox = variant === "photos" && onItemClick;
+        const MediaElement = opensLightbox ? "button" : item.href ? "a" : "div";
+
+        return (
+          <div
+            key={item.id}
+            data-masonry-key={item.id}
+            className="masonry-item-wrapper"
+            onMouseEnter={() => handleMouseEnter(item)}
+            onMouseLeave={() => handleMouseLeave(item)}
+          >
+            <MediaElement
+              className="masonry-item-img"
+              style={
+                item.img && variant !== "photos"
+                  ? { backgroundImage: `url(${item.img})` }
+                  : undefined
+              }
+              {...(opensLightbox
+                ? {
+                    type: "button",
+                    onClick: () => onItemClick(item),
+                    "aria-label": `Enlarge ${item.alt || item.title}`,
+                    title: `Enlarge ${item.title}`,
+                  }
+                : item.href
+                ? {
+                    href: item.href,
+                    target: "_blank",
+                    rel: "noreferrer",
+                    "aria-label": `Open ${item.alt || item.title} at full size`,
+                    title: item.title,
+                  }
+                : {})}
+            >
+              {variant === "photos" && item.img && (
+                <img
+                  className="masonry-photo-preview"
+                  src={item.img}
+                  alt=""
+                  loading="lazy"
+                />
+              )}
+              {showCopy && (
+                <div className="masonry-item-copy">
+                  <span>{item.kicker}</span>
+                  <strong>{item.title}</strong>
+                  <p>{item.description}</p>
+                </div>
+              )}
+            </MediaElement>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
