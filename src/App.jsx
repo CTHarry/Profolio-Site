@@ -16,9 +16,15 @@ import kyhuExperienceIcon from "../assets/images/experience-kyhu-icon.png";
 import uwExperienceIcon from "../assets/images/experience-uw-icon.png";
 import vpciExperienceIcon from "../assets/images/experience-vpci-icon.png";
 import assistantStandingImage from "../assets/images/assistant-standing.png";
-import assistantLeaningImage from "../assets/images/assistant-leaning.png";
+import assistantProjectsImage from "../assets/images/assistant-projects.png";
 import assistantHangingImage from "../assets/images/assistant-hanging.png";
 import assistantLyingImage from "../assets/images/assistant-lying.png";
+import assistantHomeSeatedImage from "../assets/images/assistant-home-seated.png";
+import assistantHomeSeatedAltImage from "../assets/images/assistant-home-seated-alt.png";
+import assistantExperienceAltImage from "../assets/images/assistant-experience-alt.png";
+import assistantProjectsAltImage from "../assets/images/assistant-projects-alt.png";
+import assistantOtherAltImage from "../assets/images/assistant-other-alt.png";
+import assistantContactAltImage from "../assets/images/assistant-contact-alt.png";
 import videoCoverImage from "../assets/images/videos/muzimi-cake-cover.png";
 import muzimiCakePlanCover from "../assets/images/videos/muzimi-cake-plan.jpg";
 import tonyBirthdayAdventureCover from "../assets/images/videos/tony-birthday-adventure.jpg";
@@ -1038,16 +1044,25 @@ function PortfolioAssistant({
   onPrompt,
   onToggle,
 }) {
+  const [isPoseShifted, setIsPoseShifted] = useState(false);
   const drawerSide = activeSection === "projects" ? "left" : "right";
-  const assistantImage = {
-    home: assistantLeaningImage,
-    experience: assistantStandingImage,
-    projects: assistantLeaningImage,
-    other: assistantHangingImage,
-    contact: assistantLyingImage,
-  }[activeSection] ?? assistantStandingImage;
+  const assistantImages = {
+    home: [assistantHomeSeatedImage, assistantHomeSeatedAltImage],
+    experience: [assistantStandingImage, assistantExperienceAltImage],
+    projects: [assistantProjectsImage, assistantProjectsAltImage],
+    other: [assistantHangingImage, assistantOtherAltImage],
+    contact: [assistantLyingImage, assistantContactAltImage],
+  }[activeSection] ?? [assistantStandingImage, assistantExperienceAltImage];
+  const [assistantImage, assistantAltImage] = assistantImages;
+
+  useEffect(() => {
+    setIsPoseShifted(false);
+  }, [activeSection]);
+
   const triggerAssistantReaction = (event) => {
     if ("repeat" in event && event.repeat) return;
+
+    setIsPoseShifted((currentPose) => !currentPose);
 
     event.currentTarget
       .querySelectorAll(".assistant-pose")
@@ -1129,7 +1144,7 @@ function PortfolioAssistant({
       </aside>
 
       <button
-        className="assistant-placeholder"
+        className={`assistant-placeholder${isPoseShifted ? " is-pose-shifted" : ""}`}
         type="button"
         aria-label={isOpen ? "Close portfolio assistant" : "Open portfolio assistant"}
         aria-expanded={isOpen}
@@ -1138,15 +1153,29 @@ function PortfolioAssistant({
         onClick={onToggle}
       >
         <img
-          className="assistant-pose assistant-pose-desktop"
+          className={`assistant-pose assistant-pose-desktop assistant-pose-primary${isPoseShifted ? " is-hidden" : ""}`}
           src={assistantImage}
           alt=""
           aria-hidden="true"
           onAnimationEnd={clearAssistantReaction}
         />
         <img
-          className="assistant-pose assistant-pose-mobile"
+          className={`assistant-pose assistant-pose-desktop assistant-pose-alternate${isPoseShifted ? " is-visible" : ""}`}
+          src={assistantAltImage}
+          alt=""
+          aria-hidden="true"
+          onAnimationEnd={clearAssistantReaction}
+        />
+        <img
+          className={`assistant-pose assistant-pose-mobile assistant-pose-primary${isPoseShifted ? " is-hidden" : ""}`}
           src={assistantStandingImage}
+          alt=""
+          aria-hidden="true"
+          onAnimationEnd={clearAssistantReaction}
+        />
+        <img
+          className={`assistant-pose assistant-pose-mobile assistant-pose-alternate${isPoseShifted ? " is-visible" : ""}`}
+          src={assistantExperienceAltImage}
           alt=""
           aria-hidden="true"
           onAnimationEnd={clearAssistantReaction}

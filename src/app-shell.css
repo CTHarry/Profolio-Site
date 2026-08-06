@@ -2152,6 +2152,8 @@ body {
 }
 
 .assistant-pose {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
@@ -2159,7 +2161,22 @@ body {
   object-position: center bottom;
   pointer-events: none;
   filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.3));
-  transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 1;
+  transition:
+    opacity 190ms ease-out,
+    transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.assistant-pose-alternate {
+  opacity: 0;
+}
+
+.assistant-pose-primary.is-hidden {
+  opacity: 0;
+}
+
+.assistant-pose-alternate.is-visible {
+  opacity: 1;
 }
 
 .assistant-pose-mobile {
@@ -2171,15 +2188,15 @@ body {
 }
 
 .assistant-home .assistant-placeholder {
-  top: 24%;
-  right: -56px;
-  bottom: auto;
-  width: 170px;
-  height: min(310px, 42dvh);
+  top: auto;
+  right: clamp(8px, 1.8vw, 30px);
+  bottom: clamp(96px, 10.5svh, 122px);
+  width: clamp(220px, 21vw, 290px);
+  height: clamp(220px, 21vw, 290px);
 }
 
 .assistant-home .assistant-pose {
-  object-position: left center;
+  object-position: center;
 }
 
 .assistant-experience .assistant-placeholder {
@@ -2191,14 +2208,14 @@ body {
 
 .assistant-projects .assistant-placeholder {
   top: auto;
-  bottom: 5%;
-  left: max(22px, calc((100vw - 1700px) / 2 + 30px));
-  width: clamp(150px, 12vw, 205px);
-  height: min(390px, 51dvh);
+  bottom: 2.5%;
+  left: clamp(24px, 2.5vw, 42px);
+  width: clamp(190px, 14.5vw, 235px);
+  height: min(480px, 57dvh);
 }
 
 .assistant-projects .assistant-pose {
-  object-position: left bottom;
+  object-position: center bottom;
 }
 
 .assistant-other .assistant-placeholder {
@@ -2235,9 +2252,9 @@ body {
   }
 
   .assistant-projects .assistant-placeholder {
-    left: -34px;
-    width: 140px;
-    height: min(330px, 45dvh);
+    left: 18px;
+    width: clamp(170px, 18vw, 205px);
+    height: min(440px, 55dvh);
   }
 
   .assistant-contact .assistant-placeholder,
@@ -2313,7 +2330,7 @@ body {
 }
 
 .assistant-home .assistant-pose-desktop.is-reacting {
-  transform-origin: 55% 88%;
+  transform-origin: 56% 54%;
   animation: assistant-home-peek-reaction 500ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -2356,11 +2373,11 @@ body {
   }
 
   36% {
-    transform: translate3d(-12px, -2px, 0) rotate(-2deg);
+    transform: translate3d(0, -7px, 0) rotate(-1deg);
   }
 
   68% {
-    transform: translate3d(-3px, 0, 0) rotate(-0.5deg);
+    transform: translate3d(0, -2px, 0) rotate(-0.25deg);
   }
 
   100% {
